@@ -4,14 +4,15 @@ import java.io.StreamCorruptedException;
 import java.security.InvalidParameterException;
 import java.util.HashSet;
 
+import main.at.fhv.itb5.systemarchitecture.ue1.insys.dao.SimpleLine;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 
-public class CharacterFilter extends AbstractFilter<String, String> {
+public class CharacterFilter extends AbstractFilter<SimpleLine, SimpleLine> {
 
 	private HashSet<Character> _toFilter;
 
-	public CharacterFilter(Writeable<String> output) throws InvalidParameterException {
+	public CharacterFilter(Writeable<SimpleLine> output) throws InvalidParameterException {
 		super(output);
 		_toFilter = new HashSet<>();
 		_toFilter.add(',');
@@ -23,6 +24,7 @@ public class CharacterFilter extends AbstractFilter<String, String> {
 		_toFilter.add('.');
 		_toFilter.add('(');
 		_toFilter.add(')');
+		_toFilter.add('*');
 		_toFilter.add(Character.valueOf('\t'));
 		_toFilter.add(Character.valueOf('\n'));
 		_toFilter.add(Character.valueOf('\r'));
@@ -30,33 +32,37 @@ public class CharacterFilter extends AbstractFilter<String, String> {
 	// add set of all unimportant characters
 
 	@Override
-	public String read() throws StreamCorruptedException {
+	public SimpleLine read() throws StreamCorruptedException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void write(String value) throws StreamCorruptedException {
-		String filterLine = filterCharacters(value);
-		if (filterLine != null) {
-			writeOutput(filterCharacters(value));
+	public void write(SimpleLine value) throws StreamCorruptedException {
+		if(value != ENDING_SIGNAL) {
+			SimpleLine filterLine = filterCharacters(value);
+			if (filterLine != null) {
+				writeOutput(filterLine);
+			} 
+		} else {
+			sendEndSignal();
 		}
+		
 	}
 
-	private String filterCharacters(String line) {
+	private SimpleLine filterCharacters(SimpleLine line) {
 		if (line.isEmpty()) {
 			return null;
 		}
 
 		StringBuilder stringBuilder = new StringBuilder();
-		for (char c : line.toCharArray()) {
+		for (char c : line.getValue().toCharArray()) {
 
 			if (!_toFilter.contains(c)) {
 				stringBuilder.append(c);
 			}
-
 		}
 
-		return stringBuilder.toString();
+		return new SimpleLine(stringBuilder.toString(), line.getLinenumber());
 	}
 }

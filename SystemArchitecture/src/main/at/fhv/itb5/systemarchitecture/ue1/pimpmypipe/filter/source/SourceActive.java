@@ -5,8 +5,10 @@ import java.io.StreamCorruptedException;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.ActiveElement;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 
-public abstract class SourceActive<T> extends ActiveElement implements Writeable<T> {
+public abstract class SourceActive<T> extends ActiveElement implements Writeable<T>{
 	protected Writeable<T> _successor;
+	
+	public Object ENDING_SIGNAL = null;
 	
 	public SourceActive(Writeable<T> successor) {
 		_successor = successor;

@@ -10,9 +10,8 @@ import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 public abstract class AbstractFilter<in, out> implements IOable<in, out> {
     private Readable<in> _predecessor = null;
     private Writeable<out> _sucessor = null;
-    
-    public static Object ENDING_SIGNAL = null;
-    
+
+    public Object ENDING_SIGNAL = null;
     
     public AbstractFilter(Readable<in> input) throws InvalidParameterException{
         if (input == null){
