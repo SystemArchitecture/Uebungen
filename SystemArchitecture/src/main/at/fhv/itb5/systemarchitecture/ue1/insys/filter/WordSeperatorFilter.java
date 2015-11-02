@@ -33,7 +33,8 @@ public class WordSeperatorFilter extends AbstractFilter<String, LinkedList<Strin
 	}
 	
 	private LinkedList<String> toWordList(String line) {
-		LinkedList<String> result = new LinkedList<>(Arrays.asList(line.split(" ")));
+		String reg = "\\s+";
+		LinkedList<String> result = new LinkedList<>(Arrays.asList(line.split(reg)));
 		return result;
 	}
 }

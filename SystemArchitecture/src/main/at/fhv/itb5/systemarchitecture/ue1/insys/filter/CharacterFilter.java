@@ -48,15 +48,13 @@ public class CharacterFilter extends AbstractFilter<String, String> {
 			return null;
 		}
 
-		boolean firstWord = false;
-
 		StringBuilder stringBuilder = new StringBuilder();
 		for (char c : line.toCharArray()) {
-			if (firstWord) {
-				if (!_toFilter.contains(c)) {
-					stringBuilder.append(c);
-				}
+
+			if (!_toFilter.contains(c)) {
+				stringBuilder.append(c);
 			}
+
 		}
 
 		return stringBuilder.toString();
