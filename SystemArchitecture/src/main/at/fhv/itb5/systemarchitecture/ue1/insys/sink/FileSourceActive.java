@@ -13,7 +13,7 @@ public class FileSourceActive extends SourceActive<String>{
 	
 	public FileSourceActive(Writeable<String> successor) {
 		super(successor);
-		_bufferedReader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("aliceInWonderland.txt")));
+		_bufferedReader = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("aliceInWonderland.txt")));
 	}
 
 	@Override
