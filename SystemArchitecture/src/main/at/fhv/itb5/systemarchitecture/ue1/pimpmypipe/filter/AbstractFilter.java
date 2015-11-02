@@ -7,9 +7,9 @@ import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.IOable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 
-public abstract class AbstractFilter<in, out> implements IOable<in, out>, Runnable {
-    private Readable<in> m_Input = null;
-    private Writeable<out> m_Output = null;
+public abstract class AbstractFilter<in, out> implements IOable<in, out> {
+    private Readable<in> _predecessor = null;
+    private Writeable<out> _sucessor = null;
     
     public static Object ENDING_SIGNAL = null;
     
@@ -18,14 +18,14 @@ public abstract class AbstractFilter<in, out> implements IOable<in, out>, Runnab
         if (input == null){
             throw new InvalidParameterException("input can't be null!");
         }
-        m_Input = input;
+        _predecessor = input;
     }
     
     public AbstractFilter(Writeable<out> output)throws InvalidParameterException{
         if (output == null){
             throw new InvalidParameterException("output can't be null!");
         }
-        m_Output = output;
+        _sucessor = output;
     }
     
     public AbstractFilter(Readable<in> input, Writeable<out> output)throws InvalidParameterException{
@@ -34,22 +34,22 @@ public abstract class AbstractFilter<in, out> implements IOable<in, out>, Runnab
         }else if (output == null){
             throw new InvalidParameterException("output can't be null!");
         }
-        m_Input = input;
-        m_Output = output;
+        _predecessor = input;
+        _sucessor = output;
     }
     
     protected void writeOutput(out value) throws StreamCorruptedException{
-        if (m_Output != null){
+        if (_sucessor != null){
             if (value == ENDING_SIGNAL) beforeSendingEndingSignal();
-            m_Output.write(value);
+            _sucessor.write(value);
         }else{
             throw new StreamCorruptedException("output is null");
         }
     }
     
     protected in readInput() throws StreamCorruptedException{
-        if (m_Input != null){
-            return m_Input.read();
+        if (_predecessor != null){
+            return _predecessor.read();
         }else{
             throw new StreamCorruptedException("input is null");
         }

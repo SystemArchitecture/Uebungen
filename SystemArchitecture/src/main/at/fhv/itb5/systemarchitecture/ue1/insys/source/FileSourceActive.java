@@ -1,4 +1,4 @@
-package main.at.fhv.itb5.systemarchitecture.ue1.insys.sink;
+package main.at.fhv.itb5.systemarchitecture.ue1.insys.source;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -21,11 +21,10 @@ public class FileSourceActive extends SourceActive<String>{
 		String line;
 		try {
 			if((line = _bufferedReader.readLine()) != null) {
-				System.out.println(line);
-				//write(line);
+				write(line);
 			} else {
 				//TODO(san7985) eos
-				//write(null);
+				stop();
 			}
 		} catch (StreamCorruptedException e) {
 			e.printStackTrace();
