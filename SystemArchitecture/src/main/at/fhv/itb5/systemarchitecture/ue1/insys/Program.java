@@ -2,7 +2,7 @@ package main.at.fhv.itb5.systemarchitecture.ue1.insys;
 
 import main.at.fhv.itb5.systemarchitecture.ue1.insys.dao.SimpleLine;
 import main.at.fhv.itb5.systemarchitecture.ue1.insys.filter.CharacterFilter;
-import main.at.fhv.itb5.systemarchitecture.ue1.insys.filter.PerlmutateFilter;
+import main.at.fhv.itb5.systemarchitecture.ue1.insys.filter.PermutateFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.insys.filter.SortFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.insys.filter.WordNoiseFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.insys.filter.WordSeperatorFilter;
@@ -17,7 +17,7 @@ public class Program {
 										new CharacterFilter(
 										new WordSeperatorFilter(
 										new WordNoiseFilter(
-										new PerlmutateFilter(
+										new PermutateFilter(
 										new SortFilter(
 										//new CommonWordFilter(
 										new ConsoleSinkPassive()))))));
