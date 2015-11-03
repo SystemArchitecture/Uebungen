@@ -19,8 +19,8 @@ public class Program {
 										new WordNoiseFilter(
 										new PerlmutateFilter(
 										new SortFilter(
-										new CommonWordFilter(
-										new ConsoleSinkPassive())))))));
+										//new CommonWordFilter(
+										new ConsoleSinkPassive()))))));
 		source.run();
 	}
 
