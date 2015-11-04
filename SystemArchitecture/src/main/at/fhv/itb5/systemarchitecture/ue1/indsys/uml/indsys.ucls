@@ -355,7 +355,6 @@
     </display>  
   </interface>  
   <realization id="33">    
-    <bendpoint x="2915" y="854"/>    
     <end type="SOURCE" refId="12"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
@@ -376,7 +375,7 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <realization id="39">    
-    <bendpoint x="4758" y="854"/>    
+    <bendpoint x="3670" y="954"/>    
     <end type="SOURCE" refId="20"/>    
     <end type="TARGET" refId="4"/>  
   </realization>  
