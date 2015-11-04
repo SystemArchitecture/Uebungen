@@ -31,7 +31,7 @@ public class WordLine {
 	
 	@Override
 	public String toString() {
-		return _lineNumber + " -> " + wordsToString();
+		return wordsToString() + " " + _lineNumber;
 	}
 
 	@SuppressWarnings("unchecked")

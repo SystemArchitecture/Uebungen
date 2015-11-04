@@ -29,7 +29,7 @@ public class Program {
 				_application = new Application(new String[]{pushArg, sourceFilePath, sinkFilePath});
 				break;
 			default:
-				//should never be reache
+				//should never be reached
 				break;
 			
 			}
