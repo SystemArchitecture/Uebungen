@@ -23,6 +23,6 @@ public class CommonWordFilter extends AbstractFilter<LinkedList<WordLine>, Linke
 	@Override
 	public void write(LinkedList<WordLine> value) throws StreamCorruptedException {
 		//TODO: filter for common words
-		write(value);
+		writeOutput(value);
 	}
 }
