@@ -1,4 +1,4 @@
-package main.at.fhv.itb5.systemarchitecture.ue1.insys.dao;
+package main.at.fhv.itb5.systemarchitecture.ue1.indsys.dao;
 
 import java.util.Comparator;
 

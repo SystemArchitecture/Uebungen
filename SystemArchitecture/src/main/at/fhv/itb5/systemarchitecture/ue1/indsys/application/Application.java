@@ -1,14 +1,14 @@
-package main.at.fhv.itb5.systemarchitecture.ue1.insys.application;
+package main.at.fhv.itb5.systemarchitecture.ue1.indsys.application;
 
-import main.at.fhv.itb5.systemarchitecture.ue1.insys.dao.SimpleLine;
-import main.at.fhv.itb5.systemarchitecture.ue1.insys.filter.CharacterFilter;
-import main.at.fhv.itb5.systemarchitecture.ue1.insys.filter.CommonWordFilter;
-import main.at.fhv.itb5.systemarchitecture.ue1.insys.filter.PermutateFilter;
-import main.at.fhv.itb5.systemarchitecture.ue1.insys.filter.SortFilter;
-import main.at.fhv.itb5.systemarchitecture.ue1.insys.filter.WordNoiseFilter;
-import main.at.fhv.itb5.systemarchitecture.ue1.insys.filter.WordSeperatorFilter;
-import main.at.fhv.itb5.systemarchitecture.ue1.insys.sink.ConsoleSinkPassive;
-import main.at.fhv.itb5.systemarchitecture.ue1.insys.source.FileSourceActive;
+import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dao.SimpleLine;
+import main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter.CharacterFilter;
+import main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter.CommonWordFilter;
+import main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter.PermutateFilter;
+import main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter.SortFilter;
+import main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter.WordNoiseFilter;
+import main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter.WordSeperatorFilter;
+import main.at.fhv.itb5.systemarchitecture.ue1.indsys.sink.ConsoleSinkPassive;
+import main.at.fhv.itb5.systemarchitecture.ue1.indsys.source.FileSourceActive;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.source.SourceActive;
 
 public class Application implements Runnable{

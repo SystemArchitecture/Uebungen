@@ -1,4 +1,4 @@
-package main.at.fhv.itb5.systemarchitecture.ue1.insys.application;
+package main.at.fhv.itb5.systemarchitecture.ue1.indsys.application;
 
 public class RunDescriptor {
 	private PipelineType _pipelineType;

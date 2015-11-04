@@ -1,10 +1,10 @@
-package main.at.fhv.itb5.systemarchitecture.ue1.insys.filter;
+package main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter;
 
 import java.io.StreamCorruptedException;
 import java.security.InvalidParameterException;
 import java.util.HashSet;
 
-import main.at.fhv.itb5.systemarchitecture.ue1.insys.dao.SimpleLine;
+import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dao.SimpleLine;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 

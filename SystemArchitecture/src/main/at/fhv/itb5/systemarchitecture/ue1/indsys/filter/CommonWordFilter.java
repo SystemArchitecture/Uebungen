@@ -1,4 +1,4 @@
-package main.at.fhv.itb5.systemarchitecture.ue1.insys.filter;
+package main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.security.InvalidParameterException;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import main.at.fhv.itb5.systemarchitecture.ue1.insys.dao.WordLine;
+import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dao.WordLine;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 

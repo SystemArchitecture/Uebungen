@@ -1,7 +1,7 @@
-package main.at.fhv.itb5.systemarchitecture.ue1.insys;
+package main.at.fhv.itb5.systemarchitecture.ue1.indsys;
 
-import main.at.fhv.itb5.systemarchitecture.ue1.insys.application.Application;
-import main.at.fhv.itb5.systemarchitecture.ue1.insys.application.PipelineType;
+import main.at.fhv.itb5.systemarchitecture.ue1.indsys.application.Application;
+import main.at.fhv.itb5.systemarchitecture.ue1.indsys.application.PipelineType;
 
 public class Program {
 	
