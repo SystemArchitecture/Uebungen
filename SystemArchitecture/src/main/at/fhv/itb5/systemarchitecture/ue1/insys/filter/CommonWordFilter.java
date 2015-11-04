@@ -1,4 +1,4 @@
-package main.at.fhv.itb5.systemarchitecture.ue1.insys;
+package main.at.fhv.itb5.systemarchitecture.ue1.insys.filter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,7 +12,7 @@ import main.at.fhv.itb5.systemarchitecture.ue1.insys.dao.WordLine;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 
-public class CommonWordFilter extends AbstractFilter<LinkedList<WordLine>, WordLine> {
+public class CommonWordFilter extends AbstractFilter<WordLine, WordLine> {
 
 	public CommonWordFilter(Writeable<WordLine> output) throws InvalidParameterException {
 		super(output);
@@ -25,16 +25,13 @@ public class CommonWordFilter extends AbstractFilter<LinkedList<WordLine>, WordL
 	}
 
 	@Override
-	public void write(LinkedList<WordLine> value) throws StreamCorruptedException {
+	public void write(WordLine value) throws StreamCorruptedException {
 		if (value != ENDING_SIGNAL) {
-			for (WordLine line : value) {
-				clearUpList(line);
-				if (line.getWords().size() > 0) {
-					writeOutput(line);
-				}
+			clearUpList(value);
+			if (value.getWords().size() > 0) {
+				writeOutput(value);
 			}
 
-			
 		} else {
 			sendEndSignal();
 		}
