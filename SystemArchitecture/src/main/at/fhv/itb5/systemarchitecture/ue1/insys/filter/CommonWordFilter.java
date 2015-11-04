@@ -45,7 +45,7 @@ public class CommonWordFilter extends AbstractFilter<WordLine, WordLine> {
 		// filter frequent english words
 		HashMap<Integer, String> wordMap = loadWordList();
 		for (String word : input.getWords()) {
-			if (wordMap.containsKey(word.hashCode())) {
+			if (wordMap.containsKey(word.toLowerCase().hashCode())) {
 				newWords.remove(word);
 			}
 		}
