@@ -12,14 +12,14 @@ import main.at.fhv.itb5.systemarchitecture.ue1.insys.dao.WordLine;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 
-public class CommonWordFilter extends AbstractFilter<LinkedList<WordLine>, LinkedList<WordLine>> {
+public class CommonWordFilter extends AbstractFilter<LinkedList<WordLine>, WordLine> {
 
-	public CommonWordFilter(Writeable<LinkedList<WordLine>> output) throws InvalidParameterException {
+	public CommonWordFilter(Writeable<WordLine> output) throws InvalidParameterException {
 		super(output);
 	}
 
 	@Override
-	public LinkedList<WordLine> read() throws StreamCorruptedException {
+	public WordLine read() throws StreamCorruptedException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -29,11 +29,12 @@ public class CommonWordFilter extends AbstractFilter<LinkedList<WordLine>, Linke
 		if (value != ENDING_SIGNAL) {
 			for (WordLine line : value) {
 				clearUpList(line);
+				if (line.getWords().size() > 0) {
+					writeOutput(line);
+				}
 			}
 
-			if (value != null) {
-				writeOutput(value);
-			}
+			
 		} else {
 			sendEndSignal();
 		}

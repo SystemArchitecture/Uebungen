@@ -17,9 +17,9 @@ public class Program {
 										new CharacterFilter(
 										new WordSeperatorFilter(
 										new WordNoiseFilter(
+										new CommonWordFilter(
 										new PermutateFilter(
 										new SortFilter(
-										new CommonWordFilter(
 										new ConsoleSinkPassive())))))));
 		source.run();
 	}
