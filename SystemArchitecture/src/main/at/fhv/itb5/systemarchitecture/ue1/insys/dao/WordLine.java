@@ -31,6 +31,16 @@ public class WordLine {
 	
 	@Override
 	public String toString() {
-		return _lineNumber + " -> " + wordsToString();
+		return wordsToString() + " " + _lineNumber;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public WordLine clone() {
+		return new WordLine((LinkedList<String>) _words.clone(), _lineNumber);
+	}
+
+	public void setWords(LinkedList<String> words) {
+		_words = words;
 	}
 }

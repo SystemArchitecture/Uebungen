@@ -1,9 +1,9 @@
 package main.at.fhv.itb5.systemarchitecture.ue1.insys.application;
 
-import main.at.fhv.itb5.systemarchitecture.ue1.insys.CommonWordFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.insys.dao.SimpleLine;
 import main.at.fhv.itb5.systemarchitecture.ue1.insys.filter.CharacterFilter;
-import main.at.fhv.itb5.systemarchitecture.ue1.insys.filter.PerlmutateFilter;
+import main.at.fhv.itb5.systemarchitecture.ue1.insys.filter.CommonWordFilter;
+import main.at.fhv.itb5.systemarchitecture.ue1.insys.filter.PermutateFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.insys.filter.SortFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.insys.filter.WordNoiseFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.insys.filter.WordSeperatorFilter;
@@ -29,9 +29,9 @@ public class Application implements Runnable{
 					new CharacterFilter(
 					new WordSeperatorFilter(
 					new WordNoiseFilter(
-					new PerlmutateFilter(
-					new SortFilter(
 					new CommonWordFilter(
+					new PermutateFilter(
+					new SortFilter(
 					new ConsoleSinkPassive())))))));
 					
 			_runnable = source;
