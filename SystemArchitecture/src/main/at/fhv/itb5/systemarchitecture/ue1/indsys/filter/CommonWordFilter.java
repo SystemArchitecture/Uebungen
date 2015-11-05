@@ -5,73 +5,82 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StreamCorruptedException;
 import java.security.InvalidParameterException;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dao.WordLine;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 
+public class CommonWordFilter extends AbstractFilter<LinkedList<WordLine>, LinkedList<WordLine>> {
+	private HashSet<String> _wordMap;
 
-
-public class CommonWordFilter extends AbstractFilter<WordLine, WordLine> {
-
-	public CommonWordFilter(Writeable<WordLine> output) throws InvalidParameterException {
+	public CommonWordFilter(Writeable<LinkedList<WordLine>> output) throws InvalidParameterException {
 		super(output);
 	}
 
 	@Override
-	public WordLine read() throws StreamCorruptedException {
+	public LinkedList<WordLine> read() throws StreamCorruptedException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void write(WordLine value) throws StreamCorruptedException {
+	public void write(LinkedList<WordLine> value) throws StreamCorruptedException {
 		if (value != ENDING_SIGNAL) {
-			clearUpList(value);
-			if (value.getWords().size() > 0) {
-				writeOutput(value);
-			}
-
+			value = clearUpList(value);
 		} else {
 			sendEndSignal();
 		}
+		writeOutput(value);
 	}
 
-	private void clearUpList(WordLine input) {
-		// clone words list
-		@SuppressWarnings("unchecked")
-		LinkedList<String> newWords = (LinkedList<String>) input.getWords().clone();
 
-		// filter frequent english words
-		HashMap<Integer, String> wordMap = loadWordList();
-		for (String word : input.getWords()) {
-			if (wordMap.containsKey(word.toLowerCase().hashCode())) {
-				newWords.remove(word);
-			}
+	private LinkedList<WordLine> clearUpList(LinkedList<WordLine> input) {
+		// load word map
+		if (_wordMap == null) {
+			_wordMap = loadWordList();
 		}
 
-		// set new words list
-		input.setWords(newWords);
+		@SuppressWarnings("unchecked")
+		LinkedList<WordLine> copyInput = (LinkedList<WordLine>) input.clone();
+		for(WordLine line : input )  {
+			if(_wordMap.contains(line.getWords().getFirst().toLowerCase())) {
+				copyInput.remove(line);
+			}
+		}
+		
+		return copyInput;
 	}
 
-	private HashMap<Integer, String> loadWordList() {
-		// create new hashmap and fill it with the most frequent words of the
+	private HashSet<String> loadWordList() {
+		// create new hashset and fill it with the most frequent words of the
 		// list
-		HashMap<Integer, String> wordMap = new HashMap<Integer, String>();
+		HashSet<String> wordMap = new HashSet<String>();
 
-		BufferedReader bufferedReader = new BufferedReader(
-				new InputStreamReader(getClass().getClassLoader().getResourceAsStream("frequentEnglishWords.txt")));
-		String line;
+		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(
+				CommonWordFilter.class.getClassLoader().getResourceAsStream("frequentEnglishWords.txt")));
+		String word;
 		try {
-			while ((line = bufferedReader.readLine()) != null) {
-				wordMap.put(line.hashCode(), line);
+			while ((word = bufferedReader.readLine()) != null) {
+				wordMap.add(word);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
 		return wordMap;
 	}
+
+	/*
+	 * public static void main(String[] args){ LinkedList<WordLine> input = new
+	 * LinkedList<WordLine>(); LinkedList<String> words1 = new
+	 * LinkedList<String>(); words1.add("your"); words1.add("simon");
+	 * words1.add("goes"); words1.add("to"); LinkedList<String> words2 = new
+	 * LinkedList<String>(); words2.add("simon"); words2.add("your");
+	 * words2.add("goes"); words2.add("to"); WordLine line1 = new
+	 * WordLine(words1, 1); WordLine line2 = new WordLine(words2, 2);
+	 * input.add(line1); input.add(line2); clearUpList(input);
+	 * System.out.println(input); }
+	 */
 }

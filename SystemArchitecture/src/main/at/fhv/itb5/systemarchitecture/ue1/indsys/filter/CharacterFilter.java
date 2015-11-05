@@ -25,6 +25,8 @@ public class CharacterFilter extends AbstractFilter<SimpleLine, SimpleLine> {
 		_toFilter.add('(');
 		_toFilter.add(')');
 		_toFilter.add('*');
+		_toFilter.add(';');
+		_toFilter.add(':');
 		_toFilter.add(Character.valueOf('\t'));
 		_toFilter.add(Character.valueOf('\n'));
 		_toFilter.add(Character.valueOf('\r'));

@@ -40,6 +40,10 @@ public class WordNoiseFilter extends AbstractFilter<WordLine, WordLine> {
 				input.getWords().remove(i);
 			}
 		}
+		
+		if(input.getWords().isEmpty()) {
+			return null;
+		}
 
 		return input;
 	}

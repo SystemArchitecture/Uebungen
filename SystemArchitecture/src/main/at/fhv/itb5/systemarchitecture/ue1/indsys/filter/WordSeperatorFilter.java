@@ -20,8 +20,6 @@ public class WordSeperatorFilter extends AbstractFilter<SimpleLine, WordLine> {
 	public WordSeperatorFilter(Writeable<WordLine> output) {
 		super(output);
 	}
-	
-	//TODO: add input constructor
 
 	@Override
 	public WordLine read() throws StreamCorruptedException {

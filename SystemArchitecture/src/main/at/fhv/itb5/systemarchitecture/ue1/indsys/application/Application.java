@@ -19,7 +19,6 @@ public class Application implements Runnable{
 
 		RunDescriptor runDescriptor = ProgramParamParser.parse(args);
 
-		// react accordingly
 		switch (runDescriptor.getPipelineType()) {
 		case Pull: {
 			break;
@@ -29,16 +28,12 @@ public class Application implements Runnable{
 					new CharacterFilter(
 					new WordSeperatorFilter(
 					new WordNoiseFilter(
-					new CommonWordFilter(
 					new PermutateFilter(
+					new CommonWordFilter(
 					new SortFilter(
 					new ConsoleSinkPassive())))))));
 					
 			_runnable = source;
-			break;
-		}
-		default: {
-			System.out.println("Invalide pipeline type!");
 			break;
 		}
 		}	
