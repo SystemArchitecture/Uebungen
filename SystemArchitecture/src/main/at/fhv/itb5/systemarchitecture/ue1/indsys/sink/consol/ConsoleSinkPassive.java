@@ -1,4 +1,4 @@
-package main.at.fhv.itb5.systemarchitecture.ue1.indsys.sink;
+package main.at.fhv.itb5.systemarchitecture.ue1.indsys.sink.consol;
 
 import java.io.StreamCorruptedException;
 import java.util.LinkedList;
