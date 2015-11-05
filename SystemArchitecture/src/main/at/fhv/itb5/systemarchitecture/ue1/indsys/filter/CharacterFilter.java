@@ -7,14 +7,14 @@ import java.util.HashSet;
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dao.SimpleLine;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.EndOfStreamException;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
+import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 
 public class CharacterFilter extends AbstractFilter<SimpleLine, SimpleLine> {
 
 	private HashSet<Character> _toFilter;
-
-	public CharacterFilter(Writeable<SimpleLine> output) throws InvalidParameterException {
-		super(output);
+	
+	private void init() {
 		_toFilter = new HashSet<>();
 		_toFilter.add(',');
 		_toFilter.add('!');
@@ -32,7 +32,16 @@ public class CharacterFilter extends AbstractFilter<SimpleLine, SimpleLine> {
 		_toFilter.add(Character.valueOf('\n'));
 		_toFilter.add(Character.valueOf('\r'));
 	}
-	// add set of all unimportant characters
+	
+	public CharacterFilter(Writeable<SimpleLine> output) throws InvalidParameterException {
+		super(output);
+		init();
+	}
+	
+	public CharacterFilter(Readable<SimpleLine> input) {
+		super(input);
+		init();
+	}
 
 	@Override
 	public SimpleLine read() throws StreamCorruptedException, EndOfStreamException {

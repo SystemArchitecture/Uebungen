@@ -28,7 +28,6 @@ public class ConsolSinkActive extends SinkActive<LinkedList<WordLine>> {
 			e.printStackTrace();
 			stop();
 		} catch (EndOfStreamException e) {
-			e.printStackTrace();
 			stop();
 		}
 	}

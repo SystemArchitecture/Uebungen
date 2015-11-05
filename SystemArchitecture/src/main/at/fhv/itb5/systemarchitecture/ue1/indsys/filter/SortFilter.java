@@ -14,28 +14,37 @@ import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 public class SortFilter extends AbstractFilter<LinkedList<WordLine>, LinkedList<WordLine>> {
 
 	private LinkedList<WordLine> _sorted;
+	private boolean _isCollectingData;
+	
+	private void init() {
+		_sorted = new LinkedList<>();
+		_isCollectingData = true;
+	}
 	
 	public SortFilter(Writeable<LinkedList<WordLine>> output) throws InvalidParameterException {
 		super(output);
-		_sorted = new LinkedList<>();
+		init();
 	}
 	
 	public SortFilter(Readable<LinkedList<WordLine>> input) {
 		super(input);
-		_sorted = new LinkedList<>();
+		init();
 	}
 
 	@Override
-	public LinkedList<WordLine> read() throws StreamCorruptedException {
-		boolean isCollectionData = true;
-		while(isCollectionData) {
-			try {
-				readInput();
-			} catch (EndOfStreamException e) {
-				isCollectionData = false;
-			}
+	public LinkedList<WordLine> read() throws EndOfStreamException, StreamCorruptedException {
+		if(!_isCollectingData) {
+			throw new EndOfStreamException();
 		}
 		
+		while(_isCollectingData) {
+			try {
+				_sorted.addAll(readInput());
+			} catch (EndOfStreamException e) {
+				_isCollectingData = false;
+			}
+		}
+		sort();
 		return _sorted;
 	}
 
@@ -43,8 +52,8 @@ public class SortFilter extends AbstractFilter<LinkedList<WordLine>, LinkedList<
 	public void write(LinkedList<WordLine> value) throws StreamCorruptedException {
 		if (value != ENDING_SIGNAL) {
 			_sorted.addAll(value);
-			sort();
 		} else {
+			sort();
 			writeOutput(_sorted);
 			sendEndSignal();
 		}

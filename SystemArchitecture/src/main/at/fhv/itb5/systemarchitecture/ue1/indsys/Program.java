@@ -7,7 +7,7 @@ public class Program {
 	
 	//debug flags
 	public static boolean isInDebugMode = true;
-	public static PipelineType debugPipelineType = PipelineType.Push;
+	public static PipelineType debugPipelineType = PipelineType.Pull;
 	
 	//debug arguments
 	public static String pullArg = "Pull";
