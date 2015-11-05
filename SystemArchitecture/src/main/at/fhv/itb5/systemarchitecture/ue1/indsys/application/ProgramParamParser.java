@@ -6,9 +6,12 @@ public class ProgramParamParser {
 	public static RunDescriptor parse(String[] args) {
 		Exercise exercise = parseExerciseString(args[0]);
 		PipelineType pipelineType = parsePipelineType(args[1]);
-		String sinkFilePath = args[2];
+		String sinkFileIndexPath = args[2];
+		if(args.length == 4) {
+			return new RunDescriptor(exercise, pipelineType, new File(sinkFileIndexPath), new File(args[3]));
+		}
 		
-		return new RunDescriptor(exercise, pipelineType, new File(sinkFilePath));
+		return new RunDescriptor(exercise, pipelineType, new File(sinkFileIndexPath));
 	}
 	
 	private static Exercise parseExerciseString(String arg) {

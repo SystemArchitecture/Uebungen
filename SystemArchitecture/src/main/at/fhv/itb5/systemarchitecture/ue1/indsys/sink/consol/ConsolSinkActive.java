@@ -3,7 +3,7 @@ package main.at.fhv.itb5.systemarchitecture.ue1.indsys.sink.consol;
 import java.io.StreamCorruptedException;
 import java.util.LinkedList;
 
-import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dao.WordLine;
+import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dto.WordLine;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.EndOfStreamException;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.sink.SinkActive;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;

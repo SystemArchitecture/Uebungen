@@ -4,7 +4,7 @@ import java.io.StreamCorruptedException;
 import java.security.InvalidParameterException;
 import java.util.HashSet;
 
-import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dao.SimpleLine;
+import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dto.SimpleLine;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.EndOfStreamException;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;

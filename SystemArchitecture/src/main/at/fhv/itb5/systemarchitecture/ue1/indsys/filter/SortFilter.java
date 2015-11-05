@@ -4,8 +4,8 @@ import java.io.StreamCorruptedException;
 import java.security.InvalidParameterException;
 import java.util.LinkedList;
 
-import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dao.WordLine;
-import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dao.WordLineComparator;
+import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dto.WordLine;
+import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dto.WordLineComparator;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.EndOfStreamException;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;

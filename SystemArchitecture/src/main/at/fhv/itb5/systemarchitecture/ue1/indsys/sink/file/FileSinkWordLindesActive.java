@@ -4,16 +4,16 @@ import java.io.File;
 import java.io.StreamCorruptedException;
 import java.util.LinkedList;
 
-import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dao.WordLine;
+import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dto.WordLine;
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.util.FileWriterUtil;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.EndOfStreamException;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.sink.SinkActive;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 
-public class FileSinkActive extends SinkActive<LinkedList<WordLine>> {
+public class FileSinkWordLindesActive extends SinkActive<LinkedList<WordLine>> {
 	
 	private FileWriterUtil _fileWriterUtil;
-	public FileSinkActive(File sinkFile, Readable<LinkedList<WordLine>> predeseccor) {
+	public FileSinkWordLindesActive(File sinkFile, Readable<LinkedList<WordLine>> predeseccor) {
 		super(predeseccor);
 		_fileWriterUtil = new FileWriterUtil(sinkFile);
 	}
