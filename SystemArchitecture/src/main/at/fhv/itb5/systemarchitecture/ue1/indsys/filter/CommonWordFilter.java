@@ -12,6 +12,8 @@ import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dao.WordLine;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 
+
+
 public class CommonWordFilter extends AbstractFilter<WordLine, WordLine> {
 
 	public CommonWordFilter(Writeable<WordLine> output) throws InvalidParameterException {

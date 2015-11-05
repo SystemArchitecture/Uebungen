@@ -18,7 +18,7 @@ public class Program {
 	private static Application _application;
 
 	public static void main(String[] args) {
-		if(isInDebugMode) {
+		if(!isInDebugMode) {
 			_application = new Application(args);
 		} else {
 			switch(debugPipelineType) {
