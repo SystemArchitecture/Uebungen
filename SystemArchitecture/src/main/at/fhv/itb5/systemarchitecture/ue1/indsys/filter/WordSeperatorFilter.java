@@ -7,6 +7,7 @@ import java.util.LinkedList;
 
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dao.SimpleLine;
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dao.WordLine;
+import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.EndOfStreamException;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
@@ -20,11 +21,14 @@ public class WordSeperatorFilter extends AbstractFilter<SimpleLine, WordLine> {
 	public WordSeperatorFilter(Writeable<WordLine> output) {
 		super(output);
 	}
+	
+	public WordSeperatorFilter(Readable<SimpleLine> input) {
+		super(input);
+	}
 
 	@Override
-	public WordLine read() throws StreamCorruptedException {
-		// TODO implement other direction
-		return null;
+	public WordLine read() throws StreamCorruptedException, EndOfStreamException {
+		 return toWordList(readInput());
 	}
 
 	@Override

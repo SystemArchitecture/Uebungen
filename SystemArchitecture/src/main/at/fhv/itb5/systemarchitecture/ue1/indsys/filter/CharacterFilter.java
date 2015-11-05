@@ -5,6 +5,7 @@ import java.security.InvalidParameterException;
 import java.util.HashSet;
 
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dao.SimpleLine;
+import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.EndOfStreamException;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 
@@ -34,9 +35,8 @@ public class CharacterFilter extends AbstractFilter<SimpleLine, SimpleLine> {
 	// add set of all unimportant characters
 
 	@Override
-	public SimpleLine read() throws StreamCorruptedException {
-		// TODO Auto-generated method stub
-		return null;
+	public SimpleLine read() throws StreamCorruptedException, EndOfStreamException {
+		return filterCharacters(readInput());
 	}
 
 	@Override

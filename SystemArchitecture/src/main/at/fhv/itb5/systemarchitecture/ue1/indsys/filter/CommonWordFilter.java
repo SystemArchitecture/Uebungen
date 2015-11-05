@@ -9,7 +9,9 @@ import java.util.HashSet;
 import java.util.LinkedList;
 
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dao.WordLine;
+import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.EndOfStreamException;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
+import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 
 public class CommonWordFilter extends AbstractFilter<LinkedList<WordLine>, LinkedList<WordLine>> {
@@ -18,11 +20,14 @@ public class CommonWordFilter extends AbstractFilter<LinkedList<WordLine>, Linke
 	public CommonWordFilter(Writeable<LinkedList<WordLine>> output) throws InvalidParameterException {
 		super(output);
 	}
+	
+	public CommonWordFilter(Readable<LinkedList<WordLine>> input) {
+		super(input);
+	}
 
 	@Override
-	public LinkedList<WordLine> read() throws StreamCorruptedException {
-		// TODO Auto-generated method stub
-		return null;
+	public LinkedList<WordLine> read() throws StreamCorruptedException, EndOfStreamException {
+		return clearUpList(readInput());
 	}
 
 	@Override
@@ -49,7 +54,6 @@ public class CommonWordFilter extends AbstractFilter<LinkedList<WordLine>, Linke
 				copyInput.remove(line);
 			}
 		}
-		
 		return copyInput;
 	}
 

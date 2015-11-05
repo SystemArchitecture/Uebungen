@@ -3,6 +3,7 @@ package main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter;
 import java.io.StreamCorruptedException;
 import java.security.InvalidParameterException;
 
+import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.EndOfStreamException;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.IOable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
@@ -46,9 +47,16 @@ public abstract class AbstractFilter<in, out> implements IOable<in, out> {
         }
     }
     
-    protected in readInput() throws StreamCorruptedException{
+    protected in readInput() throws StreamCorruptedException, EndOfStreamException{
         if (_predecessor != null){
-            return _predecessor.read();
+        	
+        	in value;
+        	
+        	while((value = _predecessor.read()) == null) {
+        		//nothing to do;
+        	}
+        	
+            return value;
         }else{
             throw new StreamCorruptedException("input is null");
         }

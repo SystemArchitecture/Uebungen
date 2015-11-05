@@ -4,7 +4,9 @@ import java.io.StreamCorruptedException;
 import java.security.InvalidParameterException;
 
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dao.WordLine;
+import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.EndOfStreamException;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
+import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 
 public class WordNoiseFilter extends AbstractFilter<WordLine, WordLine> {
@@ -13,12 +15,13 @@ public class WordNoiseFilter extends AbstractFilter<WordLine, WordLine> {
 		super(output);
 	}
 
-	// TODO: add read constructor
+	public WordNoiseFilter(Readable<WordLine> input) {
+		super(input);
+	}
 
 	@Override
-	public WordLine read() throws StreamCorruptedException {
-		// TODO implement other direction
-		return null;
+	public WordLine read() throws StreamCorruptedException, EndOfStreamException {
+		return clearUpList(readInput());
 	}
 
 	@Override

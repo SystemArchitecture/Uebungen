@@ -1,6 +1,8 @@
 package main.at.fhv.itb5.systemarchitecture.ue1.indsys.application;
 
-import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dao.SimpleLine;
+import java.util.LinkedList;
+
+import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dao.WordLine;
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter.CharacterFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter.CommonWordFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter.PermutateFilter;
@@ -9,7 +11,8 @@ import main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter.WordNoiseFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter.WordSeperatorFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.sink.ConsoleSinkPassive;
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.source.FileSourceActive;
-import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.source.SourceActive;
+import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
+
 
 public class Application implements Runnable{
 
@@ -24,16 +27,14 @@ public class Application implements Runnable{
 			break;
 		}
 		case Push: {
-			SourceActive<SimpleLine> source = new FileSourceActive(
+			_runnable = new FileSourceActive(
 					new CharacterFilter(
 					new WordSeperatorFilter(
 					new WordNoiseFilter(
 					new PermutateFilter(
-					new CommonWordFilter(
-					new SortFilter(
+					(Writeable<LinkedList<WordLine>>)new CommonWordFilter(
+					(Writeable<LinkedList<WordLine>>)new SortFilter(
 					new ConsoleSinkPassive())))))));
-					
-			_runnable = source;
 			break;
 		}
 		}	
