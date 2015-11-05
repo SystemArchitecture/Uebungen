@@ -12,46 +12,48 @@ import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dao.WordLine;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 
-public class CommonWordFilter extends AbstractFilter<WordLine, WordLine> {
+public class CommonWordFilter extends AbstractFilter<LinkedList<WordLine>, LinkedList<WordLine>> {
+	private HashMap<Integer, String> _wordMap;
 
-	public CommonWordFilter(Writeable<WordLine> output) throws InvalidParameterException {
+	public CommonWordFilter(Writeable<LinkedList<WordLine>> output) throws InvalidParameterException {
 		super(output);
 	}
 
 	@Override
-	public WordLine read() throws StreamCorruptedException {
+	public LinkedList<WordLine> read() throws StreamCorruptedException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void write(WordLine value) throws StreamCorruptedException {
+	public void write(LinkedList<WordLine> value) throws StreamCorruptedException {
 		if (value != ENDING_SIGNAL) {
 			clearUpList(value);
-			if (value.getWords().size() > 0) {
-				writeOutput(value);
-			}
-
 		} else {
 			sendEndSignal();
 		}
+		writeOutput(value);
 	}
 
-	private void clearUpList(WordLine input) {
-		// clone words list
-		@SuppressWarnings("unchecked")
-		LinkedList<String> newWords = (LinkedList<String>) input.getWords().clone();
+	private void clearUpList(LinkedList<WordLine> input) {
+		// load word map
+		if (_wordMap == null) {
+			_wordMap = loadWordList();
+		}
 
-		// filter frequent english words
-		HashMap<Integer, String> wordMap = loadWordList();
-		for (String word : input.getWords()) {
-			if (wordMap.containsKey(word.toLowerCase().hashCode())) {
-				newWords.remove(word);
+		for (int i = 0; i < input.size(); i++) {
+			// TODO remove when empty wordlines are filtered before
+			if (input.get(i).getWords().isEmpty()) {
+				input.remove(i);
+			} else {
+				int hashCode = input.get(i).getWords().getFirst().toLowerCase().hashCode();
+				// filter lines beginning with these words
+				if (_wordMap.containsKey(hashCode)) {
+					input.remove(i);
+				}
 			}
 		}
 
-		// set new words list
-		input.setWords(newWords);
 	}
 
 	private HashMap<Integer, String> loadWordList() {
@@ -60,7 +62,7 @@ public class CommonWordFilter extends AbstractFilter<WordLine, WordLine> {
 		HashMap<Integer, String> wordMap = new HashMap<Integer, String>();
 
 		BufferedReader bufferedReader = new BufferedReader(
-				new InputStreamReader(getClass().getClassLoader().getResourceAsStream("frequentEnglishWords.txt")));
+				new InputStreamReader(CommonWordFilter.class.getClassLoader().getResourceAsStream("frequentEnglishWords.txt")));
 		String line;
 		try {
 			while ((line = bufferedReader.readLine()) != null) {
@@ -72,4 +74,24 @@ public class CommonWordFilter extends AbstractFilter<WordLine, WordLine> {
 
 		return wordMap;
 	}
+	
+	/*public static void main(String[] args){
+		LinkedList<WordLine> input = new LinkedList<WordLine>();
+		LinkedList<String> words1 = new LinkedList<String>();
+		words1.add("your");
+		words1.add("simon");
+		words1.add("goes");
+		words1.add("to");
+		LinkedList<String> words2 = new LinkedList<String>();
+		words2.add("simon");
+		words2.add("your");
+		words2.add("goes");
+		words2.add("to");
+		WordLine line1 = new WordLine(words1, 1);
+		WordLine line2 = new WordLine(words2, 2);
+		input.add(line1);
+		input.add(line2);
+		clearUpList(input);
+		System.out.println(input);
+	}*/
 }

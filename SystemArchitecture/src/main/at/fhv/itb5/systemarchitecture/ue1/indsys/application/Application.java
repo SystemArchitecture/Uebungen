@@ -29,8 +29,8 @@ public class Application implements Runnable{
 					new CharacterFilter(
 					new WordSeperatorFilter(
 					new WordNoiseFilter(
-					new CommonWordFilter(
 					new PermutateFilter(
+					new CommonWordFilter(
 					new SortFilter(
 					new ConsoleSinkPassive())))))));
 					
