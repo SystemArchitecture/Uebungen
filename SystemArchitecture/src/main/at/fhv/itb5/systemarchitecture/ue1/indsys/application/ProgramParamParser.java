@@ -8,6 +8,11 @@ public class ProgramParamParser {
 	public static RunDescriptor parse(String[] args) {
 		Exercise exercise = parseExerciseString(args[0]);
 		PipelineType pipelineType = parsePipelineType(args[1]);
+		
+		if(args.length<3){
+			throw new IllegalArgumentException("no sinkFileIndexPath provided");
+		}
+
 		String sinkFileIndexPath = args[2];
 		
 		if (args.length == 6) {
