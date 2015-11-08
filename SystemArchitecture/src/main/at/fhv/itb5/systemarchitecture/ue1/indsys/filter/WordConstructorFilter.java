@@ -20,7 +20,23 @@ public class WordConstructorFilter extends AbstractFilter<Character, String> {
 
 	@Override
 	public String read() throws StreamCorruptedException, EndOfStreamException {
-		// TODO Auto-generated method stub
+		if (wordBuilder == null) {
+			wordBuilder = new StringBuilder();
+		}
+		
+		Character value = readInput();
+
+		// filter out '\n'
+		if (value != '\n') {
+			if (value != ' ') {
+				wordBuilder.append(value);
+			} else if (wordBuilder.length() != 0) {
+				String word = wordBuilder.toString();
+				wordBuilder = null;
+				return word;
+			}
+		}
+		
 		return null;
 	}
 

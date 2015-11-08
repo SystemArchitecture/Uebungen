@@ -12,19 +12,18 @@ import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 public class StringToSimpleLineFilter extends AbstractFilter<String, SimpleLine> {
 
 	private int _lineCounter;
+
+	public StringToSimpleLineFilter(Readable<String> input) {
+		super(input);
+	}
 	
 	public StringToSimpleLineFilter(Writeable<SimpleLine> output) throws InvalidParameterException {
 		super(output);
 	}
 
-	public StringToSimpleLineFilter(Readable<String> input) {
-		super(input);
-	}
-
 	@Override
 	public SimpleLine read() throws StreamCorruptedException, EndOfStreamException {
-		// TODO Auto-generated method stub
-		return null;
+		return new SimpleLine(readInput(), _lineCounter++);
 	}
 
 	@Override

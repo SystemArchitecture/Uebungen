@@ -10,7 +10,7 @@ import main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter.ConstructLines;
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter.LineDemulitplexer;
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter.PermutateFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter.SortFilter;
-import main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter.StreamToFileFilter;
+import main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter.StringToFileFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter.WordConstructorFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter.WordNoiseFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter.WordSeperatorFilter;
@@ -55,7 +55,7 @@ public class Application implements Runnable{
 					new WordSeperatorFilter(
 					new CharacterFilter(
 					new StringToSimpleLineFilter(
-					new StreamToFileFilter(
+					new StringToFileFilter(runDescriptor.getSinkFormatedFile(),
 					new ConstructLines(runDescriptor.getLineSize(), runDescriptor.getAlignment(), 
 					new WordConstructorFilter(
 					new FileCharacterSourcePassive())))))))))));

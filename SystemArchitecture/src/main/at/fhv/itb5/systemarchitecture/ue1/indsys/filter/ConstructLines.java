@@ -27,8 +27,25 @@ public class ConstructLines extends AbstractFilter<String, String> {
 	}
 
 	@Override
-	public String read() throws StreamCorruptedException, EndOfStreamException {
-		// TODO Auto-generated method stub
+	public String read() throws StreamCorruptedException, EndOfStreamException {		
+		String value = readInput();
+		
+		if(_lineBuilder == null) {
+			_lineBuilder = new StringBuilder();
+		}
+		
+		if((_lineBuilder.length() + value.length()) > _lineSize) {
+			applyAlignment(_lineBuilder, _alignement);
+			String line = _lineBuilder.toString();
+			
+			_lineBuilder = new StringBuilder();
+			_lineBuilder.append(value);
+			
+			return line;
+		} else {
+			_lineBuilder.append(" " + value);
+		}
+		
 		return null;
 	}
 	
