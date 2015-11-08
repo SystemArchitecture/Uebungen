@@ -10,7 +10,7 @@ import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dto.Alignment;
 public class Program {
 
 	// debug flags
-	public static boolean isInDebugMode = true;
+	public static boolean isInDebugMode = false;
 	public static PipelineType debugPipelineType = PipelineType.Push;
 	public static Exercise exercise = Exercise.B;
 	public static Alignment alignment = Alignment.Right;
