@@ -45,22 +45,18 @@ public class Application implements Runnable{
 	public void runExerciseB(RunDescriptor runDescriptor) {
 		switch (runDescriptor.getPipelineType()) {
 		case Pull: {
-			List<Readable<LinkedList<WordLine>>> demultiplexerSuccessors = new LinkedList<>();
-			
-			demultiplexerSuccessors.add((Readable<LinkedList<WordLine>>)new SortFilter(
+			_runnable = new FileSinkWordLinesActive(runDescriptor.getSinkIndexFile(),
+					(Readable<LinkedList<WordLine>>)new SortFilter(
 					(Readable<LinkedList<WordLine>>)new CommonWordFilter(
 					new PermutateFilter(
 					new WordNoiseFilter(
 					new WordSeperatorFilter(
 					new CharacterFilter(
 					new StringToSimpleLineFilter(
-					new FileSourcePassive()))))))));
-			
-			_runnable = new FileCharacterSourceActive(
+					new StreamToFileFilter(
+					new ConstructLines(runDescriptor.getLineSize(), runDescriptor.getAlignment(), 
 					new WordConstructorFilter(
-					new ConstructLines(runDescriptor.getLineSize(), runDescriptor.getAlignment(), new LineDemulitplexer(demultiplexerSuccessors))));
-			break;
-			
+					new FileCharacterSourcePassive())))))))))));
 			break;
 		}
 		case Push: {
