@@ -6,6 +6,7 @@ import java.security.InvalidParameterException;
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dto.SimpleLine;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.EndOfStreamException;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
+import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 
 public class StringToSimpleLineFilter extends AbstractFilter<String, SimpleLine> {
@@ -14,6 +15,10 @@ public class StringToSimpleLineFilter extends AbstractFilter<String, SimpleLine>
 	
 	public StringToSimpleLineFilter(Writeable<SimpleLine> output) throws InvalidParameterException {
 		super(output);
+	}
+
+	public StringToSimpleLineFilter(Readable<String> input) {
+		super(input);
 	}
 
 	@Override

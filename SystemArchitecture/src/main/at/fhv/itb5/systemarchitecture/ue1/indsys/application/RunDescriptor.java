@@ -2,8 +2,6 @@ package main.at.fhv.itb5.systemarchitecture.ue1.indsys.application;
 
 import java.io.File;
 
-import org.omg.stub.java.rmi._Remote_Stub;
-
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dto.Alignment;
 
 public class RunDescriptor {
@@ -49,5 +47,12 @@ public class RunDescriptor {
 
 	public int getLineSize() {
 		return _lineSize;
+	}
+
+	@Override
+	public String toString() {
+		return "RunDescriptor [Exercise=" + _exercise + ", PipelineType=" + _pipelineType + ", SinkIndexFile="
+				+ _sinkIndexFile + ", SinkFormatedFile=" + _sinkFormatedFile + ", Alignment=" + _alignment
+				+ ", LineSize=" + _lineSize + "]";
 	}
 }

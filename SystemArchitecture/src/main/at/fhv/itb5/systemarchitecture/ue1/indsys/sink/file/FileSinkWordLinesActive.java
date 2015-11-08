@@ -10,10 +10,10 @@ import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.EndOfStreamException;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.sink.SinkActive;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 
-public class FileSinkWordLindesActive extends SinkActive<LinkedList<WordLine>> {
+public class FileSinkWordLinesActive extends SinkActive<LinkedList<WordLine>> {
 	
 	private FileWriterUtil _fileWriterUtil;
-	public FileSinkWordLindesActive(File sinkFile, Readable<LinkedList<WordLine>> predeseccor) {
+	public FileSinkWordLinesActive(File sinkFile, Readable<LinkedList<WordLine>> predeseccor) {
 		super(predeseccor);
 		_fileWriterUtil = new FileWriterUtil(sinkFile);
 	}
