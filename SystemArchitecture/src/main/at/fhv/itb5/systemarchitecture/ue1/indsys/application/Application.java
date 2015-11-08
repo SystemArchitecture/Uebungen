@@ -2,7 +2,7 @@ package main.at.fhv.itb5.systemarchitecture.ue1.indsys.application;
 
 import java.util.LinkedList;
 import java.util.List;
-import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dto.Alignement;
+import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dto.Alignment;
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dto.WordLine;
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter.CharacterFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.filter.CommonWordFilter;
@@ -66,7 +66,7 @@ public class Application implements Runnable{
 			
 			_runnable = new FileCharacterSourceActive(
 					new WordConstructorFilter(
-					new ConstructLines(60, Alignement.Left, new LineDemulitplexer(demultiplexerSuccessors))));
+					new ConstructLines(runDescriptor.getLineSize(), runDescriptor.getAlignment(), new LineDemulitplexer(demultiplexerSuccessors))));
 			break;
 		}
 		}	
