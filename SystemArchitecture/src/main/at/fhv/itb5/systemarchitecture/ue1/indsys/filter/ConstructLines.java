@@ -6,16 +6,24 @@ import java.security.InvalidParameterException;
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dto.Alignment;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.EndOfStreamException;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
+import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 
 public class ConstructLines extends AbstractFilter<String, String> {
 
 	private int _lineSize;
 	private Alignment _alignement;
+	
 	public ConstructLines(int lineSize, Alignment alignement, Writeable<String> output) throws InvalidParameterException {
 		super(output);
 		_lineSize = lineSize;
 		_alignement = alignement;
+	}
+
+	public ConstructLines(int lineSize, Alignment alignment, Readable<String> input) {
+		super(input);
+		_lineSize = lineSize;
+		_alignement = alignment;
 	}
 
 	@Override
