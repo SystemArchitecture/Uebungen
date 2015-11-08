@@ -1,62 +1,85 @@
 package main.at.fhv.itb5.systemarchitecture.ue1.indsys;
 
+import java.util.ArrayList;
+
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.application.Application;
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.application.Exercise;
 import main.at.fhv.itb5.systemarchitecture.ue1.indsys.application.PipelineType;
+import main.at.fhv.itb5.systemarchitecture.ue1.indsys.dto.Alignment;
 
 public class Program {
-	
-	//debug flags
+
+	// debug flags
 	public static boolean isInDebugMode = true;
 	public static PipelineType debugPipelineType = PipelineType.Push;
 	public static Exercise exercise = Exercise.B;
-	
-	//debug arguments
+	public static Alignment alignment = Alignment.Right;
+	public static int lineSize = 100;
+
+	// debug arguments
 	public static String pullArg = "Pull";
-	public static String pushArg = "Push";	
-	public static String sinkFileIndexPath = "indexA.txt";
+	public static String pushArg = "Push";
+	
+	public static String sinkFileIndexPath = "index.txt";
 	public static String sinkFilePath = "formatedFile.txt";
+	
 	public static String exerciseA = "A";
 	public static String exerciseB = "B";
 	
+	public static String Left = "Left";
+	public static String Right = "Right";
+	public static String Center = "Center";
+
 	private static Application _application;
+
 	/*
-	 * Exercise A 
-	 * -> A Pull/Push sinkFileIndexPath
-	 * -> B Pull/Push sinkFileIndexPath sinkFilePath
+	 * -> A Pull/Push sinkFileIndexPath 
+	 * -> B Pull/Push sinkFileIndexPath sinkFilePath alignment lineSize
 	 */
 	public static void main(String[] args) {
-		if(!isInDebugMode) {
+		if (!isInDebugMode) {
 			_application = new Application(args);
 		} else {
-			String exercisearg;
-			
-			switch(exercise){
+			ArrayList<String> debugArgs = new ArrayList<>();
+
+			switch (exercise) {
 			case A:
-				exercisearg = exerciseA;
-				switch(debugPipelineType) {
-				case Pull:
-					_application = new Application(new String[]{exercisearg, pullArg, sinkFileIndexPath});
-					break;
-				case Push:
-					_application = new Application(new String[]{exercisearg, pushArg, sinkFileIndexPath});
-					break;
-				}
-				break;
+				debugArgs.add(exerciseA);
 			case B:
-				exercisearg = exerciseB;
-				switch(debugPipelineType) {
-				case Pull:
-					_application = new Application(new String[]{exercisearg, pullArg, sinkFileIndexPath, sinkFilePath});
-					break;
-				case Push:
-					_application = new Application(new String[]{exercisearg, pushArg, sinkFileIndexPath, sinkFilePath});
-					break;
-				}
+				debugArgs.add(exerciseB);
+			}
+
+			switch (debugPipelineType) {
+			case Pull: {
+				debugArgs.add(pullArg);
 				break;
 			}
+			case Push: {
+				debugArgs.add(pushArg);
+				break;
+			}
+			}
 			
+			debugArgs.add(sinkFileIndexPath);
+			if(exercise == Exercise.B) {
+				debugArgs.add(sinkFilePath);
+				
+				switch(alignment) {
+				case Center:
+					debugArgs.add(Center);
+					break;
+				case Left:
+					debugArgs.add(Left);
+					break;
+				case Right:
+					debugArgs.add(Right);
+				}
+				
+				debugArgs.add(Integer.toString(lineSize));
+			}
 			
+			_application = new Application(debugArgs.toArray(new String[debugArgs.size()]));
+
 		}
 		_application.run();
 	}
