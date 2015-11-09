@@ -33,8 +33,8 @@ public class Program {
 	private static Application _application;
 
 	/*
-	 * -> A Pull/Push sinkFileIndexPath -> B Pull/Push sinkFileIndexPath
-	 * sinkFilePath alignment lineSize
+	 * -> A Pull/Push sinkFileIndexPath 
+	 * -> B Pull/Push sinkFileIndexPath sinkFilePath alignment lineSize
 	 */
 	public static void main(String[] args) {
 		if (!isInDebugMode) {
