@@ -7,56 +7,53 @@ import javax.media.jai.*;
 import javax.swing.*;
 import com.sun.media.jai.widget.DisplayJAI;
 
-public class HelloLena
-{
- public static void main(String[] args)
- {
-// Load the image which file name was passed as the first argument to
-// the application.
-   float[] kernelMatrix;
-   KernelJAI kernel = null;
-   kernelMatrix = new float[]    {0, -1, 0, 
-			  -1, 8, -1,
-                                             0, -1, 0 };
+public class HelloLena {
+	public static void main(String[] args) {
+		// Load the image which file name was passed as the first argument to
+		// the application.
+		float[] kernelMatrix;
+		KernelJAI kernel = null;
+		kernelMatrix = new float[] { 0, -1, 0, -1, 8, -1, 0, -1, 0 };
 
-   kernel = new KernelJAI(3, 3, kernelMatrix);
-	  
-   PlanarImage image = JAI.create("fileload", "C:\\User\\simon_000\\git\\fhv\\SystemArchtitekur\\Uebungen\\ystemArchitecture\\src\\main\\at\\fhv\\itb5\\systemarchitecture\\ue2\\lena.png");
- 
-// Get some information about the image
-   String imageInfo =
-   "Dimensions: "+image.getWidth()+"x"+image.getHeight()+ " Bands:"+image.getNumBands();
+		kernel = new KernelJAI(3, 3, kernelMatrix);
+		ParameterBlock parameterBlock = new ParameterBlock();
+		parameterBlock.add(HelloLena.class.getClassLoader().getResource("lena.png").getPath());
+		PlanarImage image = JAI.create("fileload", parameterBlock);
 
-// Create a frame for display.
-   JFrame frame = new JFrame();
-   frame.setTitle("DisplayJAI: lena512.jpg");
+		// Get some information about the image
+		String imageInfo = "Dimensions: " + image.getWidth() + "x" + image.getHeight() + " Bands:"
+				+ image.getNumBands();
 
-// Get the JFrame� ContentPane.
-   Container contentPane = frame.getContentPane();
-   contentPane.setLayout(new BorderLayout());
+		// Create a frame for display.
+		JFrame frame = new JFrame();
+		frame.setTitle("DisplayJAI: lena512.jpg");
 
-// prepare the parameters for a filter operation with the mask "kernelmatrix"
-   ParameterBlock pb = new ParameterBlock();
-   pb.addSource(image);
-   pb.add(kernel);
- 
-// apply a filter operation with the mask "kernelmatrix"
-   image = JAI.create("convolve", pb);
+		// Get the JFrame� ContentPane.
+		Container contentPane = frame.getContentPane();
+		contentPane.setLayout(new BorderLayout());
 
-// Create an instance of DisplayJAI.
-   DisplayJAI dj = new DisplayJAI(image);
- 
+		// prepare the parameters for a filter operation with the mask
+		// "kernelmatrix"
+		ParameterBlock pb = new ParameterBlock();
+		pb.addSource(image);
+		pb.add(kernel);
 
-// Add to the JFrame� ContentPane an instance of JScrollPane
-// containing the DisplayJAI instance.
-   contentPane.add(new JScrollPane(dj),BorderLayout.CENTER);
- 
-// Add a text label with the image information.
-   contentPane.add(new JLabel(imageInfo),BorderLayout.SOUTH);
+		// apply a filter operation with the mask "kernelmatrix"
+		image = JAI.create("convolve", pb);
 
-// Set the closing operation so the application is finished.   
-   frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-   frame.setSize(400,200); // adjust the frame size.
-   frame.setVisible(true); // show the frame.
- }
- }
+		// Create an instance of DisplayJAI.
+		DisplayJAI dj = new DisplayJAI(image);
+
+		// Add to the JFrame� ContentPane an instance of JScrollPane
+		// containing the DisplayJAI instance.
+		contentPane.add(new JScrollPane(dj), BorderLayout.CENTER);
+
+		// Add a text label with the image information.
+		contentPane.add(new JLabel(imageInfo), BorderLayout.SOUTH);
+
+		// Set the closing operation so the application is finished.
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(400, 200); // adjust the frame size.
+		frame.setVisible(true); // show the frame.
+	}
+}
