@@ -1,4 +1,4 @@
-package main.at.fhv.itb5.systemarchitecture.ue2;
+package main.at.fhv.itb5.systemarchitecture.ue2.example;
 
 import java.awt.*;
 import java.awt.image.renderable.ParameterBlock;

@@ -1,4 +1,4 @@
-package main.at.fhv.itb5.systemarchitecture.ue2;
+package main.at.fhv.itb5.systemarchitecture.ue2.sink;
 
 import java.io.File;
 import java.io.StreamCorruptedException;
@@ -13,7 +13,7 @@ public class FileSinkStringPassive extends FileSink<String> {
 
 	@Override
 	public void write(String value) throws StreamCorruptedException {
+		System.out.println(value);
 		saveLine(value);
 	}
-
 }

@@ -1,5 +1,5 @@
 
-package main.at.fhv.itb5.systemarchitecture.ue2;
+package main.at.fhv.itb5.systemarchitecture.ue2.dto;
 
 public class Coordinate {
 

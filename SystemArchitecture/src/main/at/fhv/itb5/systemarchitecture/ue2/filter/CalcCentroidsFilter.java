@@ -2,7 +2,7 @@
  * all other pixels in the image are expected to have a pixel value < 255
  * use this filter adapting eventually the package name 
  */
-package main.at.fhv.itb5.systemarchitecture.ue2;
+package main.at.fhv.itb5.systemarchitecture.ue2.filter;
 
 import java.awt.image.BufferedImage;
 import java.security.InvalidParameterException;
@@ -15,6 +15,7 @@ import javax.media.jai.PlanarImage;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.DataEnrichmentFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
+import main.at.fhv.itb5.systemarchitecture.ue2.dto.Coordinate;
 
 
 public class CalcCentroidsFilter extends DataEnrichmentFilter<PlanarImage, LinkedList<Coordinate>>{
@@ -31,7 +32,7 @@ public class CalcCentroidsFilter extends DataEnrichmentFilter<PlanarImage, Linke
 	public CalcCentroidsFilter(Writeable<LinkedList<Coordinate>> output) throws InvalidParameterException {
 		super(output);
 	}
-	
+
 	@Override
 	protected boolean fillEntity(PlanarImage nextVal, LinkedList<Coordinate> entity) {
 		_image = nextVal;
@@ -117,7 +118,14 @@ public class CalcCentroidsFilter extends DataEnrichmentFilter<PlanarImage, Linke
 			int xMedian = xValues.get(xValues.size() / 2);
 			int yMedian = yValues.get(yValues.size() / 2);
 			
-			centroids[i] = new Coordinate(xMedian+ (int)_image.getProperty("ThresholdX"), yMedian + (int) _image.getProperty("ThresholdY"));	
+			//TODO(someone) ask vollbrecht
+			_image.setProperty("ThresholdX", 255);
+			_image.setProperty("ThresholdY", 255);
+			
+			int thresholdX = (int)_image.getProperty("ThresholdX");
+			int thresholdY = (int)_image.getProperty("ThresholdY");
+			
+			centroids[i] = new Coordinate(xMedian + thresholdX, yMedian + thresholdY);	
 			i++;
 		}
 		return centroids;

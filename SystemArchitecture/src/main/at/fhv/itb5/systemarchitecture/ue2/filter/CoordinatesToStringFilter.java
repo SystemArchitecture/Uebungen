@@ -1,4 +1,4 @@
-package main.at.fhv.itb5.systemarchitecture.ue2;
+package main.at.fhv.itb5.systemarchitecture.ue2.filter;
 
 import java.io.StreamCorruptedException;
 import java.security.InvalidParameterException;
@@ -8,6 +8,7 @@ import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.EndOfStreamException;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
+import main.at.fhv.itb5.systemarchitecture.ue2.dto.Coordinate;
 
 public class CoordinatesToStringFilter extends AbstractFilter<LinkedList<Coordinate>, String> {
 

@@ -1,4 +1,4 @@
-package main.at.fhv.itb5.systemarchitecture.ue2;
+package main.at.fhv.itb5.systemarchitecture.ue2.filter;
 
 import java.io.StreamCorruptedException;
 import java.security.InvalidParameterException;

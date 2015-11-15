@@ -1,4 +1,4 @@
-package main.at.fhv.itb5.systemarchitecture.ue2;
+package main.at.fhv.itb5.systemarchitecture.ue2.sink;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
