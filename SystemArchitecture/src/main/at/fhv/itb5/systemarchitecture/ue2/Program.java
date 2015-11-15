@@ -2,6 +2,9 @@ package main.at.fhv.itb5.systemarchitecture.ue2;
 
 import java.awt.Rectangle;
 import java.awt.image.renderable.ParameterBlock;
+import java.io.File;
+import java.util.LinkedList;
+
 import javax.media.jai.JAI;
 import javax.media.jai.PlanarImage;
 
@@ -20,7 +23,12 @@ public class Program {
 							(Writeable<PlanarImage>) new ThresholdFilter(
 							(Writeable<PlanarImage>) new MedianFilter(
 							(Writeable<PlanarImage>) new ErodeFilter(
-							(Writeable<PlanarImage>) new DisplayImageSink())))));
+							(Writeable<PlanarImage>) new DilateFilter(
+							(Writeable<PlanarImage>) new SaveFastForwardFilter("output.jpg",
+							(Writeable<PlanarImage>) new CalcCentroidsFilter(
+							(Writeable<LinkedList<Coordinate>>) new CoordinatesToStringFilter(
+							new FileSinkStringPassive(new File("coordinates.txt")))))))))));
+									//(Writeable<PlanarImage>) new DisplayImageSink())))))))));
 		
 		runnable.run();
 	}
