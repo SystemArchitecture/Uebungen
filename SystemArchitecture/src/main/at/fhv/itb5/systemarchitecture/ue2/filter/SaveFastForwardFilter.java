@@ -24,6 +24,11 @@ public class SaveFastForwardFilter extends AbstractFilter<PlanarImage, PlanarIma
 		super(output);
 		_outputFilePath = outputFilePath;
 	}
+	
+	public SaveFastForwardFilter(String outputFilePath, Readable<PlanarImage> input, Writeable<PlanarImage> output) throws InvalidParameterException {
+		super(input, output);
+		_outputFilePath = outputFilePath;
+	}
 
 	@Override
 	public PlanarImage read() throws StreamCorruptedException, EndOfStreamException {

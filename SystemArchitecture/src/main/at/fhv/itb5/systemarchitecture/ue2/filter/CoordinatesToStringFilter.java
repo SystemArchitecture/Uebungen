@@ -19,6 +19,10 @@ public class CoordinatesToStringFilter extends AbstractFilter<LinkedList<Coordin
 	public CoordinatesToStringFilter(Writeable<String> output) {
 		super(output);
 	}
+	
+	public CoordinatesToStringFilter(Readable<LinkedList<Coordinate>> input, Writeable<String> output) {
+		super(output);
+	}
 
 	@Override
 	public String read() throws StreamCorruptedException, EndOfStreamException {

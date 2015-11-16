@@ -32,6 +32,10 @@ public class CalcCentroidsFilter extends DataEnrichmentFilter<PlanarImage, Linke
 	public CalcCentroidsFilter(Writeable<LinkedList<Coordinate>> output) throws InvalidParameterException {
 		super(output);
 	}
+	
+	public CalcCentroidsFilter(Readable<PlanarImage> input, Writeable<LinkedList<Coordinate>> output) throws InvalidParameterException {
+		super(input, output);
+	}
 
 	@Override
 	protected boolean fillEntity(PlanarImage nextVal, LinkedList<Coordinate> entity) {

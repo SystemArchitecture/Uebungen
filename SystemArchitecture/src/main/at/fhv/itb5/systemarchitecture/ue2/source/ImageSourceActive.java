@@ -1,12 +1,10 @@
 package main.at.fhv.itb5.systemarchitecture.ue2.source;
 
 import java.io.StreamCorruptedException;
+
 import javax.media.jai.PlanarImage;
-import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.EndOfStreamException;
-import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
-import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.sink.SinkActive;
+
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.source.SourceActive;
-import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 
 public class ImageSourceActive extends SourceActive<PlanarImage> implements Runnable{

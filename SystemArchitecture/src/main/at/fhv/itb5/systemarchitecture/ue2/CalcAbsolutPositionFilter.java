@@ -24,6 +24,11 @@ public class CalcAbsolutPositionFilter extends AbstractFilter<LinkedList<Coordin
 		super(output);
 		_roi = roi;
 	}
+	
+	public CalcAbsolutPositionFilter(Rectangle roi, Readable<LinkedList<Coordinate>> input, Writeable<LinkedList<Coordinate>> output) throws InvalidParameterException {
+		super(input, output);
+		_roi = roi;
+	}
 
 	@Override
 	public LinkedList<Coordinate> read() throws StreamCorruptedException, EndOfStreamException {

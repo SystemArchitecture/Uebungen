@@ -24,6 +24,11 @@ public class CutOutROIFilter extends AbstractFilter<PlanarImage, PlanarImage> im
 		super(output);
 		_roi = roi;
 	}
+	
+	public CutOutROIFilter(Rectangle roi, Readable<PlanarImage> input, Writeable<PlanarImage> output) {
+		super(input, output);
+		_roi = roi;
+	}
 
 	@Override
 	public PlanarImage read() throws StreamCorruptedException, EndOfStreamException {
