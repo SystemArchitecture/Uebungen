@@ -37,7 +37,7 @@ public class Program {
 		ParameterBlock parameterBlock = new ParameterBlock();
 		parameterBlock.add(Program.class.getClassLoader().getResource("loetstellen.jpg").getPath());
 		
-		Rectangle roi = new Rectangle(0, 50, 448, 150);
+		Rectangle roi = new Rectangle(50, 50, 440, 50);
 		
 		Runnable runnable = null;
 		
