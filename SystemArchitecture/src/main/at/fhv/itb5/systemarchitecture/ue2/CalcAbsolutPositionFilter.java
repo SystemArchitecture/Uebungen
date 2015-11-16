@@ -7,12 +7,18 @@ import java.util.LinkedList;
 
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.EndOfStreamException;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
+import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 import main.at.fhv.itb5.systemarchitecture.ue2.dto.Coordinate;
 
-public class CalcAbsolutPositionFilter extends AbstractFilter<LinkedList<Coordinate>, LinkedList<Coordinate>> {
+public class CalcAbsolutPositionFilter extends AbstractFilter<LinkedList<Coordinate>, LinkedList<Coordinate>> implements Runnable{
 	
 	private Rectangle _roi;
+	
+	public CalcAbsolutPositionFilter(Rectangle roi, Readable<LinkedList<Coordinate>> input) throws InvalidParameterException {
+		super(input);
+		_roi = roi;
+	}
 	
 	public CalcAbsolutPositionFilter(Rectangle roi, Writeable<LinkedList<Coordinate>> output) throws InvalidParameterException {
 		super(output);
@@ -37,6 +43,12 @@ public class CalcAbsolutPositionFilter extends AbstractFilter<LinkedList<Coordin
 		}
 		
 		return output;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

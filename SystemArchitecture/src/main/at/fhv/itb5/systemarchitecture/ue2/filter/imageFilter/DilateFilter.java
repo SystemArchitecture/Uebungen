@@ -7,7 +7,7 @@ import javax.media.jai.PlanarImage;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 
-public class DilateFilter extends PlanarImageFilter {
+public class DilateFilter extends PlanarImageFilter implements Runnable {
 
 	public DilateFilter(Readable<PlanarImage> input) throws InvalidParameterException {
 		super(input);
@@ -42,5 +42,11 @@ public class DilateFilter extends PlanarImageFilter {
 	@Override
 	protected String getOperatorName() {
 		return "dilate";
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 }

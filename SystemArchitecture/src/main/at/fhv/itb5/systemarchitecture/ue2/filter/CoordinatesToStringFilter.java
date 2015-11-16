@@ -10,7 +10,7 @@ import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 import main.at.fhv.itb5.systemarchitecture.ue2.dto.Coordinate;
 
-public class CoordinatesToStringFilter extends AbstractFilter<LinkedList<Coordinate>, String> {
+public class CoordinatesToStringFilter extends AbstractFilter<LinkedList<Coordinate>, String> implements Runnable{
 
 	public CoordinatesToStringFilter(Readable<LinkedList<Coordinate>> input) throws InvalidParameterException {
 		super(input);
@@ -36,5 +36,13 @@ public class CoordinatesToStringFilter extends AbstractFilter<LinkedList<Coordin
 			output.append(co.toString());
 		}
 		return output.toString();
+	}
+
+	public boolean _isRunning;	
+	@Override
+	public void run() {
+		while(_isRunning) {
+			
+		}
 	}
 }

@@ -11,7 +11,7 @@ import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 
-public class SaveFastForwardFilter extends AbstractFilter<PlanarImage, PlanarImage> {
+public class SaveFastForwardFilter extends AbstractFilter<PlanarImage, PlanarImage> implements Runnable{
 
 	private String _outputFilePath;
 
@@ -38,6 +38,12 @@ public class SaveFastForwardFilter extends AbstractFilter<PlanarImage, PlanarIma
 	private PlanarImage saveFastForward(PlanarImage input){
 		JAI.create("filestore", input, _outputFilePath, "jpeg");
 		return input;
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

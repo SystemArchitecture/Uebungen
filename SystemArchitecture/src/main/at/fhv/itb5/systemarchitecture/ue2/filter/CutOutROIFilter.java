@@ -11,7 +11,7 @@ import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 
-public class CutOutROIFilter extends AbstractFilter<PlanarImage, PlanarImage> {
+public class CutOutROIFilter extends AbstractFilter<PlanarImage, PlanarImage> implements Runnable{
 
 	private Rectangle _roi;
 
@@ -38,5 +38,11 @@ public class CutOutROIFilter extends AbstractFilter<PlanarImage, PlanarImage> {
 	private PlanarImage cutOutROI(PlanarImage input) {
 		return PlanarImage
 				.wrapRenderedImage((RenderedImage) input.getAsBufferedImage(_roi, input.getColorModel()));
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 }

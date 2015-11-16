@@ -74,7 +74,5 @@ public abstract class AbstractFilter<in, out> implements IOable<in, out> {
      * getting informed before the ending-signal is sended
      */
     protected void beforeSendingEndingSignal() throws StreamCorruptedException {}
-    
-    
 
 }

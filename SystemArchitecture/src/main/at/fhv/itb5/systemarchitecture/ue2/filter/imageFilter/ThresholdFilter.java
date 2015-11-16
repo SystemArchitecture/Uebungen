@@ -1,13 +1,12 @@
-package main.at.fhv.itb5.systemarchitecture.ue2.filter;
+package main.at.fhv.itb5.systemarchitecture.ue2.filter.imageFilter;
 
 import java.awt.image.renderable.ParameterBlock;
 import java.security.InvalidParameterException;
 import javax.media.jai.PlanarImage;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
-import main.at.fhv.itb5.systemarchitecture.ue2.filter.imageFilter.PlanarImageFilter;
 
-public class ThresholdFilter extends PlanarImageFilter {
+public class ThresholdFilter extends PlanarImageFilter implements Runnable{
 
 	public ThresholdFilter(Readable<PlanarImage> input) throws InvalidParameterException {
 		super(input);
@@ -37,5 +36,11 @@ public class ThresholdFilter extends PlanarImageFilter {
 	@Override
 	protected String getOperatorName() {
 		return "threshold";
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 }
