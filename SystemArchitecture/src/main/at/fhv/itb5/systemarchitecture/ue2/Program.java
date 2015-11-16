@@ -31,7 +31,7 @@ public class Program {
 
 		if(isDebug) {
 			args = new String[1];
-			args[0] = "Pull";
+			args[0] = "Push";
 		}
 		
 		ParameterBlock parameterBlock = new ParameterBlock();

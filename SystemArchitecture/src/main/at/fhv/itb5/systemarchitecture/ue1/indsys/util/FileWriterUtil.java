@@ -29,6 +29,7 @@ public class FileWriterUtil {
 	public void write(String line) {
 		try {
 			_fileWriter.write(line + "\n");
+			_fileWriter.flush();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
