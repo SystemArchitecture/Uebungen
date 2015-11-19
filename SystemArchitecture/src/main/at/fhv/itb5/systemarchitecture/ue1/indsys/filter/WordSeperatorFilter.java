@@ -45,4 +45,16 @@ public class WordSeperatorFilter extends AbstractFilter<SimpleLine, WordLine> {
 		WordLine wordLine = new WordLine(new LinkedList<String>(Arrays.asList(line.getValue().split(reg))), line.getLinenumber());
 		return wordLine;
 	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected WordLine process(SimpleLine readInput) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

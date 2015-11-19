@@ -7,7 +7,7 @@ import javax.media.jai.PlanarImage;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 
-public class ErodeFilter extends PlanarImageFilter implements Runnable{
+public class ErodeFilter extends JAIPlanarImageFilter {
 
 	public ErodeFilter(Readable<PlanarImage> input) throws InvalidParameterException {
 		super(input);
@@ -43,11 +43,5 @@ public class ErodeFilter extends PlanarImageFilter implements Runnable{
 	@Override
 	protected String getOperatorName() {
 		return "erode";
-	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
 	}
 }

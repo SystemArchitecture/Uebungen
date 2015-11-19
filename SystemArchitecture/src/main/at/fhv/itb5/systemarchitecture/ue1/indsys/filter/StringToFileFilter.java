@@ -32,4 +32,16 @@ public class StringToFileFilter extends AbstractFilter<String, String> {
 
 	}
 
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected String process(String readInput) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

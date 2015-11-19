@@ -1,10 +1,7 @@
 package main.at.fhv.itb5.systemarchitecture.ue2.source;
 
 import java.io.StreamCorruptedException;
-
 import javax.media.jai.PlanarImage;
-
-import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.EndOfStreamException;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.source.SourcePassive;
 
 public class ImageSourcePassive implements SourcePassive<PlanarImage> {
@@ -16,7 +13,7 @@ public class ImageSourcePassive implements SourcePassive<PlanarImage> {
 	}
 	
 	@Override
-	public PlanarImage read() throws StreamCorruptedException, EndOfStreamException {
+	public PlanarImage read() throws StreamCorruptedException {
 		return _sourceImage;
 	}
 

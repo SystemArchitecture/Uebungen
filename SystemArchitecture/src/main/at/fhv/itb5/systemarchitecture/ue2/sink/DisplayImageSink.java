@@ -8,7 +8,6 @@ import javax.media.jai.PlanarImage;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import com.sun.media.jai.widget.DisplayJAI;
-import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.EndOfStreamException;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
@@ -33,7 +32,7 @@ public class DisplayImageSink extends AbstractFilter<PlanarImage, PlanarImage> i
 		jFrame.setVisible(true);
 	}
 
-	public void process(PlanarImage value) {
+	public void toSink(PlanarImage value) {
 		if(value != null) {
 			Container contentPane = jFrame.getContentPane();
 			contentPane.removeAll();
@@ -47,11 +46,11 @@ public class DisplayImageSink extends AbstractFilter<PlanarImage, PlanarImage> i
 	@Override
 	public void write(PlanarImage value) throws StreamCorruptedException {
 		System.out.println("Display Image!");
-		process(value);
+		toSink(value);
 	}
 
 	@Override
-	public PlanarImage read() throws StreamCorruptedException, EndOfStreamException {
+	public PlanarImage read() throws StreamCorruptedException {
 		return readInput();
 	}
 
@@ -61,8 +60,8 @@ public class DisplayImageSink extends AbstractFilter<PlanarImage, PlanarImage> i
 		_isRunning = true;
 		while(_isRunning) {
 			try {
-				process(read());
-			} catch (StreamCorruptedException | EndOfStreamException e) {
+				toSink(read());
+			} catch (StreamCorruptedException e) {
 				System.out.println(e.getMessage());
 				stop();
 			}
@@ -72,5 +71,4 @@ public class DisplayImageSink extends AbstractFilter<PlanarImage, PlanarImage> i
 	public void stop() {
 		_isRunning = false;
 	}
-
 }

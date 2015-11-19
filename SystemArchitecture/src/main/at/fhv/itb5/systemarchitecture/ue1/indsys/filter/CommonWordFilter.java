@@ -76,6 +76,18 @@ public class CommonWordFilter extends AbstractFilter<LinkedList<WordLine>, Linke
 		return wordMap;
 	}
 
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected LinkedList<WordLine> process(LinkedList<WordLine> readInput) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	/*
 	 * public static void main(String[] args){ LinkedList<WordLine> input = new
 	 * LinkedList<WordLine>(); LinkedList<String> words1 = new

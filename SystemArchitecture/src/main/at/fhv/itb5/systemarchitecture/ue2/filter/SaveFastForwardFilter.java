@@ -1,17 +1,13 @@
 package main.at.fhv.itb5.systemarchitecture.ue2.filter;
 
-import java.io.StreamCorruptedException;
 import java.security.InvalidParameterException;
-
 import javax.media.jai.JAI;
 import javax.media.jai.PlanarImage;
-
-import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.EndOfStreamException;
-import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
+import main.at.fhv.itb5.systemarchitecture.ue2.filter.imageFilter.PlanarImageFilter;
 
-public class SaveFastForwardFilter extends AbstractFilter<PlanarImage, PlanarImage> implements Runnable{
+public class SaveFastForwardFilter extends PlanarImageFilter{
 
 	private String _outputFilePath;
 
@@ -31,24 +27,9 @@ public class SaveFastForwardFilter extends AbstractFilter<PlanarImage, PlanarIma
 	}
 
 	@Override
-	public PlanarImage read() throws StreamCorruptedException, EndOfStreamException {
-		return saveFastForward(readInput());
-	}
-
-	@Override
-	public void write(PlanarImage value) throws StreamCorruptedException {
-		writeOutput(saveFastForward(value));
-	}
-	
-	private PlanarImage saveFastForward(PlanarImage input){
+	protected PlanarImage process(PlanarImage input) {
 		JAI.create("filestore", input, _outputFilePath, "jpeg");
+		System.out.println("Save Image and forward");
 		return input;
 	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

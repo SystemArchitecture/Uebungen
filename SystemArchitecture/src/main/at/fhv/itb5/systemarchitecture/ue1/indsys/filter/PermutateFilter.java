@@ -49,6 +49,18 @@ public class PermutateFilter extends AbstractFilter<WordLine, LinkedList<WordLin
 		return permutations;
 	}
 
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected LinkedList<WordLine> process(WordLine readInput) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 }

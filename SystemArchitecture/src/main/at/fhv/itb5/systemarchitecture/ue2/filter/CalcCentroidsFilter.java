@@ -22,8 +22,6 @@ public class CalcCentroidsFilter extends DataEnrichmentFilter<PlanarImage, Linke
 
 	private HashMap<Coordinate, Boolean> _general = new HashMap<Coordinate, Boolean>();
 	private LinkedList<LinkedList<Coordinate>> _figures = new LinkedList<LinkedList<Coordinate>>();
-	private PlanarImage _image;
-	
 	
 	public CalcCentroidsFilter(Readable<PlanarImage> input) throws InvalidParameterException {
 		super(input);
@@ -39,8 +37,7 @@ public class CalcCentroidsFilter extends DataEnrichmentFilter<PlanarImage, Linke
 
 	@Override
 	protected boolean fillEntity(PlanarImage nextVal, LinkedList<Coordinate> entity) {
-		_image = nextVal;
-		Coordinate[] centroids = process(nextVal);
+		Coordinate[] centroids = processImage(nextVal);
 		
 		for (Coordinate c : centroids){
 			entity.add(c);
@@ -56,7 +53,7 @@ public class CalcCentroidsFilter extends DataEnrichmentFilter<PlanarImage, Linke
 
 
 	
-	private Coordinate[] process(PlanarImage entity) {
+	private Coordinate[] processImage(PlanarImage entity) {
 		BufferedImage bi = entity.getAsBufferedImage();
 		
 		for (int x = 0; x < bi.getWidth(); x++){

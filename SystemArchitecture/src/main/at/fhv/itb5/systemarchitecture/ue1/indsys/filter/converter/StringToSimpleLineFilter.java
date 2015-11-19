@@ -35,4 +35,16 @@ public class StringToSimpleLineFilter extends AbstractFilter<String, SimpleLine>
 		}
 	}
 
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected SimpleLine process(String readInput) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

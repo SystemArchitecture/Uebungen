@@ -19,7 +19,7 @@ import main.at.fhv.itb5.systemarchitecture.ue2.filter.imageFilter.DilateFilter;
 import main.at.fhv.itb5.systemarchitecture.ue2.filter.imageFilter.ErodeFilter;
 import main.at.fhv.itb5.systemarchitecture.ue2.filter.imageFilter.MedianFilter;
 import main.at.fhv.itb5.systemarchitecture.ue2.filter.imageFilter.ThresholdFilter;
-import main.at.fhv.itb5.systemarchitecture.ue2.pipe.SyncBufferPipe;
+import main.at.fhv.itb5.systemarchitecture.ue2.pipe.SyncQueudPipe;
 import main.at.fhv.itb5.systemarchitecture.ue2.sink.FileSinkActive;
 import main.at.fhv.itb5.systemarchitecture.ue2.sink.FileSinkStringPassive;
 import main.at.fhv.itb5.systemarchitecture.ue2.source.ImageSourceActive;
@@ -32,8 +32,9 @@ public class Program {
 	public static void main(String[] args) {
 
 		if(isDebug) {
-			args = new String[1];
+			args = new String[2];
 			args[0] = "Push";
+			args[1] = "B";
 		}
 		
 		ParameterBlock parameterBlock = new ParameterBlock();
@@ -41,10 +42,8 @@ public class Program {
 		
 		Rectangle roi = new Rectangle(50, 50, 440, 50);
 		
-		Runnable runnable = null;
-		LinkedList<Runnable> runnables = new LinkedList<>(); 
-		
 		if(args[1] == "A"){
+			Runnable runnable = null;
 
 			if(args[0] == "Push") {
 				runnable = new ImageSourceActive(JAI.create("fileload", parameterBlock), 
@@ -81,35 +80,38 @@ public class Program {
 		
 		} else {
 			// init pipes
-			SyncBufferPipe<PlanarImage> sourceROIPipe = new SyncBufferPipe<>();
-			SyncBufferPipe<PlanarImage> roiThresholdPipe = new SyncBufferPipe<>();
-			SyncBufferPipe<PlanarImage> thresholdMedianPipe = new SyncBufferPipe<>();
-			SyncBufferPipe<PlanarImage> medianErodePipe = new SyncBufferPipe<>();
-			SyncBufferPipe<PlanarImage> erodeErodePipe = new SyncBufferPipe<>();
-			SyncBufferPipe<PlanarImage> erodeDilatePipe = new SyncBufferPipe<>();
-			SyncBufferPipe<PlanarImage> dilateDilatePipe = new SyncBufferPipe<>();
-			SyncBufferPipe<PlanarImage> dilateSaveImagePipe = new SyncBufferPipe<>();
-			SyncBufferPipe<PlanarImage> saveImageCentroidsPipe = new SyncBufferPipe<>();
-			SyncBufferPipe<LinkedList<Coordinate>> centroidsAbsolutePositionPipe = new SyncBufferPipe<>();
-			SyncBufferPipe<LinkedList<Coordinate>> absolutePositionCoordinatesPipe = new SyncBufferPipe<>();
-			SyncBufferPipe<String> coordinatesFileSinkPipe = new SyncBufferPipe<>();
-				
+			SyncQueudPipe<PlanarImage> sourceROIPipe = new SyncQueudPipe<>();
+			SyncQueudPipe<PlanarImage> roiThresholdPipe = new SyncQueudPipe<>();
+			SyncQueudPipe<PlanarImage> thresholdMedianPipe = new SyncQueudPipe<>();
+			SyncQueudPipe<PlanarImage> medianErodePipe = new SyncQueudPipe<>();
+			SyncQueudPipe<PlanarImage> erodeErodePipe = new SyncQueudPipe<>();
+			SyncQueudPipe<PlanarImage> erodeDilatePipe = new SyncQueudPipe<>();
+			SyncQueudPipe<PlanarImage> dilateDilatePipe = new SyncQueudPipe<>();
+			SyncQueudPipe<PlanarImage> dilateSaveImagePipe = new SyncQueudPipe<>();
+			SyncQueudPipe<PlanarImage> saveImageCentroidsPipe = new SyncQueudPipe<>();
+			SyncQueudPipe<LinkedList<Coordinate>> centroidsAbsolutePositionPipe = new SyncQueudPipe<>();
+			SyncQueudPipe<LinkedList<Coordinate>> absolutePositionCoordinatesPipe = new SyncQueudPipe<>();
+			SyncQueudPipe<String> coordinatesFileSinkPipe = new SyncQueudPipe<>();
+			
+			LinkedList<Runnable> runnables = new LinkedList<>();
 			// init filters
-			ImageSourceActive source = new ImageSourceActive(JAI.create("fileload", parameterBlock), (Writeable<PlanarImage>) sourceROIPipe);
-			CutOutROIFilter roiFilter = new CutOutROIFilter(roi, sourceROIPipe, roiThresholdPipe);
-			ThresholdFilter thresholdFilter = new ThresholdFilter(roiThresholdPipe, thresholdMedianPipe);
-			MedianFilter medianFilter = new MedianFilter(thresholdMedianPipe, medianErodePipe);
-			ErodeFilter erodeFilter = new ErodeFilter(medianErodePipe, erodeErodePipe);
-			ErodeFilter erodeFilter2 = new ErodeFilter(erodeErodePipe, erodeDilatePipe);
-			DilateFilter dilateFilter = new DilateFilter(erodeDilatePipe, dilateDilatePipe);
-			DilateFilter dilateFilter2 = new DilateFilter(erodeDilatePipe, dilateSaveImagePipe);
-			SaveFastForwardFilter saveFastForwardFilter = new SaveFastForwardFilter("output.jpg", dilateSaveImagePipe, saveImageCentroidsPipe);
-			CalcCentroidsFilter calcCentroidsFilter = new CalcCentroidsFilter(saveImageCentroidsPipe, centroidsAbsolutePositionPipe);
-			CalcAbsolutPositionFilter calcAbsolutPositionFilter = new CalcAbsolutPositionFilter(roi, centroidsAbsolutePositionPipe, absolutePositionCoordinatesPipe);
-			CoordinatesToStringFilter coordinatesToStringFilter = new CoordinatesToStringFilter(absolutePositionCoordinatesPipe, coordinatesFileSinkPipe);
-			FileSinkActive fileSinkStringPassive = new FileSinkActive(new File("coordinates.txt"), coordinatesFileSinkPipe);
+			runnables.add(new ImageSourceActive(JAI.create("fileload", parameterBlock), (Writeable<PlanarImage>) sourceROIPipe));
+			runnables.add(new CutOutROIFilter(roi, sourceROIPipe, roiThresholdPipe));
+			runnables.add(new ThresholdFilter(roiThresholdPipe, thresholdMedianPipe));
+			runnables.add(new MedianFilter(thresholdMedianPipe, medianErodePipe));
+			runnables.add(new ErodeFilter(medianErodePipe, erodeErodePipe));
+			runnables.add(new ErodeFilter(erodeErodePipe, erodeDilatePipe));
+			runnables.add(new DilateFilter(erodeDilatePipe, dilateDilatePipe));
+			runnables.add(new DilateFilter(dilateDilatePipe, dilateSaveImagePipe));
+			runnables.add(new SaveFastForwardFilter("output.jpg", dilateSaveImagePipe, saveImageCentroidsPipe));
+			runnables.add(new CalcCentroidsFilter(saveImageCentroidsPipe, centroidsAbsolutePositionPipe));
+			runnables.add(new CalcAbsolutPositionFilter(roi, centroidsAbsolutePositionPipe, absolutePositionCoordinatesPipe));
+			runnables.add(new CoordinatesToStringFilter(absolutePositionCoordinatesPipe, coordinatesFileSinkPipe));
+			runnables.add(new FileSinkActive(new File("coordinates.txt"), coordinatesFileSinkPipe));
+			
+			for(Runnable runnable : runnables) {
+				new Thread(runnable).start();
+			}
 		}
-		
-		//TODO run!!!
 	}
 }

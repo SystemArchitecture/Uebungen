@@ -8,7 +8,7 @@ import javax.media.jai.operator.MedianFilterShape;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 
-public class MedianFilter extends PlanarImageFilter implements Runnable{
+public class MedianFilter extends JAIPlanarImageFilter{
 	
 	public MedianFilter(Readable<PlanarImage> input) throws InvalidParameterException {
 		super(input);
@@ -38,11 +38,4 @@ public class MedianFilter extends PlanarImageFilter implements Runnable{
 	protected String getOperatorName() {
 		return "medianfilter";
 	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

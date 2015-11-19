@@ -2,16 +2,12 @@ package main.at.fhv.itb5.systemarchitecture.ue2.filter;
 
 import java.awt.Rectangle;
 import java.awt.image.RenderedImage;
-import java.io.StreamCorruptedException;
-
 import javax.media.jai.PlanarImage;
-
-import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.EndOfStreamException;
-import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
+import main.at.fhv.itb5.systemarchitecture.ue2.filter.imageFilter.PlanarImageFilter;
 
-public class CutOutROIFilter extends AbstractFilter<PlanarImage, PlanarImage> implements Runnable{
+public class CutOutROIFilter extends PlanarImageFilter{
 
 	private Rectangle _roi;
 
@@ -31,23 +27,9 @@ public class CutOutROIFilter extends AbstractFilter<PlanarImage, PlanarImage> im
 	}
 
 	@Override
-	public PlanarImage read() throws StreamCorruptedException, EndOfStreamException {
-		return cutOutROI(readInput());
-	}
-
-	@Override
-	public void write(PlanarImage value) throws StreamCorruptedException {
-		writeOutput(cutOutROI(value));
-	}
-
-	private PlanarImage cutOutROI(PlanarImage input) {
+	protected PlanarImage process(PlanarImage input) {
+		System.out.println("CutOutRoi");
 		return PlanarImage
 				.wrapRenderedImage((RenderedImage) input.getAsBufferedImage(_roi, input.getColorModel()));
-	}
-
-	@Override
-	public void run() {
-		// TODO Auto-generated method stub
-		
 	}
 }

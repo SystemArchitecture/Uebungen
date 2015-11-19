@@ -76,4 +76,16 @@ public class CharacterFilter extends AbstractFilter<SimpleLine, SimpleLine> {
 
 		return new SimpleLine(stringBuilder.toString(), line.getLinenumber());
 	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected SimpleLine process(SimpleLine readInput) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

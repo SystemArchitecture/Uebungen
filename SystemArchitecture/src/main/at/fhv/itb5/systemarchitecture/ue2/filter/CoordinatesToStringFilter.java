@@ -3,50 +3,62 @@ package main.at.fhv.itb5.systemarchitecture.ue2.filter;
 import java.io.StreamCorruptedException;
 import java.security.InvalidParameterException;
 import java.util.LinkedList;
-
-import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.EndOfStreamException;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.AbstractFilter;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 import main.at.fhv.itb5.systemarchitecture.ue2.dto.Coordinate;
 
-public class CoordinatesToStringFilter extends AbstractFilter<LinkedList<Coordinate>, String> implements Runnable{
+public class CoordinatesToStringFilter extends AbstractFilter<LinkedList<Coordinate>, String> implements Runnable {
 
 	public CoordinatesToStringFilter(Readable<LinkedList<Coordinate>> input) throws InvalidParameterException {
 		super(input);
 	}
-	
+
 	public CoordinatesToStringFilter(Writeable<String> output) {
 		super(output);
 	}
-	
+
 	public CoordinatesToStringFilter(Readable<LinkedList<Coordinate>> input, Writeable<String> output) {
-		super(output);
+		super(input, output);
 	}
 
 	@Override
-	public String read() throws StreamCorruptedException, EndOfStreamException {
-		return coordinatesToString(readInput());
+	public String read() throws StreamCorruptedException {
+		return process(readInput());
 	}
 
 	@Override
 	public void write(LinkedList<Coordinate> value) throws StreamCorruptedException {
-		writeOutput(coordinatesToString(value));
+		writeOutput(process(value));
 	}
 
-	private String coordinatesToString(LinkedList<Coordinate> input){
+	protected String process(LinkedList<Coordinate> input) {
 		StringBuilder output = new StringBuilder();
-		for(Coordinate co : input){
+		for (Coordinate co : input) {
 			output.append(co.toString());
 		}
+		System.out.println("Convert Coordinates to String");
 		return output.toString();
 	}
 
-	public boolean _isRunning;	
 	@Override
 	public void run() {
-		while(_isRunning) {
-			
+		LinkedList<Coordinate> value;
+		try {
+			do {
+				value = readInput();
+				if (value != null) {
+					try {
+						writeOutput(process(value));
+					} catch (StreamCorruptedException e) {
+						value = null;
+					}
+				}
+			} while (value != null);
+
+			sendEndSignal();
+		} catch (StreamCorruptedException e) {
+			e.printStackTrace();
 		}
 	}
 }

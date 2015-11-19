@@ -66,4 +66,16 @@ public class WordConstructorFilter extends AbstractFilter<Character, String> {
 
 	}
 
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected String process(Character readInput) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -65,4 +65,16 @@ public class SortFilter extends AbstractFilter<LinkedList<WordLine>, LinkedList<
 		}
 	}
 
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected LinkedList<WordLine> process(LinkedList<WordLine> readInput) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

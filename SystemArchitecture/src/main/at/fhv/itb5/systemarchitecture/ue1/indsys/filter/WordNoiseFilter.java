@@ -50,4 +50,16 @@ public class WordNoiseFilter extends AbstractFilter<WordLine, WordLine> {
 
 		return input;
 	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected WordLine process(WordLine readInput) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
