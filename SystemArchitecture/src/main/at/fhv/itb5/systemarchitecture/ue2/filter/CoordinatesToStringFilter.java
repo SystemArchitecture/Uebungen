@@ -37,7 +37,6 @@ public class CoordinatesToStringFilter extends AbstractFilter<LinkedList<Coordin
 		for (Coordinate co : input) {
 			output.append(co.toString());
 		}
-		System.out.println("Convert Coordinates to String");
 		return output.toString();
 	}
 

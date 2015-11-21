@@ -8,7 +8,7 @@ import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.filter.source.SourceAc
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 
 public class ImageSourceActive extends SourceActive<PlanarImage> implements Runnable{
-	private PlanarImage _sourceImage;
+	protected PlanarImage _sourceImage;
 
 	public ImageSourceActive(PlanarImage sourceImage, Writeable<PlanarImage> successor) {
 		super(successor);
@@ -26,7 +26,6 @@ public class ImageSourceActive extends SourceActive<PlanarImage> implements Runn
 			if (_sourceImage == null) {
 				write(null);
 			} else {
-				System.out.println("Write Image");
 				write(_sourceImage);
 				_sourceImage = null;
 				stop();

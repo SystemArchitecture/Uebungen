@@ -32,7 +32,7 @@ public abstract class DataTransformationFilter<T> extends AbstractFilter<T, T> {
 
 	public void write(T value) throws StreamCorruptedException {
 		if (value != null)
-			process(value);
+			value = process(value);
 		writeOutput(value);
 	}
 

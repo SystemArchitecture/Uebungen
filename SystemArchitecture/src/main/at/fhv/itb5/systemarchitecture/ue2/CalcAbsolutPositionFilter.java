@@ -33,7 +33,6 @@ public class CalcAbsolutPositionFilter extends DataTransformationFilter<LinkedLi
 		for(Coordinate coordinate : input) {
 			output.add(new Coordinate(coordinate._x + _roi.x, coordinate._y + _roi.y));
 		}
-		System.out.println("Calculate Absolut Positon");
 		return output;
 	}
 }

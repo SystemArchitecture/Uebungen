@@ -13,7 +13,6 @@ public class FileSinkStringPassive extends FileSink<String> {
 
 	@Override
 	public void write(String value) throws StreamCorruptedException {
-		System.out.println(value);
 		saveLine(value);
 	}
 }

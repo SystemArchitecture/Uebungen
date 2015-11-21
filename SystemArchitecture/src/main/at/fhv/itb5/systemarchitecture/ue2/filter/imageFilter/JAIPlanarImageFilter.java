@@ -37,7 +37,6 @@ public abstract class JAIPlanarImageFilter extends PlanarImageFilter{
 	protected PlanarImage process(PlanarImage input) {
 		ParameterBlock parameterBlock = getParameterBlock();
 		parameterBlock.addSource(input);
-		System.out.println(getOperatorName());
 		return JAI.create(getOperatorName(), parameterBlock);
 	}
 	

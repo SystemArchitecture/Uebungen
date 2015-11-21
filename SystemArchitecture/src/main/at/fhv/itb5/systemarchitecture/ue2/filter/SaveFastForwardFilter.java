@@ -29,7 +29,6 @@ public class SaveFastForwardFilter extends PlanarImageFilter{
 	@Override
 	protected PlanarImage process(PlanarImage input) {
 		JAI.create("filestore", input, _outputFilePath, "jpeg");
-		System.out.println("Save Image and forward");
 		return input;
 	}
 }
