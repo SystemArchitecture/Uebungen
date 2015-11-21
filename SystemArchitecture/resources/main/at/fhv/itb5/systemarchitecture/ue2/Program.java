@@ -3,6 +3,7 @@ package main.at.fhv.itb5.systemarchitecture.ue2;
 import java.awt.Rectangle;
 import java.awt.image.renderable.ParameterBlock;
 import java.io.File;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -13,7 +14,7 @@ import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Writeable;
 import main.at.fhv.itb5.systemarchitecture.ue2.benchmark.BenchmarkCallback;
 import main.at.fhv.itb5.systemarchitecture.ue2.dto.Coordinate;
 import main.at.fhv.itb5.systemarchitecture.ue2.filter.CalcCentroidsFilter;
-import main.at.fhv.itb5.systemarchitecture.ue2.filter.CoordinatesToStringFilter;
+import main.at.fhv.itb5.systemarchitecture.ue2.filter.CoordiantErrorFilter;
 import main.at.fhv.itb5.systemarchitecture.ue2.filter.CutOutROIFilter;
 import main.at.fhv.itb5.systemarchitecture.ue2.filter.SaveFastForwardFilter;
 import main.at.fhv.itb5.systemarchitecture.ue2.filter.imageFilter.DilateFilter;
@@ -35,7 +36,12 @@ public class Program {
 	private static boolean isDebug = true;
 	private static boolean inBenchmarkMode = true;
 	private static int benchmarkIterations = 50;
-	
+	private static Coordinate[] expectedCoordinates = new Coordinate[]{new Coordinate(71, 76),
+																		new Coordinate(135, 79),
+																		new Coordinate(200, 79),
+																		new Coordinate(264, 79),
+																		new Coordinate(329, 81),
+																		new Coordinate(394, 80)};
 	private static long startTime;
 	
 	public static void main(String[] args) {
@@ -142,7 +148,7 @@ public class Program {
 			runnables.add(new SaveFastForwardFilter("output.jpg", dilateSaveImagePipe, saveImageCentroidsPipe));
 			runnables.add(new CalcCentroidsFilter(saveImageCentroidsPipe, centroidsAbsolutePositionPipe));
 			runnables.add(new CalcAbsolutPositionFilter(roi, centroidsAbsolutePositionPipe, absolutePositionCoordinatesPipe));
-			runnables.add(new CoordinatesToStringFilter(absolutePositionCoordinatesPipe, coordinatesFileSinkPipe));
+			runnables.add(new CoordiantErrorFilter(new LinkedList<>(Arrays.asList(expectedCoordinates)),absolutePositionCoordinatesPipe, coordinatesFileSinkPipe));
 			
 			if(inBenchmarkMode) {
 				BenchmarkFileSinkActive benchmarkFileSinkActive = new BenchmarkFileSinkActive(new File("coordinates.txt"), coordinatesFileSinkPipe);
@@ -169,13 +175,13 @@ public class Program {
 				(Writeable<PlanarImage>) new SaveFastForwardFilter("output.jpg",
 				(Writeable<PlanarImage>) new CalcCentroidsFilter(
 				(Writeable<LinkedList<Coordinate>>) new CalcAbsolutPositionFilter(roi,
-				(Writeable<LinkedList<Coordinate>>) new CoordinatesToStringFilter( 
+				(Writeable<LinkedList<Coordinate>>) new CoordiantErrorFilter(new LinkedList<>(Arrays.asList(expectedCoordinates)),
 						sink)))))))))));
 	}
 	
 	private static Runnable buildPullPipeline(Rectangle roi, PlanarImage image) {
 		return new FileSinkActive(new File("coordinates.txt"),
-				new CoordinatesToStringFilter(
+				new CoordiantErrorFilter(new LinkedList<>(Arrays.asList(expectedCoordinates)), 
 				(Readable<LinkedList<Coordinate>>) new CalcAbsolutPositionFilter(roi, 
 				(Readable<LinkedList<Coordinate>>) new CalcCentroidsFilter(
 				(Readable<PlanarImage>) new SaveFastForwardFilter("output.jpg",
