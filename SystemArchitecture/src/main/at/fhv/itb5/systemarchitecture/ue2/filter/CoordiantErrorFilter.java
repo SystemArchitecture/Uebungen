@@ -45,19 +45,24 @@ public class CoordiantErrorFilter extends AbstractFilter<LinkedList<Coordinate>,
 	}
 	
 	public String process(LinkedList<Coordinate> input) {
-		StringBuilder stringBuilder = new StringBuilder();
-		
-		stringBuilder.append("\n *** Board Evaluation *** \n");
-		
-		if(_expectedValues.size() != input.size()) {
-			return "Not all sodering points were found";
+		if(input != null) {
+			StringBuilder stringBuilder = new StringBuilder();
+			
+			stringBuilder.append("\n *** Board Evaluation *** \n");
+			
+			if(_expectedValues.size() != input.size()) {
+				return "Not all sodering points were found";
+			}
+			
+			for(int i = 0; i < input.size(); ++i) {
+				stringBuilder.append("Actual: " + input.get(i) + "; Expected: " + _expectedValues.get(i) + " -> " + calculateCooridianteDistance(input.get(i), _expectedValues.get(i)) + "\n");
+			}
+			
+			return stringBuilder.toString();
+		} else {
+			return null;
 		}
 		
-		for(int i = 0; i < input.size(); ++i) {
-			stringBuilder.append("Actual: " + input.get(i) + "; Expected: " + _expectedValues.get(i) + " -> " + calculateCooridianteDistance(input.get(i), _expectedValues.get(i)) + "\n");
-		}
-		
-		return stringBuilder.toString();
 	}
 
 	@Override

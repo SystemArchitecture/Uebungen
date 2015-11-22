@@ -14,7 +14,12 @@ public class ImageSourcePassive implements SourcePassive<PlanarImage> {
 	
 	@Override
 	public PlanarImage read() throws StreamCorruptedException {
-		return _sourceImage;
+		PlanarImage sourceImage = _sourceImage;
+		_sourceImage = null;
+		
+		return sourceImage;
 	}
+	
+	
 
 }

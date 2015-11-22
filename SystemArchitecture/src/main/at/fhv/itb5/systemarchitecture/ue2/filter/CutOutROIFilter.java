@@ -28,7 +28,7 @@ public class CutOutROIFilter extends PlanarImageFilter{
 
 	@Override
 	protected PlanarImage process(PlanarImage input) {
-		return PlanarImage
-				.wrapRenderedImage((RenderedImage) input.getAsBufferedImage(_roi, input.getColorModel()));
+			return PlanarImage
+					.wrapRenderedImage((RenderedImage) input.getAsBufferedImage(_roi, input.getColorModel()));
 	}
 }

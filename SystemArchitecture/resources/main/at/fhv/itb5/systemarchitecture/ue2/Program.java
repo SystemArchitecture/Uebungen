@@ -49,13 +49,14 @@ public class Program {
 		if(isDebug) {
 			args = new String[2];
 			args[0] = "Push";
-			args[1] = "B";
+			args[1] = "A";
 		}
-		
+		//General data used in the pipeline
 		ParameterBlock parameterBlock = new ParameterBlock();
 		parameterBlock.add(Program.class.getClassLoader().getResource("loetstellen.jpg").getPath());	
 		Rectangle roi = new Rectangle(50, 50, 440, 50);
 		
+		//Benchmarking variables and callbacks
 		Queue<Long> startTimeQueue = new LinkedList<>(); 
 		LinkedList<Long> results = new LinkedList<>();	
 		
@@ -85,12 +86,14 @@ public class Program {
 			}
 		};
 		
+		//main logic for setting up the pipeline based on the excercises and benchmarking
 		if(args[1] == "A"){
 			Runnable runnable = null;
 
 			if(args[0] == "Push") {
 				
 				if(inBenchmarkMode) {
+					//build sink an source for benchmarking
 					System.out.println("Push mode single thread! Benchmark Iterations " + benchmarkIterations);
 					
 					BenchmarkFileSinkPassive benchmarkFileSinkPassive = new BenchmarkFileSinkPassive(new File("coordinates.txt"));
@@ -100,6 +103,7 @@ public class Program {
 							buildPushPipe(benchmarkFileSinkPassive, roi));
 				}		
 				else {
+					//build normal sink and source 
 					runnable = new ImageSourceActive(JAI.create("fileload", parameterBlock), 
 							buildPushPipe(new FileSinkStringPassive(new File("coordinates.txt")),roi));
 				}
@@ -116,7 +120,7 @@ public class Program {
 				System.out.println("Multithreaded pipeline! Benchmark Iterations " + benchmarkIterations);
 			}
 			
-			// init pipes
+			// create pipes
 			SyncQueudPipe<PlanarImage> sourceROIPipe = new SyncQueudPipe<>();
 			SyncQueudPipe<PlanarImage> roiThresholdPipe = new SyncQueudPipe<>();
 			SyncQueudPipe<PlanarImage> thresholdMedianPipe = new SyncQueudPipe<>();
@@ -132,7 +136,7 @@ public class Program {
 			
 			LinkedList<Runnable> runnables = new LinkedList<>();
 			
-			// init filters
+			// create filters ad building the pipeline
 			if(inBenchmarkMode) {			
 				runnables.add(new BenchmarkImageSourceActive(sourceCallback, benchmarkIterations, JAI.create("fileload", parameterBlock), (Writeable<PlanarImage>) sourceROIPipe));
 			}else {
@@ -184,14 +188,18 @@ public class Program {
 				new CoordiantErrorFilter(new LinkedList<>(Arrays.asList(expectedCoordinates)), 
 				(Readable<LinkedList<Coordinate>>) new CalcAbsolutPositionFilter(roi, 
 				(Readable<LinkedList<Coordinate>>) new CalcCentroidsFilter(
-				(Readable<PlanarImage>) new SaveFastForwardFilter("output.jpg",
+				(Readable<PlanarImage>) new SaveFastForwardFilter("diliate.jpg",
 				(Readable<PlanarImage>) new DilateFilter(
 				(Readable<PlanarImage>) new DilateFilter(
+				(Readable<PlanarImage>) new SaveFastForwardFilter("erode.jpg",
 				(Readable<PlanarImage>) new ErodeFilter(
 				(Readable<PlanarImage>) new ErodeFilter(
+				(Readable<PlanarImage>) new SaveFastForwardFilter("median.jpg",
 				(Readable<PlanarImage>) new MedianFilter(
+				(Readable<PlanarImage>) new SaveFastForwardFilter("threshold.jpg",
 				(Readable<PlanarImage>) new ThresholdFilter(
+				(Readable<PlanarImage>) new SaveFastForwardFilter("roid.jpg",
 				(Readable<PlanarImage>) new CutOutROIFilter(roi, 
-				new ImageSourcePassive(image)))))))))))));
+				new ImageSourcePassive(image)))))))))))))))));
 	}
 }

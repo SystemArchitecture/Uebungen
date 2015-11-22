@@ -39,8 +39,11 @@ public abstract class AbstractFilter<in, out> implements IOable<in, out>, Runnab
     
     protected void writeOutput(out value) throws StreamCorruptedException{
         if (_sucessor != null){
-            if (value == ENDING_SIGNAL) beforeSendingEndingSignal();
-            _sucessor.write(value);
+            if (value == ENDING_SIGNAL) {
+            	beforeSendingEndingSignal();
+            }else {
+            	 _sucessor.write(value);
+            }  
         }else{
             throw new StreamCorruptedException("output is null");
         }
