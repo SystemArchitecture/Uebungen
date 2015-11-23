@@ -1,0 +1,14 @@
+Name: ee/Generator.class
+Java-Bean: True
+
+Name: ee/Plotter.class
+Java-Bean: True
+
+Name: ee/Meter.class
+Java-Bean: True
+
+Name: ee/Clamp.class
+Java-Bean: True
+
+Name: ee/Rectifier.class
+Java-Bean: True

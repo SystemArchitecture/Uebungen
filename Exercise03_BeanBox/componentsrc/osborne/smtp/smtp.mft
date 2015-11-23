@@ -1,0 +1,6 @@
+Name: smtp/SmtpClient.class
+Java-Bean: True
+
+Name: smtp/SmtpGui.class
+Java-Bean: True
+

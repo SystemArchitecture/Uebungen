@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- File written by Update manager 2.0 -->
+<!-- comments in this file are not preserved -->
+
+<configuration date="1034249652422" >
+   <site url="file:F:/eclipse/"
+      platformURL="platform:/base/"
+      policy="1" >
+      <feature configured = "true" url="features/org.eclipse.jdt.source_2.0.1/" />
+      <feature configured = "true" url="features/org.eclipse.jdt_2.0.1/" />
+      <feature configured = "true" url="features/org.eclipse.pde_2.0.1/" />
+      <feature configured = "true" url="features/org.eclipse.platform.source_2.0.1/" />
+      <feature configured = "true" url="features/org.eclipse.platform.win32.source_2.0.1/" />
+      <feature configured = "true" url="features/org.eclipse.platform.win32_2.0.1/" />
+      <feature configured = "true" url="features/org.eclipse.platform_2.0.1/" />
+      <feature configured = "true" url="features/org.eclipse.sdk.win32_2.0.1/" />
+   </site>
+
+   <activity action="3" 
+      label="file:F:/eclipse/" 
+      date="1034249653824" 
+      status="0">
+   </activity>
+
+   <activity action="8" 
+      label="file:C:/semester5/komponenten/java/osborne/spectrum2/workspace/.metadata/.config/platform.cfg.metadata/LocalSite.xml" 
+      date="1034249654194" 
+      status="0">
+   </activity>
+
+</configuration>
+

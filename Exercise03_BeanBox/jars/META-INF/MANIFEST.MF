@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+
+Name: icecream/IceCream.class
+Java-Bean: True
+Digest-Algorithms: SHA
+SHA-Digest: I5ZtVJpV1ZlmoDcokO6JNkNtO84=
+
+
+
+Name: icecream/FlavorEditor.class
+Digest-Algorithms: SHA
+SHA-Digest: D9McR50Fl0Mw6a2tX0HXZ5Su3cI=
+
+Name: icecream/IceCreamBeanInfo.class
+Digest-Algorithms: SHA
+SHA-Digest: HkyV7HnMcCYnz98e5g/qdktgfdU=
+

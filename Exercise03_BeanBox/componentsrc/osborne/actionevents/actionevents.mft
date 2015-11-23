@@ -1,0 +1,9 @@
+Name: actionevents/ActionSource1.class
+Java-Bean: True
+
+Name: actionevents/ActionSource2.class
+Java-Bean: True
+
+Name: actionevents/ActionReceiver.class
+Java-Bean: True
+
