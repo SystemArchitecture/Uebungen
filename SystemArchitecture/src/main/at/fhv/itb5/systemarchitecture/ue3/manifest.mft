@@ -1,3 +1,4 @@
+
 Manifest-Version: 1.0
 
 Name: main/at/fhv/itb5/systemarchitecture/ue3/ImageLoader.class
@@ -7,5 +8,8 @@ Name: main/at/fhv/itb5/systemarchitecture/ue3/ImageDisplayer.class
 Java-Bean: True
 
 Name: main/at/fhv/itb5/systemarchitecture/ue3/ROI.class
+Java-Bean: True
+
+Name: main/at/fhv/itb5/systemarchitecture/ue3/Threshold.class
 Java-Bean: True
 
