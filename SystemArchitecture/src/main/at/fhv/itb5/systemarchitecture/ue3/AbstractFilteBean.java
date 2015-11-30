@@ -12,12 +12,9 @@ import main.at.fhv.itb5.systemarchitecture.ue2.filter.imageFilter.PlanarImageFil
 public abstract class AbstractFilteBean implements PropertyChangeListener, Serializable,  Readable<PlanarImage>{
 	private static final long serialVersionUID = -4540017156231057453L;
 	
-	private static String PropertyName = "IMAGE";
-
+	private static String PropertyName = "Image";
 	private PlanarImageFilter _planarImageFilter;
-	
-	private PlanarImage _image;
-	
+	private PlanarImage image;
 	private PropertyChangeSupport _propertyChangeSupport;
 	
 	public AbstractFilteBean() {
@@ -30,31 +27,38 @@ public abstract class AbstractFilteBean implements PropertyChangeListener, Seria
 	
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		if(evt.getPropertyName() == PropertyName) {
+		System.out.println("recive callback");
+		System.out.println(evt.getPropertyName());
+		if(evt.getPropertyName().equals(PropertyName)) {
 			setImage((PlanarImage)evt.getNewValue());
 		}
 	}
 	
-	public void setImage(PlanarImage image) {
-		PlanarImage old = _image;
-		_image = image;
+	public void setImage(PlanarImage newImage) {
+		System.out.println("set image");
+		PlanarImage old = newImage;
+		image = newImage;
 		try {
-			_image = _planarImageFilter.read();
+			image = _planarImageFilter.read();
 		} catch (StreamCorruptedException e1) {
 			e1.printStackTrace();
 		}
 		
-		_propertyChangeSupport.firePropertyChange(PropertyName, old,  _image);
+		if(image != null) {
+			System.out.println("fire output");
+			_propertyChangeSupport.firePropertyChange(PropertyName, old,  image);
+		}else {
+			System.out.println("Image null");
+		}
 	}
 
 	public PlanarImage getImage() {
-		return _image;
+		return image;
 	}
 
 	@Override
 	public PlanarImage read() throws StreamCorruptedException {
-		System.out.println("resived callback");
-		return _image;
+		return image;
 	}
 
 	
