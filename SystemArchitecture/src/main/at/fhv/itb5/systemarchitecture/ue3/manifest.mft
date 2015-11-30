@@ -16,3 +16,9 @@ Java-Bean: True
 Name: main/at/fhv/itb5/systemarchitecture/ue3/Median.class
 Java-Bean: True
 
+Name: main/at/fhv/itb5/systemarchitecture/ue3/Erode.class
+Java-Bean: True
+
+Name: main/at/fhv/itb5/systemarchitecture/ue3/Dilate.class
+Java-Bean: True
+
