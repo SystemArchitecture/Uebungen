@@ -1,12 +1,16 @@
 package main.at.fhv.itb5.systemarchitecture.ue3;
 
+import java.awt.Canvas;
 import java.awt.Rectangle;
+import java.io.Serializable;
 import java.io.StreamCorruptedException;
 import javax.media.jai.PlanarImage;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue2.filter.CutOutROIFilter;
 
-public class ROIFilter implements Readable<PlanarImage>{
+public class ROIFilter extends Canvas implements Readable<PlanarImage>, Serializable{
+	private static final long serialVersionUID = 2468442030629806596L;
+	
 	public int _x;
 	public int _y;
 	
@@ -24,6 +28,7 @@ public class ROIFilter implements Readable<PlanarImage>{
 		_height = 0;
 		
 		_image = null;
+		_cutOutRoiFilter = new CutOutROIFilter(new Rectangle(_x, _y, _width, _height), this);
 	}
 	
 	public int getX() {
