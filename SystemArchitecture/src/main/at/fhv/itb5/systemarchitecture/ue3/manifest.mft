@@ -22,3 +22,6 @@ Java-Bean: True
 Name: main/at/fhv/itb5/systemarchitecture/ue3/Dilate.class
 Java-Bean: True
 
+Name: main/at/fhv/itb5/systemarchitecture/ue3/SaveFastForward.class
+Java-Bean: True
+
