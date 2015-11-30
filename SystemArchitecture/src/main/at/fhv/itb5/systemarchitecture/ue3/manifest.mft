@@ -1,4 +1,3 @@
-
 Manifest-Version: 1.0
 
 Name: main/at/fhv/itb5/systemarchitecture/ue3/ImageLoader.class
@@ -10,6 +9,7 @@ Java-Bean: True
 Name: main/at/fhv/itb5/systemarchitecture/ue3/ROI.class
 Java-Bean: True
 
+>>>>>>> branch 'master' of https://github.com/SystemArchitecture/Uebungen.git
 Name: main/at/fhv/itb5/systemarchitecture/ue3/Threshold.class
 Java-Bean: True
 
