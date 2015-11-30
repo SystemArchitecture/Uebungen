@@ -4,20 +4,26 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 import javax.media.jai.PlanarImage;
 
 public class ImageDisplayer extends Canvas implements PropertyChangeListener{
 	private static final long serialVersionUID = 7355729544037986574L;
 	private PlanarImage _image;
+	
+	private PropertyChangeSupport _propertyChangeSupport;
 
 	public ImageDisplayer() {
 		_image = null;
+		_propertyChangeSupport = new PropertyChangeSupport(this);
 	}
 
 	public void setImage(PlanarImage image) {
+		PlanarImage old = _image;
 		_image = image;
 		 repaint();
+		 _propertyChangeSupport.firePropertyChange("Image", old, _image);
 	}
 
 	public PlanarImage getImage() {
@@ -40,6 +46,14 @@ public class ImageDisplayer extends Canvas implements PropertyChangeListener{
 			setImage((PlanarImage)evt.getNewValue());
 		}
 	}
+	
+	public void addPropertyChangeListener(PropertyChangeListener pcl)  {
+		_propertyChangeSupport.addPropertyChangeListener(pcl);
+	}
+	
+	public void removePropertyChangeListener(PropertyChangeListener pcl) {
+		_propertyChangeSupport.removePropertyChangeListener(pcl);
+	} 
 	
 	
 }

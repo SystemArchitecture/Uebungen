@@ -1,6 +1,5 @@
 package main.at.fhv.itb5.systemarchitecture.ue3;
 
-import java.awt.Canvas;
 import java.awt.image.renderable.ParameterBlock;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -8,7 +7,7 @@ import java.io.Serializable;
 import javax.media.jai.JAI;
 import javax.media.jai.PlanarImage;
 
-public class ImageLoader extends Canvas implements Serializable {
+public class ImageLoader implements Serializable {
 	private static final long serialVersionUID = -4738419983551340755L;
 	
 	private String _path;
@@ -17,7 +16,7 @@ public class ImageLoader extends Canvas implements Serializable {
 	private PropertyChangeSupport _propertyChangeSupport;
 	
 	public ImageLoader() {
-		_path = "";
+		_path = "C://Users//simon_000//git//fhv//SystemArchtitekur//Uebungen//SystemArchitecture//resources//loetstellen.jpg";
 		_image = null;
 		_propertyChangeSupport = new PropertyChangeSupport(this);
 	}
