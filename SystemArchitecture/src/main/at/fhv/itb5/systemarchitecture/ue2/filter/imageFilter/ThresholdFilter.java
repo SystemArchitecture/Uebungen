@@ -11,12 +11,15 @@ public class ThresholdFilter extends JAIPlanarImageFilter{
 	private double[] _max = {35, 35, 35};
 	private double[] _cons = {255, 255, 255};
 
-	public ThresholdFilter(Readable<PlanarImage> input, double[] min, double[] max, double[] cons)
+	public ThresholdFilter(Readable<PlanarImage> input, double min, double max, double cons)
 			throws InvalidParameterException {
 		super(input);
-		_min = min;
-		_max = max;
-		_cons = cons;
+		_min = new double[1];
+		_min[0] = min;
+		_max = new double[1];
+		_max[0] = max;
+		_cons = new double[1];
+		_cons[0] = cons;
 	}
 
 	public ThresholdFilter(Readable<PlanarImage> input) throws InvalidParameterException {

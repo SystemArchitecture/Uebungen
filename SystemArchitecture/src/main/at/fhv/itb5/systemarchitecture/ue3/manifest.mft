@@ -13,3 +13,6 @@ Java-Bean: True
 Name: main/at/fhv/itb5/systemarchitecture/ue3/Threshold.class
 Java-Bean: True
 
+Name: main/at/fhv/itb5/systemarchitecture/ue3/Median.class
+Java-Bean: True
+

@@ -1,10 +1,10 @@
 package main.at.fhv.itb5.systemarchitecture.ue3;
 
 import java.awt.Rectangle;
-import javax.media.jai.PlanarImage;
+
 import main.at.fhv.itb5.systemarchitecture.ue2.filter.CutOutROIFilter;
 
-public class ROI extends AbstractFilteBean{
+public class ROI extends AbstractFilterBean{
 	private static final long serialVersionUID = 2468442030629806596L;
 	
 	public int _x;
@@ -12,7 +12,6 @@ public class ROI extends AbstractFilteBean{
 	
 	public int _width;
 	public int _height;
-	public PlanarImage _image;
 	
 	public ROI() {
 		_x = 0;
@@ -21,7 +20,6 @@ public class ROI extends AbstractFilteBean{
 		_width = 0;
 		_height = 0;
 		
-		_image = null;
 		setJaiPlanarImageFilter(new CutOutROIFilter(new Rectangle(_x, _y, _width, _height), this));
 	}
 	
