@@ -1,6 +1,7 @@
 package main.at.fhv.itb5.systemarchitecture.ue3;
 
 import main.at.fhv.itb5.systemarchitecture.ue2.filter.SaveFastForwardFilter;
+import main.at.fhv.itb5.systemarchitecture.ue3.filter.AbstractFilterBean;
 
 public class SaveFastForward extends AbstractFilterBean {
 	private static final long serialVersionUID = 1L;
@@ -9,7 +10,7 @@ public class SaveFastForward extends AbstractFilterBean {
 
 	public SaveFastForward() {
 		super();
-		_path = null;
+		_path = "";
 		setJaiPlanarImageFilter(new SaveFastForwardFilter(_path, this));
 	}
 

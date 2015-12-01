@@ -1,6 +1,7 @@
 package main.at.fhv.itb5.systemarchitecture.ue3;
 
 import main.at.fhv.itb5.systemarchitecture.ue2.filter.imageFilter.MedianFilter;
+import main.at.fhv.itb5.systemarchitecture.ue3.filter.AbstractFilterBean;
 
 public class Median extends AbstractFilterBean {
 	private static final long serialVersionUID = 1L;

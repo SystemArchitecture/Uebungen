@@ -3,15 +3,16 @@ package main.at.fhv.itb5.systemarchitecture.ue3;
 import java.awt.Rectangle;
 
 import main.at.fhv.itb5.systemarchitecture.ue2.filter.CutOutROIFilter;
+import main.at.fhv.itb5.systemarchitecture.ue3.filter.AbstractFilterBean;
 
 public class ROI extends AbstractFilterBean{
 	private static final long serialVersionUID = 2468442030629806596L;
 	
-	public int _x;
-	public int _y;
+	private int _x;
+	private int _y;
 	
-	public int _width;
-	public int _height;
+	private int _width;
+	private int _height;
 	
 	public ROI() {
 		_x = 0;

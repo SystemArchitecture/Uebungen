@@ -36,6 +36,7 @@ public class ImageLoader implements Serializable {
 	public void setImage(PlanarImage image) {
 		PlanarImage old = _image;
 		_image = image;
+		System.out.println("Fire property Changed");
 		_propertyChangeSupport.firePropertyChange("Image", old, _image);
 	}
 	

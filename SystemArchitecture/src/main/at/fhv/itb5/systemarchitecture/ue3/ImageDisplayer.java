@@ -1,7 +1,10 @@
 package main.at.fhv.itb5.systemarchitecture.ue3;
 
 import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -17,6 +20,7 @@ public class ImageDisplayer extends Canvas implements PropertyChangeListener{
 	public ImageDisplayer() {
 		_image = null;
 		_propertyChangeSupport = new PropertyChangeSupport(this);
+		setSize(100, 50);
 	}
 
 	public void setImage(PlanarImage image) {
@@ -37,6 +41,9 @@ public class ImageDisplayer extends Canvas implements PropertyChangeListener{
 	public void paint(Graphics g) {
 		if(_image != null) {
 			g.drawImage(_image.getAsBufferedImage(), 0, 0, null);
+			setSize(_image.getWidth(), _image.getHeight());
+		} else {
+			g.drawString("ImageDisplayer", 0, 15);
 		}
 	}
 
