@@ -1,9 +1,8 @@
-package main.at.fhv.itb5.systemarchitecture.ue3;
+package main.at.fhv.itb5.systemarchitecture.ue3.filter;
 
 import java.awt.Rectangle;
 
 import main.at.fhv.itb5.systemarchitecture.ue2.filter.CutOutROIFilter;
-import main.at.fhv.itb5.systemarchitecture.ue3.filter.AbstractFilterBean;
 
 public class ROI extends AbstractFilterBean{
 	private static final long serialVersionUID = 2468442030629806596L;

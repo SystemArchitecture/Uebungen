@@ -1,10 +1,7 @@
-package main.at.fhv.itb5.systemarchitecture.ue3;
+package main.at.fhv.itb5.systemarchitecture.ue3.imagedisplayer;
 
 import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;

@@ -3,24 +3,27 @@ Manifest-Version: 1.0
 Name: main/at/fhv/itb5/systemarchitecture/ue3/ImageLoader.class
 Java-Bean: True
 
-Name: main/at/fhv/itb5/systemarchitecture/ue3/ImageDisplayer.class
+Name: main/at/fhv/itb5/systemarchitecture/ue3/imagedisplayer/ImageDisplayer.class
 Java-Bean: True
 
-Name: main/at/fhv/itb5/systemarchitecture/ue3/ROI.class
+Name: main/at/fhv/itb5/systemarchitecture/ue3/filter/ROI.class
 Java-Bean: True
 
-Name: main/at/fhv/itb5/systemarchitecture/ue3/Threshold.class
+Name: main/at/fhv/itb5/systemarchitecture/ue3/filter/Threshold.class
 Java-Bean: True
 
-Name: main/at/fhv/itb5/systemarchitecture/ue3/Median.class
+Name: main/at/fhv/itb5/systemarchitecture/ue3/filter/Median.class
 Java-Bean: True
 
-Name: main/at/fhv/itb5/systemarchitecture/ue3/Erode.class
+Name: main/at/fhv/itb5/systemarchitecture/ue3/filter/Erode.class
 Java-Bean: True
 
-Name: main/at/fhv/itb5/systemarchitecture/ue3/Dilate.class
+Name: main/at/fhv/itb5/systemarchitecture/ue3/filter/Dilate.class
 Java-Bean: True
 
 Name: main/at/fhv/itb5/systemarchitecture/ue3/SaveFastForward.class
+Java-Bean: True
+
+Name: main/at/fhv/itb5/systemarchitecture/ue3/CalcCentroid.class
 Java-Bean: True
 
