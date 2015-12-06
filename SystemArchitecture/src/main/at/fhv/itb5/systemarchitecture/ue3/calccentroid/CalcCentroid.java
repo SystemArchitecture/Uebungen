@@ -1,4 +1,4 @@
-package main.at.fhv.itb5.systemarchitecture.ue3;
+package main.at.fhv.itb5.systemarchitecture.ue3.calccentroid;
 
 import java.awt.Canvas;
 import java.awt.Graphics;
