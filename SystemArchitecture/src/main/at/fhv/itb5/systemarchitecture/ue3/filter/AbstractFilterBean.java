@@ -9,6 +9,9 @@ import javax.media.jai.PlanarImage;
 import main.at.fhv.itb5.systemarchitecture.ue1.pimpmypipe.interfaces.Readable;
 import main.at.fhv.itb5.systemarchitecture.ue2.filter.imageFilter.PlanarImageFilter;
 
+/**
+ * abstract class for image filter beans
+ */
 public abstract class AbstractFilterBean implements PropertyChangeListener, Serializable, Readable<PlanarImage> {
 	private static final long serialVersionUID = -4540017156231057453L;
 
@@ -21,6 +24,10 @@ public abstract class AbstractFilterBean implements PropertyChangeListener, Seri
 		_propertyChangeSupport = new PropertyChangeSupport(this);
 	}
 
+	/**
+	 * set image filter and reload image
+	 * @param planarImageFilter
+	 */
 	public void setJaiPlanarImageFilter(PlanarImageFilter planarImageFilter) {
 		_planarImageFilter = planarImageFilter;
 		setImage(_original);
@@ -37,6 +44,10 @@ public abstract class AbstractFilterBean implements PropertyChangeListener, Seri
 
 	protected PlanarImage _original;
 
+	/**
+	 * set image and process filter
+	 * @param newImage
+	 */
 	public void setImage(PlanarImage newImage) {
 		System.out.println("Set Image");
 		if (newImage != null) {
@@ -60,6 +71,9 @@ public abstract class AbstractFilterBean implements PropertyChangeListener, Seri
 		return image;
 	}
 
+	/**
+	 * return image
+	 */
 	@Override
 	public PlanarImage read() throws StreamCorruptedException {
 		return image;

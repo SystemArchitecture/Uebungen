@@ -31,10 +31,12 @@ public class CalcCentroid extends Canvas implements PropertyChangeListener, Read
 		if(evt.getPropertyName() == "Image") {
 			_image = (PlanarImage)evt.getNewValue();
 			
+			// Instantiate the centroids filter
 			CalcCentroidsFilter calcCentroidsFilter = new CalcCentroidsFilter(this);
 			_coordinates = new LinkedList<>();
 			_coordinates.clear();
 			try {
+				// set coordinates
 				_coordinates.addAll(calcCentroidsFilter.read());
 			} catch (StreamCorruptedException e) {
 				System.out.println(e.getMessage());
@@ -44,6 +46,7 @@ public class CalcCentroid extends Canvas implements PropertyChangeListener, Read
 	
 	@Override
 	public void paint(Graphics g) {
+		// draw coordinates text
 		g.drawString("Coordinates Count -> " + _coordinates.size(), 0, 15);
 	}
 

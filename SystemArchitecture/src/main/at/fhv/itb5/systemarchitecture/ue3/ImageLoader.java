@@ -22,8 +22,9 @@ public class ImageLoader implements Serializable {
 	}
 	
 	public void setImagePath(String imagePath) {
+		// set path
 		_path = imagePath;
-		
+		// reload image
 		ParameterBlock parameterBlock = new ParameterBlock();
 		parameterBlock.add(imagePath);	
 		setImage(JAI.create("fileload", parameterBlock));
@@ -34,9 +35,11 @@ public class ImageLoader implements Serializable {
 	}
 	
 	public void setImage(PlanarImage image) {
+		// set new image
 		PlanarImage old = _image;
 		_image = image;
 		System.out.println("Fire property Changed");
+		// fire prop change event
 		_propertyChangeSupport.firePropertyChange("Image", old, _image);
 	}
 	
