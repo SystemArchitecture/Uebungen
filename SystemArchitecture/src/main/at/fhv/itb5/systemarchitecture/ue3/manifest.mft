@@ -24,6 +24,12 @@ Java-Bean: True
 Name: main/at/fhv/itb5/systemarchitecture/ue3/SaveFastForward.class
 Java-Bean: True
 
+Name: main/at/fhv/itb5/systemarchitecture/ue3/PropertyChangeConverter.class
+Java-Bean: True
+
 Name: main/at/fhv/itb5/systemarchitecture/ue3/calccentroid/CalcCentroid.class
+Java-Bean: True
+
+Name: main/at/fhv/itb5/systemarchitecture/ue3/OverlayImages.class
 Java-Bean: True
 
