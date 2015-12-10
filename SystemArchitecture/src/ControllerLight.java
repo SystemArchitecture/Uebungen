@@ -1,14 +1,11 @@
 
-
-public class ControllerBoundaries implements IController {
+public class ControllerLight implements IController {
 	private final int MAX_SPEED;
 	private final int MIN_SPEED;
 	private MotionManager _motionManager;
 	private SensorManager _sensorManager;
-	private final int DIST_SENSOR_MAX;
 
-	public ControllerBoundaries(int maxDist, int minSpeed, int maxSpeed) {
-		DIST_SENSOR_MAX = maxDist;
+	public ControllerLight(int minSpeed, int maxSpeed) {
 		MIN_SPEED = minSpeed;
 		MAX_SPEED = maxSpeed;
 	}
@@ -23,11 +20,9 @@ public class ControllerBoundaries implements IController {
 	}
 
 	private void controlBangBang() {
-		if (((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_L)).getValue() > DIST_SENSOR_MAX
-				|| ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_LF)).getValue() > DIST_SENSOR_MAX) {
+		if (getRightLightValue() < getLeftLightValue()) {
 			driveRight();
-		} else if (((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_R)).getValue() > DIST_SENSOR_MAX
-				|| ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_RF)).getValue() > DIST_SENSOR_MAX) {
+		} else if (getLeftLightValue() < getRightLightValue()) {
 			driveLeft();
 		} else {
 			driveForward();
@@ -46,6 +41,16 @@ public class ControllerBoundaries implements IController {
 		((WheelsAdapter) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS)).setSpeed(MIN_SPEED, MAX_SPEED);
 	}
 
+	private double getLeftLightValue() {
+		return ((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_L)).getValue()
+				+ ((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_LF)).getValue();
+	}
+
+	private double getRightLightValue() {
+		return ((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_R)).getValue()
+				+ ((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_RF)).getValue();
+	}
+
 	@Override
 	public void setMotionManager(MotionManager motionManager) {
 		_motionManager = motionManager;
@@ -58,10 +63,10 @@ public class ControllerBoundaries implements IController {
 
 	@Override
 	public void init() {
-		_sensorManager.initialize(Sensor.DIST_SENSOR_L);
-		_sensorManager.initialize(Sensor.DIST_SENSOR_LF);
-		_sensorManager.initialize(Sensor.DIST_SENSOR_R);
-		_sensorManager.initialize(Sensor.DIST_SENSOR_RF);
+		_sensorManager.initialize(Sensor.LIGHT_SENSOR_L);
+		_sensorManager.initialize(Sensor.LIGHT_SENSOR_LF);
+		_sensorManager.initialize(Sensor.LIGHT_SENSOR_R);
+		_sensorManager.initialize(Sensor.LIGHT_SENSOR_RF);
 		_motionManager.initialize(Actor.DIFFERENTIAL_WHEELS);
 	}
 
