@@ -46,8 +46,11 @@ public class ImageDisplayer extends Canvas implements PropertyChangeListener{
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		if(evt.getPropertyName() == "Image") {
+		System.out.println(evt.getPropertyName());
+		if(evt.getPropertyName().equals("Image")) {
+			System.out.println("Resived Event Image");
 			setImage((PlanarImage)evt.getNewValue());
+			
 		}
 	}
 	
