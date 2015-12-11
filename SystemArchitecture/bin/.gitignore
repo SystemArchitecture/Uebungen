@@ -1,3 +1,17 @@
+/Actor.class
+/ControllerBoundaries.class
+/ControllerLight.class
+/ControllerManager.class
+/ControllerType.class
+/DistanceSensorAdapter.class
+/IActor.class
+/IController.class
+/ISensor.class
+/LightSensorAdapter.class
+/MotionManager.class
+/Sensor.class
+/SensorManager.class
+/WheelsAdapter.class
 /main/
 /uml/
 /Thumbs.db
