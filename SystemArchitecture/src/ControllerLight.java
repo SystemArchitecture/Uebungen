@@ -1,25 +1,15 @@
 
-public class ControllerLight implements IController {
+public class ControllerLight extends Controller {
 	private final int MAX_SPEED;
 	private final int MIN_SPEED;
-	private MotionManager _motionManager;
-	private SensorManager _sensorManager;
 
-	public ControllerLight(int minSpeed, int maxSpeed) {
+	public ControllerLight(ControllerType type, int minSpeed, int maxSpeed) {
+		super(type);
 		MIN_SPEED = minSpeed;
 		MAX_SPEED = maxSpeed;
 	}
-
-	@Override
-	public void control(ControllerType type) {
-		if (type.equals(ControllerType.BANGBANG)) {
-			controlBangBang();
-		} else {
-			throw new UnsupportedOperationException();
-		}
-	}
-
-	private void controlBangBang() {
+	
+	protected void controlBangBang() {
 		if (getRightLightValue() < getLeftLightValue()) {
 			driveRight();
 		} else if (getLeftLightValue() < getRightLightValue()) {
@@ -28,7 +18,7 @@ public class ControllerLight implements IController {
 			driveForward();
 		}
 	}
-
+	
 	private void driveRight() {
 		((WheelsAdapter) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS)).setSpeed(MAX_SPEED, MIN_SPEED);
 	}
@@ -36,29 +26,25 @@ public class ControllerLight implements IController {
 	private void driveForward() {
 		((WheelsAdapter) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS)).setSpeed(MAX_SPEED, MAX_SPEED);
 	}
-
+	
 	private void driveLeft() {
 		((WheelsAdapter) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS)).setSpeed(MIN_SPEED, MAX_SPEED);
 	}
-
+	
 	private double getLeftLightValue() {
 		return ((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_L)).getValue()
 				+ ((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_LF)).getValue();
 	}
-
+	
 	private double getRightLightValue() {
 		return ((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_R)).getValue()
 				+ ((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_RF)).getValue();
 	}
 
 	@Override
-	public void setMotionManager(MotionManager motionManager) {
-		_motionManager = motionManager;
-	}
-
-	@Override
-	public void setSensorManager(SensorManager sensorManager) {
-		_sensorManager = sensorManager;
+	protected void controlProportional() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override

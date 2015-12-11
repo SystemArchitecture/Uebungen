@@ -21,7 +21,6 @@ public class MotionManager {
 				throw new IllegalArgumentException("Unknown Actor: " + actor);
 			}
 		}
-
 	}
 
 	public boolean isActive(Actor actor) {

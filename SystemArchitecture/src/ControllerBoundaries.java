@@ -1,28 +1,18 @@
 
 
-public class ControllerBoundaries implements IController {
+public class ControllerBoundaries extends Controller {
 	private final int MAX_SPEED;
 	private final int MIN_SPEED;
-	private MotionManager _motionManager;
-	private SensorManager _sensorManager;
 	private final int DIST_SENSOR_MAX;
 
-	public ControllerBoundaries(int maxDist, int minSpeed, int maxSpeed) {
+	public ControllerBoundaries(ControllerType type, int maxDist, int minSpeed, int maxSpeed) {
+		super(type);
 		DIST_SENSOR_MAX = maxDist;
 		MIN_SPEED = minSpeed;
 		MAX_SPEED = maxSpeed;
 	}
 
-	@Override
-	public void control(ControllerType type) {
-		if (type.equals(ControllerType.BANGBANG)) {
-			controlBangBang();
-		} else {
-			throw new UnsupportedOperationException();
-		}
-	}
-
-	private void controlBangBang() {
+	protected void controlBangBang() {
 		if (((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_L)).getValue() > DIST_SENSOR_MAX
 				|| ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_LF)).getValue() > DIST_SENSOR_MAX) {
 			driveRight();
@@ -34,6 +24,12 @@ public class ControllerBoundaries implements IController {
 		}
 	}
 
+	@Override
+	protected void controlProportional() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	private void driveRight() {
 		((WheelsAdapter) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS)).setSpeed(MAX_SPEED, MIN_SPEED);
 	}
@@ -46,17 +42,6 @@ public class ControllerBoundaries implements IController {
 		((WheelsAdapter) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS)).setSpeed(MIN_SPEED, MAX_SPEED);
 	}
 
-	@Override
-	public void setMotionManager(MotionManager motionManager) {
-		_motionManager = motionManager;
-	}
-
-	@Override
-	public void setSensorManager(SensorManager sensorManager) {
-		_sensorManager = sensorManager;
-	}
-
-	@Override
 	public void init() {
 		_sensorManager.initialize(Sensor.DIST_SENSOR_L);
 		_sensorManager.initialize(Sensor.DIST_SENSOR_LF);

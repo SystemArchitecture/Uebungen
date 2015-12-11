@@ -6,21 +6,19 @@ import java.util.Iterator;
 import com.cyberbotics.webots.controller.DifferentialWheels;
 
 public class ControllerManager {
-	private HashSet<IController> _controller;
-	private ControllerType _controllerType;
+	private HashSet<Controller> _controller;
 	private DifferentialWheels _differentialWheels;
 	private MotionManager _motionManager;
 	private SensorManager _sensorManager;
 
-	public ControllerManager(ControllerType type, DifferentialWheels differentialWheels) {
+	public ControllerManager(DifferentialWheels differentialWheels) {
 		_controller = new HashSet<>();
-		_controllerType = type;
 		_differentialWheels = differentialWheels;
 		_motionManager = new MotionManager(_differentialWheels);
 		_sensorManager = new SensorManager(_differentialWheels);
 	}
 	
-	public void addController(IController controller) {
+	public void addController(Controller controller) {
 		controller.setMotionManager(_motionManager);
 		controller.setSensorManager(_sensorManager);
 		controller.init();
@@ -28,9 +26,9 @@ public class ControllerManager {
 	}
 
 	public void runAll(){
-		Iterator<IController> it = _controller.iterator();
+		Iterator<Controller> it = _controller.iterator();
 		while(it.hasNext()){
-			it.next().control(_controllerType);
+			it.next().control();
 		}
 	}
 }
