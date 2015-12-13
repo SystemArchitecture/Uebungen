@@ -1,14 +1,13 @@
 
 public class ControllerLightStop extends Controller {
-	public final int MIN_SPEED;
-	public final int MAX_SPEED;
 	public final int DIST_SENSOR_MAX;
+	private WheelsController _wheelsController;
+	private int _maxSpeed;
 
-	public ControllerLightStop(ControllerType type, int minSpeed, int maxSpeed, int distSensorMax) {
+	public ControllerLightStop(ControllerType type, int maxSpeed, int distSensorMax) {
 		super(type);
-		MIN_SPEED = minSpeed;
-		MAX_SPEED = maxSpeed;
 		DIST_SENSOR_MAX = distSensorMax;
+		_maxSpeed = maxSpeed;
 	}
 
 	@Override
@@ -20,13 +19,13 @@ public class ControllerLightStop extends Controller {
 						.getValue() > DIST_SENSOR_MAX
 						|| ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_LF))
 								.getValue() > DIST_SENSOR_MAX)) {
-			driveStop();
+			_wheelsController.driveStop();
 		} else if (getRightLightValue() < getLeftLightValue()) {
-			driveRight();
+			_wheelsController.driveRight();
 		} else if (getLeftLightValue() < getRightLightValue()) {
-			driveLeft();
+			_wheelsController.driveLeft();
 		} else {
-			driveForward();
+			_wheelsController.driveForward();
 		}
 	}
 
@@ -46,22 +45,6 @@ public class ControllerLightStop extends Controller {
 
 	}
 
-	private void driveRight() {
-		((WheelsAdapter) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS)).setSpeed(MAX_SPEED, MIN_SPEED);
-	}
-
-	private void driveForward() {
-		((WheelsAdapter) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS)).setSpeed(MAX_SPEED, MAX_SPEED);
-	}
-
-	private void driveLeft() {
-		((WheelsAdapter) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS)).setSpeed(MIN_SPEED, MAX_SPEED);
-	}
-
-	private void driveStop() {
-		((WheelsAdapter) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS)).setSpeed(MIN_SPEED, MIN_SPEED);
-	}
-
 	@Override
 	public void init() {
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_L);
@@ -73,6 +56,8 @@ public class ControllerLightStop extends Controller {
 		_sensorManager.initialize(Sensor.DIST_SENSOR_R);
 		_sensorManager.initialize(Sensor.DIST_SENSOR_RF);
 		_motionManager.initialize(Actor.DIFFERENTIAL_WHEELS);
+		_wheelsController = ((WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS));
+		_wheelsController.setMaxSpeed(_maxSpeed);
 	}
 
 }

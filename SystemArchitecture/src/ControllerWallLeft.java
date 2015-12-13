@@ -1,23 +1,22 @@
 
+public class ControllerWallLeft extends Controller {
 
-public class ControllerBoundaries extends Controller {
-	private final int DIST_SENSOR_MAX;
+	private int _maxDistance;
 	private WheelsController _wheelsController;
 	private int _maxSpeed;
 
-	public ControllerBoundaries(ControllerType type, int maxDist, int maxSpeed) {
+	public ControllerWallLeft(ControllerType type, int maxSpeed, int maxDistance) {
 		super(type);
-		DIST_SENSOR_MAX = maxDist;
+		_maxDistance = maxDistance;
 		_maxSpeed = maxSpeed;
 	}
 
+	@Override
 	protected void controlBangBang() {
-		if (((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_L)).getValue() > DIST_SENSOR_MAX
-				|| ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_LF)).getValue() > DIST_SENSOR_MAX) {
-			_wheelsController.driveRight();
-		} else if (((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_R)).getValue() > DIST_SENSOR_MAX
-				|| ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_RF)).getValue() > DIST_SENSOR_MAX) {
+		if(((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_L)).getValue() < _maxDistance){
 			_wheelsController.driveLeft();
+		} else if (((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_L)).getValue() > _maxDistance) {
+			_wheelsController.driveRight();
 		} else {
 			_wheelsController.driveForward();
 		}
@@ -26,9 +25,10 @@ public class ControllerBoundaries extends Controller {
 	@Override
 	protected void controlProportional() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
+	@Override
 	public void init() {
 		_sensorManager.initialize(Sensor.DIST_SENSOR_L);
 		_sensorManager.initialize(Sensor.DIST_SENSOR_LF);

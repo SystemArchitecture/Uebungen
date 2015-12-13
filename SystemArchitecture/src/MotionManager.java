@@ -16,7 +16,7 @@ public class MotionManager {
 	public void initialize(Actor actor) {
 		if (!isActive(actor)) {
 			if (actor.equals(Actor.DIFFERENTIAL_WHEELS)) {
-				_actors.put(actor, new WheelsAdapter(_differentialWheels));
+				_actors.put(actor, new WheelsController(_differentialWheels));
 			} else {
 				throw new IllegalArgumentException("Unknown Actor: " + actor);
 			}

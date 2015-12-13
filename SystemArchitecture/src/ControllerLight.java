@@ -1,34 +1,21 @@
 
 public class ControllerLight extends Controller {
-	private final int MAX_SPEED;
-	private final int MIN_SPEED;
+	private WheelsController _wheelsController;
+	private int _maxSpeed;
 
-	public ControllerLight(ControllerType type, int minSpeed, int maxSpeed) {
+	public ControllerLight(ControllerType type, int maxSpeed) {
 		super(type);
-		MIN_SPEED = minSpeed;
-		MAX_SPEED = maxSpeed;
+		_maxSpeed = maxSpeed;
 	}
 	
 	protected void controlBangBang() {
 		if (getRightLightValue() < getLeftLightValue()) {
-			driveRight();
+			_wheelsController.driveRight();
 		} else if (getLeftLightValue() < getRightLightValue()) {
-			driveLeft();
+			_wheelsController.driveLeft();
 		} else {
-			driveForward();
+			_wheelsController.driveForward();
 		}
-	}
-	
-	private void driveRight() {
-		((WheelsAdapter) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS)).setSpeed(MAX_SPEED, MIN_SPEED);
-	}
-
-	private void driveForward() {
-		((WheelsAdapter) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS)).setSpeed(MAX_SPEED, MAX_SPEED);
-	}
-	
-	private void driveLeft() {
-		((WheelsAdapter) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS)).setSpeed(MIN_SPEED, MAX_SPEED);
 	}
 	
 	private double getLeftLightValue() {
@@ -54,6 +41,8 @@ public class ControllerLight extends Controller {
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_R);
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_RF);
 		_motionManager.initialize(Actor.DIFFERENTIAL_WHEELS);
+		_wheelsController = ((WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS));
+		_wheelsController.setMaxSpeed(_maxSpeed);
 	}
 
 }
