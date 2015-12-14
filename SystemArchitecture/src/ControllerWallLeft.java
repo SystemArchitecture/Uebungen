@@ -13,13 +13,17 @@ public class ControllerWallLeft extends Controller {
 
 	@Override
 	protected void controlBangBang() {
-		if(((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_L)).getValue() < _maxDistance){
+
+		if (((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_LF)).getValue() > _maxDistance
+				|| ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_RF))
+						.getValue() > _maxDistance) {
+			_wheelsController.driveRight();
+		} else if (((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_L)).getValue() < _maxDistance) {
 			_wheelsController.driveLeft();
 		} else if (((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_L)).getValue() > _maxDistance) {
 			_wheelsController.driveRight();
-		} else {
-			_wheelsController.driveForward();
 		}
+		
 	}
 
 	@Override

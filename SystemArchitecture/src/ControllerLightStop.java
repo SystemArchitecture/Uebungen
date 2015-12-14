@@ -41,8 +41,27 @@ public class ControllerLightStop extends Controller {
 
 	@Override
 	protected void controlProportional() {
-		// TODO Auto-generated method stub
+		double lightSensorL = ((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_L)).getValue();
+		double lightSensorLF = ((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_LF)).getValue();
+		double lightSensorR = ((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_R)).getValue();
+		double lightSensorRF = ((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_RF)).getValue();
+		double distanceSensorLF = ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_LF)).getValue();
+		double distanceSensorRF = ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_RF)).getValue();
+		double[] _sensors = { lightSensorL, lightSensorLF, distanceSensorLF, distanceSensorRF, lightSensorRF,
+				lightSensorR };
 
+		double[][] priorityMatrix = { { 0.25, 1, -1, -1, -0.3, -0.2 }, { -0.2, -0.3, -1, -1, 1, 0.25 } };
+
+		double[] result = MatrixUtil.multiply(priorityMatrix, _sensors);
+		
+		int speedLeftWheel = (getSpeedFactor((int) result[0]) > _maxSpeed) ? _maxSpeed : getSpeedFactor((int) result[0]);
+		int speedRightWheel = (getSpeedFactor((int) result[1]) > _maxSpeed) ? _maxSpeed : getSpeedFactor((int) result[1]);
+
+		_wheelsController.setSpeed(speedLeftWheel, speedRightWheel);
+	}
+	
+	private int getSpeedFactor(double sensorValue) {
+		return (int) sensorValue / 4;
 	}
 
 	@Override
