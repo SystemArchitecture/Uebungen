@@ -40,16 +40,9 @@ public class ControllerLight extends Controller {
 				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_RF)).getValue();
 		double[] _distanceSensors = { lightSensorL, lightSensorLF, lightSensorRF, lightSensorR };
 		
-		System.out.println(_distanceSensors[0] + " - " + _distanceSensors[1] + " - " + _distanceSensors[2] + " - " + _distanceSensors[3]);
-
 		double[][] priorityMatrix = { { 0.25, 1, -0.3, -0.2 }, { -0.2, -0.3 , 1, 0.25 } };
 
 		double[] result = MatrixUtil.multiply(priorityMatrix, _distanceSensors);
-
-		// double[] result = MatrixUtil.multiply(resultSensors,
-		// _wheelSpeedVector);
-		System.out.println(result.length);
-		System.out.println(result[0] + " - " + result[1]);
 
 		int speedLeftWheel = (getSpeedFactor((int) result[0]) > _maxSpeed) ? _maxSpeed : getSpeedFactor((int) result[0]);
 		int speedRightWheel = (getSpeedFactor((int) result[1]) > _maxSpeed) ? _maxSpeed : getSpeedFactor((int) result[1]);
