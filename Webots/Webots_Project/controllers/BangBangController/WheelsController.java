@@ -25,20 +25,18 @@ public class WheelsController implements IActor {
 	}
 	
 	public void driveRight() {
-		System.out.println("drive right");
-		_differantialWheels.setSpeed(_maxSpeed, MIN_SPEED);
+		setSpeed(_maxSpeed, MIN_SPEED);
 	}
 
 	public void driveForward() {
-		_differantialWheels.setSpeed(_maxSpeed, _maxSpeed);
+		setSpeed(_maxSpeed, _maxSpeed);
 	}
 
 	public void driveLeft() {
-		System.out.println("drive left");
-		_differantialWheels.setSpeed(MIN_SPEED, _maxSpeed);
+		setSpeed(MIN_SPEED, _maxSpeed);
 	}
 
 	public void driveStop() {
-		_differantialWheels.setSpeed(MIN_SPEED, MIN_SPEED);
+		setSpeed(MIN_SPEED, MIN_SPEED);
 	}
 }

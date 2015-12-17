@@ -22,10 +22,8 @@ public class SensorFilter {
 		
 		double sum = 0;
 		for (double val : _ringBuffer) {
-			sum = +val;
+			sum += val;
 		}
-
 		return sum / _ringBufferSize;
-
 	}
 }

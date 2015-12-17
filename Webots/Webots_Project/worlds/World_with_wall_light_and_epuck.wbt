@@ -1,4 +1,4 @@
-#VRML_SIM V6.0 utf8
+#VRML_SIM V8.3.1 utf8
 WorldInfo {
   info [
     "The model of the E-puck robot"
@@ -60,10 +60,19 @@ DEF WALL1 Solid {
   boundingObject USE WALL_SHAPE
 }
 EPuck {
-  translation 0.190118 5.7586e-14 -0.240787
-  rotation -0.0688571 0.994869 0.074118 1.61875
+  hidden linearVelocity_0 -7.19841e-05 3.20963e-08 3.09577e-06
+  hidden angularVelocity_0 0.000206382 -2.22169e-08 0.00479887
+  hidden translation_1 -0.026 0.0200012 1.12214e-09
+  hidden rotation_1 0.980678 -0.0248872 -0.19404 -4.06686e-10
+  hidden linearVelocity_1 -9.59768e-05 1.41042e-11 4.12761e-06
+  hidden angularVelocity_1 0.000206382 -2.2237e-08 0.00479887
+  hidden translation_2 0.026 0.0200012 1.89492e-09
+  hidden rotation_2 0.332429 0.120016 0.935461 8.44385e-11
+  hidden linearVelocity_2 -9.59786e-05 1.18372e-11 4.12769e-06
+  hidden angularVelocity_2 0.000206382 -2.2237e-08 0.00479887
+  translation 0.190129 -0.000163952 -0.240788
+  rotation -0.00060091 1 0.000633267 1.61378
   controller "ProportionalRunningIntoLight"
-  camera_pixelSize 0
 }
 DEF WALL2 Solid {
   translation -1 0.05 0
@@ -94,7 +103,6 @@ DEF LIGHT Solid {
   children [
     PointLight {
       attenuation 13 10 10
-      intensity 3
     }
     Shape {
       appearance Appearance {
