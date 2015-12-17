@@ -2,13 +2,10 @@
 public class ControllerWallLeft extends Controller {
 
 	private int _maxDistance;
-	private WheelsController _wheelsController;
-	private int _maxSpeed;
 
 	public ControllerWallLeft(ControllerType type, int maxSpeed, int maxDistance) {
-		super(type);
+		super(type, maxSpeed);
 		_maxDistance = maxDistance;
-		_maxSpeed = maxSpeed;
 	}
 
 	@Override
@@ -25,10 +22,15 @@ public class ControllerWallLeft extends Controller {
 		}
 		
 	}
+	
+	@Override
+	protected double[][] getControllMatrix() {
+		double[][] priorityMatrix = { { 1, 0.75, 0.5, 0, 0, 0 }, { 0, 0, 0, -1, -0.75, -0.5 } };
+		return priorityMatrix;
+	}
 
 	@Override
-	protected void controlProportional() {
-		// TODO Auto-generated method stub
+	protected double[] getSensorArray() {
 		double distanceSensorL = ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_L)).getValue();
 		double distanceSensorLM = ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_LM)).getValue();
 		double distanceSensorLF = ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_LF)).getValue();
@@ -37,21 +39,8 @@ public class ControllerWallLeft extends Controller {
 		double distanceSensorRF = ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_RF)).getValue();
 		double[] _distanceSensors = { distanceSensorL, distanceSensorLM, distanceSensorLF, distanceSensorRF, distanceSensorRM,
 				distanceSensorR };
-
-		double[][] priorityMatrix = { { 1, 0.75, 0.5, 0, 0, 0 }, { 0, 0, 0, -1, -0.75, -0.5 } };
-
-		double[] result = MatrixUtil.multiply(priorityMatrix, _distanceSensors);
-
-		int speedLeftWheel = (getSpeedFactor((int) result[0]) > _maxSpeed) ? _maxSpeed
-				: getSpeedFactor((int) result[0]);
-		int speedRightWheel = (getSpeedFactor((int) result[1]) > _maxSpeed) ? _maxSpeed
-				: getSpeedFactor((int) result[1]);
-
-		_wheelsController.setSpeed(speedLeftWheel, speedRightWheel);
-	}
-
-	private int getSpeedFactor(double sensorValue) {
-		return (int) sensorValue;// / (_maxDistanceSensor / _maxSpeed);
+		
+		return _distanceSensors;
 	}
 	
 	@Override
@@ -64,5 +53,4 @@ public class ControllerWallLeft extends Controller {
 		_wheelsController = ((WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS));
 		_wheelsController.setMaxSpeed(_maxSpeed);
 	}
-
 }
