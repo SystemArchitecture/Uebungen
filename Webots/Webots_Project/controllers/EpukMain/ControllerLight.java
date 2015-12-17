@@ -1,5 +1,7 @@
 
 public class ControllerLight extends Controller {
+	private WheelsController _wheelsController;
+
 	public ControllerLight(ControllerType type, int maxSpeed) {
 		super(type, maxSpeed);
 	}
@@ -27,10 +29,8 @@ public class ControllerLight extends Controller {
 	@Override
 	public void init() {
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_L);
-		_sensorManager.initialize(Sensor.LIGHT_SENSOR_LM);
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_LF);
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_R);
-		_sensorManager.initialize(Sensor.LIGHT_SENSOR_RM);
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_RF);
 		_motionManager.initialize(Actor.DIFFERENTIAL_WHEELS);
 		_wheelsController = ((WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS));
@@ -39,27 +39,29 @@ public class ControllerLight extends Controller {
 
 	@Override
 	protected double[][] getControllMatrix() {
-		// lightSensorL, lightSensorLM, lightSensorLF, lightSensorRF lightSensorRM lightSensorR
-		double[][] priorityMatrix = {{0.01, 0.01, 0.01, 0, 0, 0 }, 
-									  { 0, 0, 0, 0.01, 0.01, 0.01 }};
+		double[][] priorityMatrix = { { 0.25, 1, -0.3, -0.2 }, { -0.2, -0.3 , 1, 0.25 } };
 		return priorityMatrix;
 	}
 
 	@Override
 	protected double[] getSensorArray() {
-		double[] _distanceSensors = { ((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_L)).getValue(),
-				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_LM)).getValue(),
-				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_LF)).getValue(),
-				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_R)).getValue(),
-				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_RM)).getValue(),
-				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_RF)).getValue()};
-
+		double lightSensorL = 
+				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_L)).getValue();
+		double lightSensorLF = 
+				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_LF)).getValue();
+		double lightSensorR = 
+				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_R)).getValue();
+		double lightSensorRF = 
+				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_RF)).getValue();
+		double[] _distanceSensors = { lightSensorL, lightSensorLF, lightSensorRF, lightSensorR };
+		
 		return _distanceSensors;
 	}
+	
 
 	@Override
 	protected int applySpeedFactor(double sensorValue) {
-		return (int) sensorValue * 2;
+		return (int) sensorValue / 4;
 	}
 
 }

@@ -1,11 +1,14 @@
 import com.cyberbotics.webots.controller.DifferentialWheels;
+import com.cyberbotics.webots.controller.Robot;
 
-public class BangBangController extends DifferentialWheels {
+public class EpukMain extends Robot {
   public static final int STEP_TIME = 16;
   private ControllerManager _controllerManager;
+  private DifferentialWheels _DifferentialWheels;
   
-  public BangBangController(){
-    _controllerManager = new ControllerManager(this);
+  public EpukMain(){
+	_DifferentialWheels = new DifferentialWheels();
+    _controllerManager = new ControllerManager(_DifferentialWheels);
   }
 
   public void run() {
@@ -21,7 +24,7 @@ public class BangBangController extends DifferentialWheels {
   }
   
   public static void main(String[] args) {
-    BangBangController controller = new BangBangController();
+    EpukMain controller = new EpukMain();
     controller.run();
   }
 }

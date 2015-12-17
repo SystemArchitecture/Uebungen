@@ -1,11 +1,23 @@
 
-public class ControllerLight extends Controller {
-	public ControllerLight(ControllerType type, int maxSpeed) {
+public class ControllerLightStop extends Controller {
+	public final int DIST_SENSOR_MAX;
+
+	public ControllerLightStop(ControllerType type, int maxSpeed, int distSensorMax) {
 		super(type, maxSpeed);
+		DIST_SENSOR_MAX = distSensorMax;
 	}
 
+	@Override
 	protected void controlBangBang() {
-		if (getRightLightValue() < getLeftLightValue()) {
+		if ((((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_R)).getValue() > DIST_SENSOR_MAX
+				|| ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_RF))
+						.getValue() > DIST_SENSOR_MAX)
+				&& (((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_L))
+						.getValue() > DIST_SENSOR_MAX
+						|| ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_LF))
+								.getValue() > DIST_SENSOR_MAX)) {
+			_wheelsController.driveStop();
+		} else if (getRightLightValue() < getLeftLightValue()) {
 			_wheelsController.driveRight();
 		} else if (getLeftLightValue() < getRightLightValue()) {
 			_wheelsController.driveLeft();
@@ -23,7 +35,7 @@ public class ControllerLight extends Controller {
 		return ((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_R)).getValue()
 				+ ((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_RF)).getValue();
 	}
-
+	
 	@Override
 	public void init() {
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_L);
@@ -32,6 +44,8 @@ public class ControllerLight extends Controller {
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_R);
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_RM);
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_RF);
+		_sensorManager.initialize(Sensor.DIST_SENSOR_LF);
+		_sensorManager.initialize(Sensor.DIST_SENSOR_RF);
 		_motionManager.initialize(Actor.DIFFERENTIAL_WHEELS);
 		_wheelsController = ((WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS));
 		_wheelsController.setMaxSpeed(_maxSpeed);
@@ -39,9 +53,10 @@ public class ControllerLight extends Controller {
 
 	@Override
 	protected double[][] getControllMatrix() {
-		// lightSensorL, lightSensorLM, lightSensorLF, lightSensorRF lightSensorRM lightSensorR
-		double[][] priorityMatrix = {{0.01, 0.01, 0.01, 0, 0, 0 }, 
-									  { 0, 0, 0, 0.01, 0.01, 0.01 }};
+		// lightSensorL, lightSensorLM, lightSensorLF, lightSensorRF
+		// lightSensorRM lightSensorR
+		double[][] priorityMatrix = {{0.01, 0.01, 0.01, 0, 0, 0 , -1, -1}, 
+				  { 0, 0, 0, 0.01, 0.01, 0.01, -1, -1 }};
 		return priorityMatrix;
 	}
 
@@ -52,14 +67,11 @@ public class ControllerLight extends Controller {
 				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_LF)).getValue(),
 				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_R)).getValue(),
 				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_RM)).getValue(),
-				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_RF)).getValue()};
+				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_RF)).getValue(),
+				((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_LF)).getValue(),
+				((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_RF)).getValue()};
 
 		return _distanceSensors;
-	}
-
-	@Override
-	protected int applySpeedFactor(double sensorValue) {
-		return (int) sensorValue * 2;
 	}
 
 }

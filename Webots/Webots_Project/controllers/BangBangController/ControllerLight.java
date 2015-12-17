@@ -1,45 +1,17 @@
 
-public class ControllerLight implements IController {
-	private final int MAX_SPEED;
-	private final int MIN_SPEED;
-	private MotionManager _motionManager;
-	private SensorManager _sensorManager;
-
-	public ControllerLight(int minSpeed, int maxSpeed) {
-		MIN_SPEED = minSpeed;
-		MAX_SPEED = maxSpeed;
+public class ControllerLight extends Controller {
+	public ControllerLight(ControllerType type, int maxSpeed) {
+		super(type, maxSpeed);
 	}
 
-	@Override
-	public void control(ControllerType type) {
-		if (type.equals(ControllerType.BANGBANG)) {
-			controlBangBang();
-		} else {
-			throw new UnsupportedOperationException();
-		}
-	}
-
-	private void controlBangBang() {
-		System.out.println("light");
+	protected void controlBangBang() {
 		if (getRightLightValue() < getLeftLightValue()) {
-			driveRight();
+			_wheelsController.driveRight();
 		} else if (getLeftLightValue() < getRightLightValue()) {
-			driveLeft();
+			_wheelsController.driveLeft();
 		} else {
-			driveForward();
+			_wheelsController.driveForward();
 		}
-	}
-
-	private void driveRight() {
-		((WheelsAdapter) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS)).setSpeed(MAX_SPEED, MIN_SPEED);
-	}
-
-	private void driveForward() {
-		((WheelsAdapter) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS)).setSpeed(MAX_SPEED, MAX_SPEED);
-	}
-
-	private void driveLeft() {
-		((WheelsAdapter) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS)).setSpeed(MIN_SPEED, MAX_SPEED);
 	}
 
 	private double getLeftLightValue() {
@@ -53,22 +25,41 @@ public class ControllerLight implements IController {
 	}
 
 	@Override
-	public void setMotionManager(MotionManager motionManager) {
-		_motionManager = motionManager;
-	}
-
-	@Override
-	public void setSensorManager(SensorManager sensorManager) {
-		_sensorManager = sensorManager;
-	}
-
-	@Override
 	public void init() {
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_L);
+		_sensorManager.initialize(Sensor.LIGHT_SENSOR_LM);
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_LF);
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_R);
+		_sensorManager.initialize(Sensor.LIGHT_SENSOR_RM);
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_RF);
 		_motionManager.initialize(Actor.DIFFERENTIAL_WHEELS);
+		_wheelsController = ((WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS));
+		_wheelsController.setMaxSpeed(_maxSpeed);
+	}
+
+	@Override
+	protected double[][] getControllMatrix() {
+		// lightSensorL, lightSensorLM, lightSensorLF, lightSensorRF lightSensorRM lightSensorR
+		double[][] priorityMatrix = {{0.01, 0.01, 0.01, 0, 0, 0 }, 
+									  { 0, 0, 0, 0.01, 0.01, 0.01 }};
+		return priorityMatrix;
+	}
+
+	@Override
+	protected double[] getSensorArray() {
+		double[] _distanceSensors = { ((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_L)).getValue(),
+				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_LM)).getValue(),
+				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_LF)).getValue(),
+				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_R)).getValue(),
+				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_RM)).getValue(),
+				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_RF)).getValue()};
+
+		return _distanceSensors;
+	}
+
+	@Override
+	protected int applySpeedFactor(double sensorValue) {
+		return (int) sensorValue * 2;
 	}
 
 }
