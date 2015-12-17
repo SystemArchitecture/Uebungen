@@ -56,7 +56,7 @@ public class ControllerLightStop extends Controller {
 		// lightSensorL, lightSensorLM, lightSensorLF, lightSensorRF
 		// lightSensorRM lightSensorR
 		double[][] priorityMatrix = {{0.01, 0.01, 0.01, 0, 0, 0 , -1, -1}, 
-				  { 0, 0, 0, 0.01, 0.01, 0.01, -1, -1 }};
+				  					 { 0, 0, 0, 0.01, 0.01, 0.01, -1, -1 }};
 		return priorityMatrix;
 	}
 

@@ -1,4 +1,4 @@
-#VRML_SIM V6.0 utf8
+#VRML_SIM V8.3.1 utf8
 WorldInfo {
   info [
     "The model of the E-puck robot"
@@ -6,10 +6,22 @@ WorldInfo {
     "Date: 01 SEP 2006"
   ]
   title "E-puck"
+  basicTimeStep 16
 }
 Viewpoint {
-  orientation -0.658402 0.502333 0.560507 2.11875
-  position -0.739835 1.92454 -0.836179
+  orientation -0.996094 0.0787814 0.0398695 0.404128
+  position 0.0687972 0.501902 1.58112
+}
+PointLight {
+  ambientIntensity 0.5
+  intensity 0.6
+  location 0.14 0.6 -0.55
+  castShadows TRUE
+}
+PointLight {
+  ambientIntensity 0.5
+  intensity 0.6
+  location -0.43 0.6 0.5
 }
 Background {
   skyColor [
@@ -17,7 +29,7 @@ Background {
   ]
 }
 DEF FLOOR Solid {
-  translation 0.00823632 -0.0001 0.00288785
+  translation 0 -0.0001 0
   children [
     Shape {
       appearance Appearance {
@@ -59,14 +71,14 @@ DEF WALL1 Solid {
   ]
   boundingObject USE WALL_SHAPE
 }
-DirectionalLight {
-  direction 0 -1 0
-}
 EPuck {
-  translation 0.000611171 -0.000163957 -0.716651
-  rotation -0.000189434 1 -0.000372795 -2.20732
-  controller "BangBangBasicReactive"
-  camera_pixelSize 0
+  hidden translation_1 -0.026 0.0200006 0
+  hidden rotation_1 1.02959e-07 4.3401e-15 -1 -8.87344e-11
+  hidden translation_2 0.026 0.0200006 0
+  hidden rotation_2 7.20299e-08 4.25688e-15 -1 -8.8843e-11
+  translation 0.0698057 -0.000131987 0.463792
+  rotation 3.28689e-11 3.0069e-13 1 6.69705e-06
+  controller "BangBangController"
 }
 DEF WALL2 Solid {
   translation -1 0.05 0
@@ -91,25 +103,25 @@ DEF WALL4 Solid {
   ]
   boundingObject USE WALL_SHAPE
 }
-DEF LIGHT Solid {
-  translation -0.944992 0.05 -0.950714
-  scale 0.5 0.5 0.5
+DEF BALL Solid {
+  translation 0.029263 0.0298112 -0.332481
+  scale 0.3 0.3 0.3
   children [
-    PointLight {
-      attenuation 13 10 10
-      intensity 3
-    }
     Shape {
       appearance Appearance {
         material Material {
-          emissiveColor 1 1 1
+          diffuseColor 1 0 0
         }
       }
-      geometry DEF LIGHT_GEOMETRY Sphere {
+      geometry DEF BALL_GEOMETRY Sphere {
         radius 0.1
       }
     }
   ]
-  boundingObject USE LIGHT_GEOMETRY
-  locked TRUE
+  boundingObject USE BALL_GEOMETRY
+  physics Physics {
+    damping Damping {
+      angular 0.5
+    }
+  }
 }

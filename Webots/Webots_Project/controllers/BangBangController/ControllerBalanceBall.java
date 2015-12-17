@@ -1,6 +1,5 @@
 
 public class ControllerBalanceBall extends Controller {
-	private WheelsController _wheelsController;
 	private int _maxSpeed;
 
 	public ControllerBalanceBall(ControllerType type, int maxSpeed, int maxDistanceSensor) {
@@ -33,10 +32,8 @@ public class ControllerBalanceBall extends Controller {
 
 	@Override
 	public void init() {
-		_sensorManager.initialize(Sensor.DIST_SENSOR_L);
-		_sensorManager.initialize(Sensor.DIST_SENSOR_LF);
 		_sensorManager.initialize(Sensor.DIST_SENSOR_LM);
-		_sensorManager.initialize(Sensor.DIST_SENSOR_R);
+		_sensorManager.initialize(Sensor.DIST_SENSOR_LF);
 		_sensorManager.initialize(Sensor.DIST_SENSOR_RF);
 		_sensorManager.initialize(Sensor.DIST_SENSOR_RM);
 		_motionManager.initialize(Actor.DIFFERENTIAL_WHEELS);
@@ -45,21 +42,23 @@ public class ControllerBalanceBall extends Controller {
 	}
 
 	@Override
+	protected int applySpeedFactor(double sensorValue) {
+		return (int) sensorValue;
+	}
+
+	@Override
 	protected double[][] getControllMatrix() {
-		double[][] priorityMatrix = { { 1, 2, 5, 0, 0, 0 }, { 0, 0, 0, 5, 2, 1 } };
+		double[][] priorityMatrix = { { 0, 0, 0.95, 1 }, 
+										{1, 0.95, 0, 0} };
 		return priorityMatrix;
 	}
 
 	@Override
 	protected double[] getSensorArray() {
-		double distanceSensorL = ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_L)).getValue();
-		double distanceSensorLM = ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_LM)).getValue();
-		double distanceSensorLF = ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_LF)).getValue();
-		double distanceSensorR = ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_R)).getValue();
-		double distanceSensorRM = ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_RM)).getValue();
-		double distanceSensorRF = ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_RF)).getValue();
-		double[] _distanceSensors = { distanceSensorL, distanceSensorLM, distanceSensorLF, distanceSensorRF, distanceSensorRM,
-				distanceSensorR };
+		double[] _distanceSensors = {((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_LM)).getValue(),
+				((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_LF)).getValue(),
+				((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_RF)).getValue(),
+				((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_RM)).getValue()};
 		return _distanceSensors;
 	}
 
