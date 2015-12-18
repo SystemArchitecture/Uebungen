@@ -39,7 +39,7 @@ public class ControllerWallLeft extends Controller {
 	@Override
 	protected double[][] getControlMatrix() {
 		double[][] priorityMatrix = { { 0.1 , 0.2, 0}, 
-									  { 0, 0.1, 0.5}};
+									  { 0, 0.1, 0.65}};
 		return priorityMatrix;
 	}
 
