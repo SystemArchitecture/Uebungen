@@ -28,7 +28,7 @@ public class ControllerBoundaries extends Controller {
 		
 	}
 
-	public void init() {
+	public void initializeSensorsAndActors() {
 		_sensorManager.initialize(Sensor.DIST_SENSOR_L);
 		_sensorManager.initialize(Sensor.DIST_SENSOR_LF);
 		_sensorManager.initialize(Sensor.DIST_SENSOR_R);
@@ -39,7 +39,7 @@ public class ControllerBoundaries extends Controller {
 	}
 
 	@Override
-	protected double[][] getControllMatrix() {
+	protected double[][] getControlMatrix() {
 		return null;
 	}
 

@@ -9,12 +9,14 @@ public class ControllerBalanceBall extends Controller {
 
 	@Override
 	protected void controlBangBang() {
+		WheelsController wheelsController = (WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS);
+		
 		if (getRightDistValue() > getLeftDistValue()) {
-			_wheelsController.driveRight();
+			wheelsController.driveRight();
 		} else if (getLeftDistValue() > getRightDistValue()) {
-			_wheelsController.driveLeft();
+			wheelsController.driveLeft();
 		} else {
-			_wheelsController.driveForward();
+			wheelsController.driveForward();
 		}
 	}
 
@@ -31,14 +33,13 @@ public class ControllerBalanceBall extends Controller {
 	}
 
 	@Override
-	public void init() {
+	public void initializeSensorsAndActors() {
 		_sensorManager.initialize(Sensor.DIST_SENSOR_LM);
 		_sensorManager.initialize(Sensor.DIST_SENSOR_LF);
 		_sensorManager.initialize(Sensor.DIST_SENSOR_RF);
 		_sensorManager.initialize(Sensor.DIST_SENSOR_RM);
 		_motionManager.initialize(Actor.DIFFERENTIAL_WHEELS);
-		_wheelsController = ((WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS));
-		_wheelsController.setMaxSpeed(_maxSpeed);
+		((WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS)).setMaxSpeed(_maxSpeed);
 	}
 
 	@Override
@@ -47,7 +48,7 @@ public class ControllerBalanceBall extends Controller {
 	}
 
 	@Override
-	protected double[][] getControllMatrix() {
+	protected double[][] getControlMatrix() {
 		double[][] priorityMatrix = { { 0, 0, 0.95, 1 }, 
 										{1, 0.95, 0, 0} };
 		return priorityMatrix;

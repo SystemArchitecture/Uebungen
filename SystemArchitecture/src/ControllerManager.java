@@ -21,14 +21,14 @@ public class ControllerManager {
 	public void addController(Controller controller) {
 		controller.setMotionManager(_motionManager);
 		controller.setSensorManager(_sensorManager);
-		controller.init();
+		controller.initializeSensorsAndActors();
 		_controller.add(controller);
 	}
 
 	public void runAll(){
-		Iterator<Controller> it = _controller.iterator();
-		while(it.hasNext()){
-			it.next().control();
+		Iterator<Controller> controllers = _controller.iterator();
+		while(controllers.hasNext()){
+			controllers.next().control();
 		}
 	}
 }

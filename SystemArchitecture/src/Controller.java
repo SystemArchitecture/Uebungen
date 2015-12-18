@@ -1,9 +1,14 @@
-
+/**
+ * Abstract Controller Class Stores the Motion- and SensorManager, manages the
+ * different ControllerTypes and the proportional controller calculation.
+ * 
+ * @author Daniel
+ *
+ */
 public abstract class Controller {
 	private ControllerType _type;
 	protected MotionManager _motionManager;
 	protected SensorManager _sensorManager;
-	protected WheelsController _wheelsController;
 	protected int _maxSpeed;
 
 	public Controller(ControllerType type, int maxSpeed) {
@@ -12,32 +17,41 @@ public abstract class Controller {
 	}
 
 	public void control() {
-		if (_type.equals(ControllerType.BANGBANG)) {
+		if (isBangBang()) {
 			controlBangBang();
-		} else if (_type.equals(ControllerType.PROPORTIONAL)) {
+		} else if (isProportional()) {
 			controlProportional();
 		} else {
 			throw new UnsupportedOperationException();
 		}
 	}
 
+	private boolean isProportional() {
+		return _type.equals(ControllerType.PROPORTIONAL);
+	}
+
+	private boolean isBangBang() {
+		return _type.equals(ControllerType.BANGBANG);
+	}
+
 	protected abstract void controlBangBang();
-
-	protected abstract double[][] getControllMatrix();
-
-	protected abstract double[] getSensorArray();
 
 	protected void controlProportional() {
 
-		double[] result = MatrixUtil.multiply(getControllMatrix(), getSensorArray());
+		double[] resultVector = MatrixUtil.multiply(getControlMatrix(), getSensorArray());
 
-		int speedLeftWheel = (applySpeedFactor((int) result[0]) > _maxSpeed) ? _maxSpeed
-				: applySpeedFactor((int) result[0]);
-		int speedRightWheel = (applySpeedFactor((int) result[1]) > _maxSpeed) ? _maxSpeed
-				: applySpeedFactor((int) result[1]);
+		int speedLeftWheel = applySpeedFactor((int) resultVector[0]);
+		speedLeftWheel = (speedLeftWheel > _maxSpeed) ? _maxSpeed : speedLeftWheel;
+		int speedRightWheel = applySpeedFactor((int) resultVector[1]);
+		speedRightWheel = (speedRightWheel > _maxSpeed) ? _maxSpeed : speedRightWheel;
 
-		_wheelsController.setSpeed(speedLeftWheel, speedRightWheel);
+		WheelsController wheelsController = (WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS);
+		wheelsController.setSpeed(speedLeftWheel, speedRightWheel);
 	}
+
+	protected abstract double[][] getControlMatrix();
+
+	protected abstract double[] getSensorArray();
 
 	protected int applySpeedFactor(double sensorValue) {
 		return (int) sensorValue;
@@ -51,5 +65,5 @@ public abstract class Controller {
 		_sensorManager = sensorManager;
 	}
 
-	public abstract void init();
+	public abstract void initializeSensorsAndActors();
 }

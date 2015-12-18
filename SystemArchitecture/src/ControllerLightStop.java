@@ -9,6 +9,8 @@ public class ControllerLightStop extends Controller {
 
 	@Override
 	protected void controlBangBang() {
+		WheelsController wheelsController = (WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS);
+		
 		if ((((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_R)).getValue() > DIST_SENSOR_MAX
 				|| ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_RF))
 						.getValue() > DIST_SENSOR_MAX)
@@ -16,13 +18,13 @@ public class ControllerLightStop extends Controller {
 						.getValue() > DIST_SENSOR_MAX
 						|| ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_LF))
 								.getValue() > DIST_SENSOR_MAX)) {
-			_wheelsController.driveStop();
+			wheelsController.driveStop();
 		} else if (getRightLightValue() < getLeftLightValue()) {
-			_wheelsController.driveRight();
+			wheelsController.driveRight();
 		} else if (getLeftLightValue() < getRightLightValue()) {
-			_wheelsController.driveLeft();
+			wheelsController.driveLeft();
 		} else {
-			_wheelsController.driveForward();
+			wheelsController.driveForward();
 		}
 	}
 
@@ -37,7 +39,7 @@ public class ControllerLightStop extends Controller {
 	}
 	
 	@Override
-	public void init() {
+	public void initializeSensorsAndActors() {
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_L);
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_LM);
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_LF);
@@ -47,12 +49,11 @@ public class ControllerLightStop extends Controller {
 		_sensorManager.initialize(Sensor.DIST_SENSOR_LF);
 		_sensorManager.initialize(Sensor.DIST_SENSOR_RF);
 		_motionManager.initialize(Actor.DIFFERENTIAL_WHEELS);
-		_wheelsController = ((WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS));
-		_wheelsController.setMaxSpeed(_maxSpeed);
+		((WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS)).setMaxSpeed(_maxSpeed);
 	}
 
 	@Override
-	protected double[][] getControllMatrix() {
+	protected double[][] getControlMatrix() {
 		// lightSensorL, lightSensorLM, lightSensorLF, lightSensorRF
 		// lightSensorRM lightSensorR
 		double[][] priorityMatrix = {{0.01, 0.01, 0.01, 0, 0, 0 , -1, -1}, 

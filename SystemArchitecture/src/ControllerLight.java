@@ -5,12 +5,14 @@ public class ControllerLight extends Controller {
 	}
 
 	protected void controlBangBang() {
+		WheelsController wheelsController = (WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS);
+		
 		if (getRightLightValue() < getLeftLightValue()) {
-			_wheelsController.driveRight();
+			wheelsController.driveRight();
 		} else if (getLeftLightValue() < getRightLightValue()) {
-			_wheelsController.driveLeft();
+			wheelsController.driveLeft();
 		} else {
-			_wheelsController.driveForward();
+			wheelsController.driveForward();
 		}
 	}
 
@@ -25,7 +27,7 @@ public class ControllerLight extends Controller {
 	}
 
 	@Override
-	public void init() {
+	public void initializeSensorsAndActors() {
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_L);
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_LM);
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_LF);
@@ -33,12 +35,11 @@ public class ControllerLight extends Controller {
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_RM);
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_RF);
 		_motionManager.initialize(Actor.DIFFERENTIAL_WHEELS);
-		_wheelsController = ((WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS));
-		_wheelsController.setMaxSpeed(_maxSpeed);
+		((WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS)).setMaxSpeed(_maxSpeed);
 	}
 
 	@Override
-	protected double[][] getControllMatrix() {
+	protected double[][] getControlMatrix() {
 		// lightSensorL, lightSensorLM, lightSensorLF, lightSensorRF lightSensorRM lightSensorR
 		double[][] priorityMatrix = {{0.01, 0.01, 0.01, 0, 0, 0 }, 
 									  { 0, 0, 0, 0.01, 0.01, 0.01 }};
