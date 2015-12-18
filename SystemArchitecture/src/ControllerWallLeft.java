@@ -12,51 +12,32 @@ public class ControllerWallLeft extends Controller {
 
 	@Override
 	protected void controlBangBang() {
-
-		/*
-		 * if (((DistanceSensorAdapter)
-		 * _sensorManager.getSensor(Sensor.DIST_SENSOR_LF)).getValue() >
-		 * _minDistance || ((DistanceSensorAdapter)
-		 * _sensorManager.getSensor(Sensor.DIST_SENSOR_RF)) .getValue() >
-		 * _minDistance) { _wheelsController.driveRight(); } else if
-		 * (((DistanceSensorAdapter)
-		 * _sensorManager.getSensor(Sensor.DIST_SENSOR_L)).getValue() <
-		 * _minDistance) { _wheelsController.driveLeft(); } else if
-		 * (((DistanceSensorAdapter)
-		 * _sensorManager.getSensor(Sensor.DIST_SENSOR_L)).getValue() >
-		 * _minDistance) { _wheelsController.driveRight(); }
-		 */
-		_wheelsController.driveStop();
+		WheelsController wheelsController = (WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS);
+		
+		wheelsController.driveStop();
 
 		double valueLeft = ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_L)).getValue();
 		double front = (((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_LF)).getValue()
 				+ ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_RF)).getValue()) / 2;
 
 		if (_minDistance < front) {
-			_wheelsController.driveRight();
+			wheelsController.driveRight();
 		} else {
 			if ((_minDistance > valueLeft) && (valueLeft > _maxDistance)) {
-				_wheelsController.driveForward();
+				wheelsController.driveForward();
 			} else {
 				if (_minDistance < valueLeft) {
-					_wheelsController.driveRight();
+					wheelsController.driveRight();
 				} else if (valueLeft < _maxDistance) {
-					_wheelsController.driveLeft();
+					wheelsController.driveLeft();
 				}
 			}
 		}
 		
-		System.out.println(
-				"Value " + ((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_L)).getValue());
-		System.out.println("Front " + front);
-		System.out.println("Max " + _maxDistance);
-		System.out.println("Min " + _minDistance);
-		System.out.println();
-		
 	}
 
 	@Override
-	protected double[][] getControllMatrix() {
+	protected double[][] getControlMatrix() {
 		double[][] priorityMatrix = { { 0.1 , 0.2, 0}, 
 									  { 0, 0.1, 0.65}};
 		return priorityMatrix;
@@ -75,13 +56,12 @@ public class ControllerWallLeft extends Controller {
 	}
 
 	@Override
-	public void init() {
+	public void initializeSensorsAndActors() {
 		_sensorManager.initialize(Sensor.DIST_SENSOR_L);
 		_sensorManager.initialize(Sensor.DIST_SENSOR_LF);
 		_sensorManager.initialize(Sensor.DIST_SENSOR_R);
 		_sensorManager.initialize(Sensor.DIST_SENSOR_RF);
 		_motionManager.initialize(Actor.DIFFERENTIAL_WHEELS);
-		_wheelsController = ((WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS));
-		_wheelsController.setMaxSpeed(_maxSpeed);
+		((WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS)).setMaxSpeed(_maxSpeed);
 	}
 }
