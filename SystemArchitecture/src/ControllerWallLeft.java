@@ -56,12 +56,15 @@ public class ControllerWallLeft extends Controller {
 	}
 
 	@Override
-	public void initializeSensorsAndActors() {
+	public void initializeSensors() {
 		_sensorManager.initialize(Sensor.DIST_SENSOR_L);
 		_sensorManager.initialize(Sensor.DIST_SENSOR_LF);
 		_sensorManager.initialize(Sensor.DIST_SENSOR_R);
 		_sensorManager.initialize(Sensor.DIST_SENSOR_RF);
-		_motionManager.initialize(Actor.DIFFERENTIAL_WHEELS);
-		((WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS)).setMaxSpeed(_maxSpeed);
+	}
+	
+	@Override
+	protected int applySpeedFactor(double sensorValue) {
+		return (int) sensorValue * 2;
 	}
 }

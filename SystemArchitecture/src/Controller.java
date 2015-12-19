@@ -65,5 +65,16 @@ public abstract class Controller {
 		_sensorManager = sensorManager;
 	}
 
-	public abstract void initializeSensorsAndActors();
+	public void initializeSensorsAndActors(){
+		initializeSensors();
+		initializeActors();
+	}
+
+	protected void initializeActors() {
+		_motionManager.initialize(Actor.DIFFERENTIAL_WHEELS);
+		((WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS)).setMaxSpeed(_maxSpeed);
+	};
+
+	protected abstract void initializeSensors();
+
 }

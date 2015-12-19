@@ -27,7 +27,7 @@ public class ControllerLight extends Controller {
 	}
 
 	@Override
-	public void initializeSensorsAndActors() {
+	public void initializeSensors() {
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_L);
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_LM);
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_LF);
@@ -35,7 +35,6 @@ public class ControllerLight extends Controller {
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_RM);
 		_sensorManager.initialize(Sensor.LIGHT_SENSOR_RF);
 		_motionManager.initialize(Actor.DIFFERENTIAL_WHEELS);
-		((WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS)).setMaxSpeed(_maxSpeed);
 	}
 
 	@Override

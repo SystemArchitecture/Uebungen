@@ -1,9 +1,7 @@
 
-
 public class ControllerBoundaries extends Controller {
 	private final int DIST_SENSOR_MAX;
 	private WheelsController _wheelsController;
-	private int _maxSpeed;
 
 	public ControllerBoundaries(ControllerType type, int maxDist, int maxSpeed) {
 		super(type, maxSpeed);
@@ -28,14 +26,12 @@ public class ControllerBoundaries extends Controller {
 		
 	}
 
-	public void initializeSensorsAndActors() {
+	public void initializeSensors() {
 		_sensorManager.initialize(Sensor.DIST_SENSOR_L);
 		_sensorManager.initialize(Sensor.DIST_SENSOR_LF);
 		_sensorManager.initialize(Sensor.DIST_SENSOR_R);
 		_sensorManager.initialize(Sensor.DIST_SENSOR_RF);
 		_motionManager.initialize(Actor.DIFFERENTIAL_WHEELS);
-		_wheelsController = ((WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS));
-		_wheelsController.setMaxSpeed(_maxSpeed);
 	}
 
 	@Override
