@@ -1,4 +1,7 @@
-
+/**
+ * Adapter for the DistanceSensor.
+ * The AverageFilter enables calculating of average sensor values for smoother driving.
+ */
 
 import com.cyberbotics.webots.controller.DifferentialWheels;
 import com.cyberbotics.webots.controller.DistanceSensor;

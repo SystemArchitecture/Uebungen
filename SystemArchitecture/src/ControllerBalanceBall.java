@@ -1,4 +1,8 @@
-
+/**
+ * Controller for balancing a ball.
+ * @author Daniel
+ *
+ */
 public class ControllerBalanceBall extends Controller {
 
 	public ControllerBalanceBall(ControllerType type, int maxSpeed, int speedFactor) {

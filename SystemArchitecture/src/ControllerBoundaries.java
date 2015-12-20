@@ -1,4 +1,8 @@
-
+/**
+ * Controller for not driving into wall.
+ * @author Daniel
+ *
+ */
 public class ControllerBoundaries extends Controller {
 	private final int DIST_SENSOR_MAX;
 	private WheelsController _wheelsController;

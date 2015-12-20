@@ -1,5 +1,5 @@
 /**
- * Abstract Controller Class Stores the Motion- and SensorManager, manages the
+ * Abstract Controller Class. Stores the Motion- and SensorManager, manages the
  * different ControllerTypes and the proportional controller calculation.
  * 
  * @author Daniel

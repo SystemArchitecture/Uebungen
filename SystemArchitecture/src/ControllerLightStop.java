@@ -1,4 +1,8 @@
-
+/**
+ * Controller for driving towards a light source and stopping in front of it.
+ * @author Daniel
+ *
+ */
 public class ControllerLightStop extends Controller {
 	public final int DIST_SENSOR_MAX;
 

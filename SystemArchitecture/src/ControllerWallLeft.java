@@ -1,4 +1,8 @@
-
+/**
+ * Controller for driving along a wall on the left side.
+ * @author Daniel
+ *
+ */
 public class ControllerWallLeft extends Controller {
 
 	private int _minDistance;

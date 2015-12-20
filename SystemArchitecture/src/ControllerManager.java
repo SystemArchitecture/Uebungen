@@ -1,4 +1,7 @@
-
+/**
+ * Manages controllers and the motion- / sensor-manager.
+ * First add controllers with addControler method, then call runAll in control loop.
+ */
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -26,6 +29,7 @@ public class ControllerManager {
 	}
 
 	public void runAll(){
+		// TODO hierarchical controller calls
 		Iterator<Controller> controllers = _controller.iterator();
 		while(controllers.hasNext()){
 			controllers.next().control();

@@ -1,4 +1,8 @@
-
+/**
+ * Controller for driving towards a light source.
+ * @author Daniel
+ *
+ */
 public class ControllerLight extends Controller {
 	public ControllerLight(ControllerType type, int maxSpeed, int speedFactor) {
 		super(type, maxSpeed, speedFactor);
