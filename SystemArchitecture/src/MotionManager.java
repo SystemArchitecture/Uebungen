@@ -1,4 +1,6 @@
-
+/**
+ * Manages all the actors.
+ */
 import java.util.HashMap;
 
 import com.cyberbotics.webots.controller.DifferentialWheels;

@@ -1,5 +1,5 @@
 /*
- * Matrix Util 
+ * Matrix Util for matrix calculating operations.
  * copied from http://introcs.cs.princeton.edu/java/22library/Matrix.java.html
  */
 public class MatrixUtil {

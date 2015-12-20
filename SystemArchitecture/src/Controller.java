@@ -1,5 +1,5 @@
 /**
- * Abstract Controller Class Stores the Motion- and SensorManager, manages the
+ * Abstract Controller Class. Stores the Motion- and SensorManager, manages the
  * different ControllerTypes and the proportional controller calculation.
  * 
  * @author Daniel
@@ -10,10 +10,12 @@ public abstract class Controller {
 	protected MotionManager _motionManager;
 	protected SensorManager _sensorManager;
 	protected int _maxSpeed;
+	private int _speedFactor;
 
-	public Controller(ControllerType type, int maxSpeed) {
+	public Controller(ControllerType type, int maxSpeed, int speedFactor) {
 		_type = type;
 		_maxSpeed = maxSpeed;
+		_speedFactor = speedFactor;
 	}
 
 	public void control() {
@@ -54,7 +56,7 @@ public abstract class Controller {
 	protected abstract double[] getSensorArray();
 
 	protected int applySpeedFactor(double sensorValue) {
-		return (int) sensorValue;
+		return (int) sensorValue * _speedFactor;
 	}
 
 	public void setMotionManager(MotionManager motionManager) {

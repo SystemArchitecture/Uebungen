@@ -1,4 +1,8 @@
-
+/**
+ * Lists all possible sensors
+ * @author Daniel
+ *
+ */
 
 public enum Sensor {
 	LIGHT_SENSOR_L("ls5"),

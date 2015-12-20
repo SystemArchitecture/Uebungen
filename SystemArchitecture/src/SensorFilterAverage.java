@@ -1,3 +1,6 @@
+/**
+ * Calculates the average sensor value for smoother driving.
+ */
 import java.util.ArrayList;
 
 public class SensorFilterAverage {

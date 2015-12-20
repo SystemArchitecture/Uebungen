@@ -1,4 +1,6 @@
-
+/**
+ * Adapter for the LightSensor.
+ */
 
 import com.cyberbotics.webots.controller.DifferentialWheels;
 import com.cyberbotics.webots.controller.LightSensor;

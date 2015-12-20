@@ -1,7 +1,11 @@
-
+/**
+ * Controller for driving towards a light source.
+ * @author Daniel
+ *
+ */
 public class ControllerLight extends Controller {
-	public ControllerLight(ControllerType type, int maxSpeed) {
-		super(type, maxSpeed);
+	public ControllerLight(ControllerType type, int maxSpeed, int speedFactor) {
+		super(type, maxSpeed, speedFactor);
 	}
 
 	protected void controlBangBang() {
@@ -40,8 +44,8 @@ public class ControllerLight extends Controller {
 	@Override
 	protected double[][] getControlMatrix() {
 		// lightSensorL, lightSensorLM, lightSensorLF, lightSensorRF lightSensorRM lightSensorR
-		double[][] priorityMatrix = {{0.01, 0.01, 0.01, 0, 0, 0 }, 
-									  { 0, 0, 0, 0.01, 0.01, 0.01 }};
+		double[][] priorityMatrix = {{0.07, 0.07, 0.07, -0.02, -0.02, -0.02 }, 
+									  { -0.02, -0.02, -0.02, 0.07, 0.07, 0.07 }};
 		return priorityMatrix;
 	}
 
@@ -55,11 +59,6 @@ public class ControllerLight extends Controller {
 				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_RF)).getValue()};
 
 		return _distanceSensors;
-	}
-
-	@Override
-	protected int applySpeedFactor(double sensorValue) {
-		return (int) sensorValue * 2;
 	}
 
 }

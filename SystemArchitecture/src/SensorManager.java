@@ -1,4 +1,6 @@
-
+/**
+ * Manages all the sensors.
+ */
 import java.util.HashMap;
 
 import com.cyberbotics.webots.controller.DifferentialWheels;

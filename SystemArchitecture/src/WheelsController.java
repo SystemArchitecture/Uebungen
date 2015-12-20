@@ -1,4 +1,6 @@
-
+/**
+ * WheelsController for driving into all directions and setting speed.
+ */
 
 import com.cyberbotics.webots.controller.DifferentialWheels;
 
