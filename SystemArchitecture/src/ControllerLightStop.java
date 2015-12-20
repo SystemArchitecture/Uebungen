@@ -2,8 +2,8 @@
 public class ControllerLightStop extends Controller {
 	public final int DIST_SENSOR_MAX;
 
-	public ControllerLightStop(ControllerType type, int maxSpeed, int distSensorMax) {
-		super(type, maxSpeed);
+	public ControllerLightStop(ControllerType type, int maxSpeed, int speedFactor, int distSensorMax) {
+		super(type, maxSpeed, speedFactor);
 		DIST_SENSOR_MAX = distSensorMax;
 	}
 
@@ -12,9 +12,9 @@ public class ControllerLightStop extends Controller {
 		WheelsController wheelsController = (WheelsController) _motionManager.getActor(Actor.DIFFERENTIAL_WHEELS);
 		
 		if ((((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_RF))
-						.getValue() > DIST_SENSOR_MAX)
+						.getAverageValue() > DIST_SENSOR_MAX)
 				&& (((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_LF))
-								.getValue() > DIST_SENSOR_MAX)) {
+								.getAverageValue() > DIST_SENSOR_MAX)) {
 			wheelsController.driveStop();
 		} else if (getRightLightValue() < getLeftLightValue()) {
 			wheelsController.driveRight();
@@ -53,8 +53,8 @@ public class ControllerLightStop extends Controller {
 	protected double[][] getControlMatrix() {
 		// lightSensorL, lightSensorLM, lightSensorLF, lightSensorR
 		// lightSensorRM lightSensorRF, distSensorLF, distSensorRF
-		double[][] priorityMatrix = {{0.01, 0.01, 0.01, 0, 0, 0 , -1, -1}, 
-				  					 { 0, 0, 0, 0.01, 0.01, 0.01, -1, -1 }};
+		double[][] priorityMatrix = {{0.07, 0.07, 0.07, -0.02, -0.02, -0.02 , -1, -1}, 
+				  					 {-0.02, -0.02, -0.02, 0.07, 0.07, 0.07, -1, -1 }};
 		return priorityMatrix;
 	}
 
@@ -66,8 +66,8 @@ public class ControllerLightStop extends Controller {
 				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_R)).getValue(),
 				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_RM)).getValue(),
 				((LightSensorAdapter) _sensorManager.getSensor(Sensor.LIGHT_SENSOR_RF)).getValue(),
-				((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_LF)).getValue(),
-				((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_RF)).getValue()};
+				((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_LF)).getAverageValue(),
+				((DistanceSensorAdapter) _sensorManager.getSensor(Sensor.DIST_SENSOR_RF)).getAverageValue()};
 
 		return _distanceSensors;
 	}

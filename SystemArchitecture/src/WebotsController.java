@@ -11,7 +11,7 @@ public class WebotsController extends DifferentialWheels {
   private ControllerManager _controllerManager;
   
   private String _task = "1"; // 1 = proportional ,2 = bangbang
-  private String _subtask = "c"; // a = light, b = light stop, c = balance ball, d = follow wall
+  private String _subtask = "a"; // a = light, b = light stop, c = balance ball, d = follow wall
   
   public WebotsController(){
     _controllerManager = new ControllerManager(this);
@@ -28,16 +28,16 @@ public class WebotsController extends DifferentialWheels {
     Controller controller = null;
     if(_subtask.equals("a")){
       // ControllerLight(ControllerType, maxSpeed)
-      controller = new ControllerLight(type, 1000);
+      controller = new ControllerLight(type, 1000, 1);
     } else if (_subtask.equals("b")){
       // ControllerLightStop(ControllerType, maxSpeed, maxLightSensor)
-      controller = new ControllerLightStop(type, 1000, 200);
+      controller = new ControllerLightStop(type, 1000, 1, 200);
     } else if (_subtask.equals("c")){
       // ControllerBalanceBall(ControllerType, maxSpeed, maxDistanceSensor)
-      controller = new ControllerBalanceBall(type, 1000, 4000);
+      controller = new ControllerBalanceBall(type, 1000, 10);
     } else if (_subtask.equals("d")){
       // ControllerWallLeft(ControllerType, maxSpeed, maxDistance, minDistance)
-      controller = new ControllerWallLeft(type, 1000, 50, 60);
+      controller = new ControllerWallLeft(type, 1000, 2, 50, 60);
     }
   
     _controllerManager.addController(controller);
