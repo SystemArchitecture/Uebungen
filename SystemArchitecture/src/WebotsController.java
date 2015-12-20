@@ -27,25 +27,20 @@ public class WebotsController extends DifferentialWheels {
   
     Controller controller = null;
     if(_subtask.equals("a")){
-      // ControllerLight(ControllerType, maxSpeed)
+      // ControllerLight(ControllerType, maxSpeed, speedFactor)
       controller = new ControllerLight(type, 1000, 1);
     } else if (_subtask.equals("b")){
-      // ControllerLightStop(ControllerType, maxSpeed, maxLightSensor)
+      // ControllerLightStop(ControllerType, maxSpeed, speedFactor, maxDistanceSensor)
       controller = new ControllerLightStop(type, 1000, 1, 200);
     } else if (_subtask.equals("c")){
-      // ControllerBalanceBall(ControllerType, maxSpeed, maxDistanceSensor)
+      // ControllerBalanceBall(ControllerType, maxSpeed, speedFactor)
       controller = new ControllerBalanceBall(type, 1000, 10);
     } else if (_subtask.equals("d")){
-      // ControllerWallLeft(ControllerType, maxSpeed, maxDistance, minDistance)
-      controller = new ControllerWallLeft(type, 1000, 2, 50, 60);
+      // ControllerWallLeft(ControllerType, maxSpeed, speedFactor, maxDistance, minDistance)
+      controller = new ControllerWallLeft(type, 1000, 30, 50, 60);
     }
   
     _controllerManager.addController(controller);
-    //_controllerManager.addController(new ControllerBoundaries(ControllerType.BANGBANG, 200, 1000));
-    //_controllerManager.addController(new ControllerLight(ControllerType.PROPORTIONAL, 1000));
-    //_controllerManager.addController(new ControllerLightStop(ControllerType.PROPORTIONAL, 1000, 200));
-    //_controllerManager.addController(new ControllerBalanceBall(ControllerType.PROPORTIONAL, 1000, 4000));
-    //_controllerManager.addController(new ControllerWallLeft(ControllerType.BANGBANG, 1000, 500));
     
     while (step(STEP_TIME) != -1) {
       _controllerManager.runAll();
