@@ -41,4 +41,8 @@ public class SubSumptionControllerManager {
 		
 		return controller;
 	}
+
+	public void addController(SubSumptionController subSumptionController) {
+		_controllers.add(subSumptionController);
+	}
 }

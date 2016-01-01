@@ -1,4 +1,4 @@
-#VRML_SIM V6.0 utf8
+#VRML_SIM V8.3.1 utf8
 WorldInfo {
   info [
     "The model of the E-puck robot"
@@ -73,8 +73,7 @@ DEF WALL1 Solid {
 }
 EPuck {
   translation -0.0324894 1.79999e-15 0.0286881
-  controller "PushAllBallsToTheWall"
-  camera_pixelSize 0
+  controller "PushBallsToWall"
 }
 DEF WALL2 Solid {
   translation -1 0.05 0

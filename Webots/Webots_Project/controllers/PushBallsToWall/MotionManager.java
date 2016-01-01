@@ -9,42 +9,43 @@ public class MotionManager {
 	public MotionManager() {
 		_actors = new HashMap<>();
 	}
-	
+
 	private static MotionManager _instance;
+
 	public static MotionManager getInstance() {
-		if(_instance == null) {
+		if (_instance == null) {
 			_instance = new MotionManager();
 		}
-		
+
 		return _instance;
 	}
-	
+
 	private boolean _isInitialized;
+
 	public void init(DifferentialWheels differentialWheels) {
-		if(!_isInitialized) {
+		if (!_isInitialized) {
 			_differentialWheels = differentialWheels;
-			_isInitialized = true; 
+			_isInitialized = true;
 		}
 	}
 
 	private IActor createActor(ActorTypes type) {
 		IActor newActor = null;
-		
+
 		if (type.equals(ActorTypes.DIFFERENTIAL_WHEELS)) {
-			_actors.put(type, new WheelsController(_differentialWheels));
+			newActor = new WheelsController(_differentialWheels);
 		} else {
 			throw new IllegalArgumentException("Unknown Actor: " + type);
 		}
-		
+
 		return newActor;
 	}
-	
+
 	public IActor getActor(ActorTypes type) {
-		if(!_actors.containsKey(type)) {
+		if (!_actors.containsKey(type)) {
 			_actors.put(type, createActor(type));
 		}
-		
+
 		return _actors.get(type);
 	}
 }
-

@@ -1,1 +1,0 @@
-cp *.java ../../Webots/Webots_Project/controllers/BangBangController
