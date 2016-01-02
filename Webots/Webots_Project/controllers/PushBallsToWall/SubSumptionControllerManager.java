@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 /*
  * This class handles SubSumption Controllers. The Controllers are sorted in an ArrayList
@@ -6,10 +6,10 @@ import java.util.ArrayList;
  */
 
 public class SubSumptionControllerManager {
-	private ArrayList<SubSumptionController> _controllers;
+	private LinkedList<SubSumptionController> _controllers;
 	
 	public SubSumptionControllerManager() {
-		_controllers = new ArrayList<>();
+		_controllers = new LinkedList<>();
 	}
 	
 	public void runController() throws NoControllerMeetsActivationContitionException {
@@ -42,7 +42,11 @@ public class SubSumptionControllerManager {
 		return controller;
 	}
 
+	/*
+	 * Adds an controller to the controll structure.
+	 * First controller added has the highest priority
+	 */
 	public void addController(SubSumptionController subSumptionController) {
-		_controllers.add(subSumptionController);
+		_controllers.addLast(subSumptionController);
 	}
 }

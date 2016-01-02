@@ -1,5 +1,5 @@
 
-public enum SensorTypes {
+public enum SensorType {
 	LIGHT_SENSOR_L("ls5"),
 	LIGHT_SENSOR_LM("ls6"),
 	LIGHT_SENSOR_LF("ls7"),
@@ -15,7 +15,7 @@ public enum SensorTypes {
 	
 	private final String _name;
 	
-	SensorTypes(String name){
+	SensorType(String name){
 		_name = name;
 	}
 	

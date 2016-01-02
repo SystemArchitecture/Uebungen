@@ -4,7 +4,7 @@ import java.util.HashMap;
 import com.cyberbotics.webots.controller.DifferentialWheels;
 
 public class SensorManager {
-	private HashMap<SensorTypes, AbstractSensor> _sensors;
+	private HashMap<SensorType, AbstractSensor> _sensors;
 	private DifferentialWheels _differentialWheels;
 	
 	private static SensorManager _instance;
@@ -31,7 +31,7 @@ public class SensorManager {
 	private static final String DISTANCE_SENSOR_PREFIX = "ps";
 	private static final String LIGHT_SENSOR_PREFIX = "ls";
 	
-	private AbstractSensor createSensor(SensorTypes type) {
+	private AbstractSensor createSensor(SensorType type) {
 			AbstractSensor newSensor;
 			if (type.toString().startsWith(DISTANCE_SENSOR_PREFIX)) {
 				newSensor = new DistanceSensorAdapter(_differentialWheels, type);
@@ -44,7 +44,7 @@ public class SensorManager {
 			return newSensor;
 	}
 
-	public AbstractSensor getSensor(SensorTypes type) {
+	public AbstractSensor getSensor(SensorType type) {
 		if(!_sensors.containsKey(type)) {
 			_sensors.put(type, createSensor(type));
 		}
@@ -53,8 +53,7 @@ public class SensorManager {
 	}
 	
 	public void updateValues() {
-		System.out.println("Used Sensor Count: " + _sensors.keySet().size());
-		for(SensorTypes type : _sensors.keySet()) {
+		for(SensorType type : _sensors.keySet()) {
 			getSensor(type).update();
 		}
 	}
