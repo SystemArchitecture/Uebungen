@@ -52,9 +52,10 @@ public class SensorManager {
 		return _sensors.get(type);
 	}
 	
-	public void readValues() {
+	public void updateValues() {
+		System.out.println("Used Sensor Count: " + _sensors.keySet().size());
 		for(SensorTypes type : _sensors.keySet()) {
-			getSensor(type).readValue();
+			getSensor(type).update();
 		}
 	}
 }

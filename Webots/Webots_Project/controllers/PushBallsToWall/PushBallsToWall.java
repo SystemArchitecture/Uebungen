@@ -18,7 +18,7 @@ public class PushBallsToWall extends DifferentialWheels {
 
 	public void run() {
 		while (step(STEP_TIME) != -1) {
-			SensorManager.getInstance().readValues();
+			SensorManager.getInstance().updateValues();
 			
 			try {
 				_controllerManager.runController();

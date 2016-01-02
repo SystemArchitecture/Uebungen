@@ -52,9 +52,9 @@ public class SensorManager {
 		return _sensors.get(type);
 	}
 	
-	public void readValues() {
+	public void updateValues() {
 		for(SensorTypes type : _sensors.keySet()) {
-			getSensor(type).readValue();
+			getSensor(type).update();
 		}
 	}
 }

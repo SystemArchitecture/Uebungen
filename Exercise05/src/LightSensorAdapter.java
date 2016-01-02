@@ -12,6 +12,7 @@ public class LightSensorAdapter extends NomalizedSensor {
 
 	@Override
 	protected double readValue() {
-		return _sensor.getValue();
+		double value = _sensor.getValue();
+		return value;
 	}
 }

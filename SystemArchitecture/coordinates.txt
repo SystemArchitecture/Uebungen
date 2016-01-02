@@ -1,0 +1,450 @@
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+
+
+ *** Board Evaluation *** 
+Actual: [71,76]; Expected: [71,76] -> 0.0
+Actual: [135,79]; Expected: [135,79] -> 0.0
+Actual: [200,79]; Expected: [200,79] -> 0.0
+Actual: [264,79]; Expected: [264,79] -> 0.0
+Actual: [329,81]; Expected: [329,81] -> 0.0
+Actual: [394,80]; Expected: [394,80] -> 0.0
+

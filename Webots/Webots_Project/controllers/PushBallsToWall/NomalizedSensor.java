@@ -12,7 +12,7 @@ public abstract class NomalizedSensor extends AbstractSensor {
 	@Override
 	public void update() {
 		super.update();
-
+		
 		_ringbuffer.put(_value);
 
 		ArrayList<Double> values = new ArrayList<Double>(_ringbuffer.getElements());
