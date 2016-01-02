@@ -37,6 +37,7 @@ public class SubSumptionControllerManager {
 			if(_controllers.get(i).meetsActivationCondition()) {
 				controller = _controllers.get(i);
 			}
+			++i;
 		}
 		
 		return controller;

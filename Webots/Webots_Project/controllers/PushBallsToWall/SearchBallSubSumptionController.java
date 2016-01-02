@@ -1,4 +1,3 @@
-
 /**
  * Controller for searching the next ball.
  */
@@ -6,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
-public class SearchBallSubSumbtionController extends SubSumptionController {
+public class SearchBallSubSumptionController extends SubSumptionController {
 
 	@Override
 	protected Collection<SensorType> getNeededSensors() {

@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 
-public class BalanceBalSubSumptionController extends SubSumptionController {
+public class BalanceBallSubSumptionController extends SubSumptionController {
 
 	private static final double MIN_DISTANCE = 0.1;
 	
@@ -32,15 +32,13 @@ public class BalanceBalSubSumptionController extends SubSumptionController {
 	@Override
 	public void activate() {
 		double[] sensorVector = getSensorVector();
-		double[][] sensorMatrix = { { 0.0, 1.0, 1.0, 0.0 }, 
-									{ 0.0, 1.0, 1.0, 0.0 } };
+		double[][] sensorMatrix = { {0.1 , 0.0}, 
+									{0.0, 0.1}};
 		
 		double[] resultVector = MatrixUtil.multiply(sensorMatrix, sensorVector);
 		
 		WheelsController wheels = (WheelsController) MotionManager.getInstance().getActor(ActorTypes.DIFFERENTIAL_WHEELS);
 		
-		
-		System.out.println(sensorVector[0] + " " + sensorVector[1] + " " + sensorVector[2] + " " + sensorVector[3] );
 		wheels.setSpeed((int) (resultVector[0] * SPEED_MULTIPLIER), (int) (resultVector[1] * SPEED_MULTIPLIER));
 	}
 }

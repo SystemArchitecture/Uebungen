@@ -72,12 +72,7 @@ DEF WALL1 Solid {
   boundingObject USE WALL_SHAPE
 }
 EPuck {
-  hidden translation_1 -0.026 0.0200006 0
-  hidden rotation_1 2.40466e-08 2.50282e-16 1 8.87345e-11
-  hidden translation_2 0.026 0.0200006 0
-  hidden rotation_2 1.43864e-07 5.82653e-16 1 8.88425e-11
-  translation -0.0324894 -0.000131987 0.0286881
-  rotation -5.59154e-12 5.76514e-14 1 6.69705e-06
+  translation -0.0324894 1.79999e-15 0.0286881
   controller "PushBallsToWall"
 }
 DEF WALL2 Solid {
@@ -104,7 +99,7 @@ DEF WALL4 Solid {
   boundingObject USE WALL_SHAPE
 }
 DEF BALL Solid {
-  translation -0.366672 0.0298112 -0.57616
+  translation -0.366672 0.03 -0.57616
   scale 0.3 0.3 0.3
   children [
     Shape {
@@ -126,7 +121,7 @@ DEF BALL Solid {
   }
 }
 DEF BALL1 Solid {
-  translation -0.613971 0.0298112 0.604056
+  translation -0.613971 0.03 0.604056
   scale 0.3 0.3 0.3
   children [
     Shape {
@@ -144,7 +139,7 @@ DEF BALL1 Solid {
   physics USE BALL_PHYSICS
 }
 DEF BALL2 Solid {
-  translation -0.649363 0.0298112 -0.037092
+  translation -0.649363 0.03 -0.037092
   scale 0.3 0.3 0.3
   children [
     Shape {
@@ -162,7 +157,7 @@ DEF BALL2 Solid {
   physics USE BALL_PHYSICS
 }
 DEF BALL3 Solid {
-  translation -0.792876 0.0298112 0.330573
+  translation -0.792876 0.03 0.330573
   scale 0.3 0.3 0.3
   children [
     Shape {
@@ -180,7 +175,7 @@ DEF BALL3 Solid {
   physics USE BALL_PHYSICS
 }
 DEF BALL4 Solid {
-  translation 0.514505 0.0298112 0.662605
+  translation 0.514505 0.03 0.662605
   scale 0.3 0.3 0.3
   children [
     Shape {
@@ -198,7 +193,7 @@ DEF BALL4 Solid {
   physics USE BALL_PHYSICS
 }
 DEF BALL5 Solid {
-  translation -0.721567 0.0298112 -0.599553
+  translation -0.721567 0.03 -0.599553
   scale 0.3 0.3 0.3
   children [
     Shape {
@@ -216,7 +211,7 @@ DEF BALL5 Solid {
   physics USE BALL_PHYSICS
 }
 DEF BALL6 Solid {
-  translation 0.484391 0.0298112 -0.637955
+  translation 0.484391 0.03 -0.637955
   scale 0.3 0.3 0.3
   children [
     Shape {
@@ -234,7 +229,7 @@ DEF BALL6 Solid {
   physics USE BALL_PHYSICS
 }
 DEF BALL7 Solid {
-  translation -0.0881157 0.0298112 0.67872
+  translation -0.0881157 0.03 0.67872
   scale 0.3 0.3 0.3
   children [
     Shape {
@@ -252,7 +247,7 @@ DEF BALL7 Solid {
   physics USE BALL_PHYSICS
 }
 DEF BALL8 Solid {
-  translation 0.685065 0.0298112 0.227992
+  translation 0.685065 0.03 0.227992
   scale 0.3 0.3 0.3
   children [
     Shape {
@@ -270,7 +265,7 @@ DEF BALL8 Solid {
   physics USE BALL_PHYSICS
 }
 DEF BALL9 Solid {
-  translation 0.0639484 0.0298112 -0.403164
+  translation 0.0639484 0.03 -0.403164
   scale 0.3 0.3 0.3
   children [
     Shape {
@@ -288,7 +283,7 @@ DEF BALL9 Solid {
   physics USE BALL_PHYSICS
 }
 DEF BALL10 Solid {
-  translation 0.47068 0.0298112 -0.155245
+  translation 0.47068 0.03 -0.155245
   scale 0.3 0.3 0.3
   children [
     Shape {
