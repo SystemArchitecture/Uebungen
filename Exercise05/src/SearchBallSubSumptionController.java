@@ -30,17 +30,8 @@ public class SearchBallSubSumptionController extends SubSumptionController {
 
 	@Override
 	public void activate() {
-		double[] sensorVector = getSensorVector();
-		double[][] sensorMatrix = { { 0.0, 0.0, -1.0, -1.0 }, 
-									{ 1.0, 1.0, 0.0, 0.0 } };
-		
-		double[] resultVector = MatrixUtil.multiply(sensorMatrix, sensorVector);
-		
 		WheelsController wheels = (WheelsController) MotionManager.getInstance().getActor(ActorTypes.DIFFERENTIAL_WHEELS);
-		
-		
-		System.out.println(sensorVector[0] + " " + sensorVector[1] + " " + sensorVector[2] + " " + sensorVector[3] );
-		wheels.setSpeed((int) (resultVector[0] * SPEED_MULTIPLIER), (int) (resultVector[1] * SPEED_MULTIPLIER));
+		wheels.setSpeed((int) (SPEED_MULTIPLIER / 10), - (int) (SPEED_MULTIPLIER / 10));
 	}
 
 }

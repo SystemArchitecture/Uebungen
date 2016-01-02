@@ -19,6 +19,7 @@ public class SubSumptionControllerManager {
 		if(controller == null) {
 			throw new NoControllerMeetsActivationContitionException();
 		} else {
+			System.out.println(controller.getClass().getName());
 			controller.activate();
 		}
 	}
