@@ -5,9 +5,9 @@ public class DistanceSensorAdapter extends NomalizedSensor {
 	private DistanceSensor _distanceSensor;
 
 	public DistanceSensorAdapter(DifferentialWheels differentialWheels, SensorType type) {
-		super(10);
+		super(100, 0, 4000);
 		_distanceSensor = differentialWheels.getDistanceSensor(type.toString());
-		_distanceSensor.enable(10);
+		_distanceSensor.enable(1);
 	}
 
 	@Override

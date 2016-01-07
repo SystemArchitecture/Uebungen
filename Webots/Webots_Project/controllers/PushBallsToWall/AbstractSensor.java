@@ -1,14 +1,18 @@
 
 public abstract class AbstractSensor {
-	protected double _value;
+	protected double _rawValue;
 	
 	protected abstract double readValue();
 	
 	public void update() {
-		_value = readValue();
+		_rawValue = readValue();
+	}
+	
+	public double getRawValue(){
+		return _rawValue;
 	}
 	
 	public double getValue() {
-		return _value;
+		return _rawValue;
 	}
 }

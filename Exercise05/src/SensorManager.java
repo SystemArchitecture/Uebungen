@@ -36,7 +36,7 @@ public class SensorManager {
 			if (type.toString().startsWith(DISTANCE_SENSOR_PREFIX)) {
 				newSensor = new DistanceSensorAdapter(_differentialWheels, type);
 			} else if (type.toString().startsWith(LIGHT_SENSOR_PREFIX)) {
-				newSensor = new LightSensorAdapter(_differentialWheels, type);
+				throw new IllegalArgumentException("Not Implemented: " + type);
 			} else {
 				throw new IllegalArgumentException("Unknown Sensor: " + type);
 			}

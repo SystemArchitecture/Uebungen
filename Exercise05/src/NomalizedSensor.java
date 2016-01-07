@@ -1,21 +1,34 @@
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedList;
 
 public abstract class NomalizedSensor extends AbstractSensor {
 
 	private RingBuffer<Double> _ringbuffer;
-
-	public NomalizedSensor(int bufferSize) {
+	private double _min;
+	private double _max;
+	
+	private double _value;
+	
+	public NomalizedSensor(int bufferSize, double min, double max) {
 		_ringbuffer = new RingBuffer<>(bufferSize);
 	}
 
 	@Override
 	public void update() {
 		super.update();
+				
+		if(_max < _rawValue) {
+			_max = _rawValue;
+		}
 		
-		_ringbuffer.put(_value);
+		if(_rawValue < _min) {
+			_rawValue = _min;
+		}
+		
+		_ringbuffer.put(_rawValue);
 
-		ArrayList<Double> values = new ArrayList<Double>(_ringbuffer.getElements());
+		LinkedList<Double> values = new LinkedList<Double>(_ringbuffer.getElements());
 		values.sort(new Comparator<Double>() {
 
 			@Override
@@ -29,11 +42,18 @@ public abstract class NomalizedSensor extends AbstractSensor {
 				}
 			}
 		});
-		
-		_value = normalize(values.get(0), values.get(values.size() - 1), _value);
+		values.addFirst(_min);
+		values.addLast(_max);
+		//_value = normalize(values.get(0), values.get(values.size() - 1), _value);
+		_value = normalize(_min, _max, _rawValue);
 	}
 
 	private double normalize(double min, double max, double value) {
 		return (value - min) / (max - min);
+	}
+	
+	@Override
+	public double getValue() {
+		return _value;
 	}
 }

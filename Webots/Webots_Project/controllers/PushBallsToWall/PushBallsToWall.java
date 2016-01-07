@@ -11,7 +11,7 @@ public class PushBallsToWall extends DifferentialWheels {
 		MotionManager.getInstance().init(this);
 		_controllerManager = new SubSumptionControllerManager();
 		
-		
+		//_controllerManager.addController(new AvoidWallSubSumptionController());
 		_controllerManager.addController(new BalanceBallSubSumptionController());
 		_controllerManager.addController(new SearchBallSubSumptionController());
 		//_controllerManager.addController(new BlankController());

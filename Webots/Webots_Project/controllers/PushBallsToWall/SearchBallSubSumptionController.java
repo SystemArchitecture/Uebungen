@@ -31,7 +31,7 @@ public class SearchBallSubSumptionController extends SubSumptionController {
 	@Override
 	public void activate() {
 		WheelsController wheels = (WheelsController) MotionManager.getInstance().getActor(ActorTypes.DIFFERENTIAL_WHEELS);
-		wheels.setSpeed((int) (SPEED_MULTIPLIER / 10), - (int) (SPEED_MULTIPLIER / 10));
+		wheels.setSpeed((int) (MAX_SPEED / 10), - (int) (MAX_SPEED / 10));
 	}
 
 }
