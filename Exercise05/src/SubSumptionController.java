@@ -4,7 +4,7 @@ import java.util.HashMap;
 public abstract class SubSumptionController {
 
 	protected static final double MAX_SPEED = 1000.0;
-	protected static final double SPEED_MULTIPLIER = 7.5;
+	protected static final double SPEED_MULTIPLIER = 100;
 	
 	protected HashMap<SensorType, Double> _sensorValues;
 

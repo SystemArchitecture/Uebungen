@@ -9,8 +9,8 @@ WorldInfo {
   basicTimeStep 16
 }
 Viewpoint {
-  orientation -0.996094 0.0787814 0.0398695 0.404128
-  position 0.0687972 0.501902 1.58112
+  orientation -0.998886 0.0368228 -0.0294951 1.35958
+  position 0.060731 3.18419 0.622881
 }
 PointLight {
   ambientIntensity 0.5
@@ -76,9 +76,9 @@ EPuck {
   hidden rotation_1 1.02959e-07 4.3401e-15 -1 -8.87344e-11
   hidden translation_2 0.026 0.0200006 0
   hidden rotation_2 7.20299e-08 4.25688e-15 -1 -8.8843e-11
-  translation 0.0698057 -0.000131987 0.463792
+  translation 0.0698057 -0.000131987 0.173792
   rotation 3.28689e-11 3.0069e-13 1 6.69705e-06
-  controller "BangBangController"
+  controller "PushBallsToWall"
 }
 DEF WALL2 Solid {
   translation -1 0.05 0

@@ -1,14 +1,16 @@
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class RingBuffer<T> {
 	
-	private ArrayList<T> _ringBuffer;
+	private Queue<T> _ringBuffer;
 	private int _ringBufferIndex;
 	private int _ringBufferSize;
 	
 	public RingBuffer(int size) {
-		_ringBuffer = new ArrayList<>(size);
+		_ringBuffer = new LinkedList<>();
 		_ringBufferSize = size;
 	}
 	
@@ -16,7 +18,8 @@ public class RingBuffer<T> {
 		if(_ringBuffer.size() < _ringBufferSize) {
 			_ringBuffer.add(element);
 		} else {
-			_ringBuffer.add(_ringBufferIndex % _ringBufferSize, element);
+			_ringBuffer.poll();
+			_ringBuffer.add(element);
 		}
 	}
 	

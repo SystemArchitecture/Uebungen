@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class BalanceBallSubSumptionController extends SubSumptionController {
 
-	private static final double MIN_DISTANCE = 0.01;
+	private static final double MIN_DISTANCE = 0.1;
 
 	@Override
 	protected Collection<SensorType> getNeededSensors() {
@@ -27,9 +27,9 @@ public class BalanceBallSubSumptionController extends SubSumptionController {
 		if ((sensorValuePairs.get(SensorType.DIST_SENSOR_LF) > MIN_DISTANCE)
 				|| (sensorValuePairs.get(SensorType.DIST_SENSOR_RF) > MIN_DISTANCE)) {
 			active = true;
-		}/* else {
+		} else {
 			return false;
-		}*/
+		}
 		
 		return active;
 	}
@@ -38,14 +38,13 @@ public class BalanceBallSubSumptionController extends SubSumptionController {
 	public void activate() {
 		double[] sensorVector = getSensorVector();
 
-		double[][] sensorMatrix = { { 0.0, 0.0, 0.1, 0.2 }, { 0.2, 0.1, 0.0, 0.0 } };
+		double[][] sensorMatrix = { { 0.6, 0.9, 0, 0}, { 0, 0 , 0.9, 0.6 } };
 
 		double[] resultVector = MatrixUtil.multiply(sensorMatrix, sensorVector);
 
 		WheelsController wheels = (WheelsController) MotionManager.getInstance()
 				.getActor(ActorTypes.DIFFERENTIAL_WHEELS);
 
-		wheels.setSpeed((int) (resultVector[0] * MAX_SPEED * SPEED_MULTIPLIER), (int) (resultVector[1] * MAX_SPEED * SPEED_MULTIPLIER));
-
+		wheels.setSpeed((int) (resultVector[0] * MAX_SPEED + SPEED_MULTIPLIER), (int) (resultVector[1] * MAX_SPEED + SPEED_MULTIPLIER));
 	}
 }

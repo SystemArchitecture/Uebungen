@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+
 import java.util.Comparator;
 import java.util.LinkedList;
 
@@ -18,13 +18,13 @@ public abstract class NomalizedSensor extends AbstractSensor {
 	public void update() {
 		super.update();
 				
-		if(_max < _rawValue) {
+		/*if(_max < _rawValue) {
 			_max = _rawValue;
 		}
 		
 		if(_rawValue < _min) {
 			_rawValue = _min;
-		}
+		}*/
 		
 		_ringbuffer.put(_rawValue);
 
@@ -42,10 +42,9 @@ public abstract class NomalizedSensor extends AbstractSensor {
 				}
 			}
 		});
-		values.addFirst(_min);
-		values.addLast(_max);
-		//_value = normalize(values.get(0), values.get(values.size() - 1), _value);
-		_value = normalize(_min, _max, _rawValue);
+		
+		//_value = normalize(_min, _max, _rawValue);
+		_value = normalize(values.getFirst(), values.getLast(), _rawValue);
 	}
 
 	private double normalize(double min, double max, double value) {
