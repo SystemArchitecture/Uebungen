@@ -1,3 +1,7 @@
+/*
+ * Sensor Manager
+ * Singleton, creates/initializes sensors, updates values.
+ */
 
 import java.util.HashMap;
 

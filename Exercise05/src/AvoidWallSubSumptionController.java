@@ -1,3 +1,9 @@
+/*
+ * Controller for Avoiding Walls
+ * Meets activation condition when accelerometer is 0.
+ * Needs to drive away until distance sensors values are low enough.
+ */
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;

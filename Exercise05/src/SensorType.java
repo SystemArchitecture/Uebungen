@@ -11,8 +11,7 @@ public enum SensorType {
 	DIST_SENSOR_LF("ps7"),
 	DIST_SENSOR_RF("ps0"),
 	DIST_SENSOR_RM("ps1"),
-	DIST_SENSOR_R("ps2");
-	
+	DIST_SENSOR_R("ps2");	
 	private final String _name;
 	
 	SensorType(String name){

@@ -45,6 +45,6 @@ public class BalanceBallSubSumptionController extends SubSumptionController {
 		WheelsController wheels = (WheelsController) MotionManager.getInstance()
 				.getActor(ActorTypes.DIFFERENTIAL_WHEELS);
 
-		wheels.setSpeed((int) (resultVector[0] * MAX_SPEED + SPEED_MULTIPLIER), (int) (resultVector[1] * MAX_SPEED + SPEED_MULTIPLIER));
+		wheels.setSpeed((int) (resultVector[0] * MAX_SPEED + SPEED_ADD), (int) (resultVector[1] * MAX_SPEED + SPEED_ADD));
 	}
 }

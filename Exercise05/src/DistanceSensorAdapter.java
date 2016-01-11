@@ -1,3 +1,9 @@
+/*
+ * Distance Sensor
+ * Sets min and max value.
+ * Enables sensor.
+ */
+
 import com.cyberbotics.webots.controller.DifferentialWheels;
 import com.cyberbotics.webots.controller.DistanceSensor;
 

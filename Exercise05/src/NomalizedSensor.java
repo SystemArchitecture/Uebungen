@@ -1,4 +1,6 @@
-
+/*
+ * Normalizing sensor values for driving smoother.
+ */
 import java.util.Comparator;
 import java.util.LinkedList;
 

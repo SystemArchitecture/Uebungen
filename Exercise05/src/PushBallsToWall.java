@@ -1,3 +1,9 @@
+/*
+ * Main Controller Class for Webots
+ * 
+ * Initializes sensor-, motion- and controller-manager.
+ * Use run() method to control.
+ */
 import com.cyberbotics.webots.controller.DifferentialWheels;
 
 public class PushBallsToWall extends DifferentialWheels {
@@ -11,10 +17,9 @@ public class PushBallsToWall extends DifferentialWheels {
 		MotionManager.getInstance().init(this);
 		_controllerManager = new SubSumptionControllerManager();
 		
-		//_controllerManager.addController(new AvoidWallSubSumptionController());
+		_controllerManager.addController(new AvoidWallSubSumptionController());
 		_controllerManager.addController(new BalanceBallSubSumptionController());
 		_controllerManager.addController(new SearchBallSubSumptionController());
-		//_controllerManager.addController(new BlankController());
 	}
 
 	public void run() {

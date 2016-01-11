@@ -1,9 +1,9 @@
-import java.util.LinkedList;
-
 /*
  * This class handles SubSumption Controllers. The Controllers are sorted in an ArrayList
  * with the first being the Controller with the highest priority. 
  */
+
+import java.util.LinkedList;
 
 public class SubSumptionControllerManager {
 	private LinkedList<SubSumptionController> _controllers;

@@ -1,3 +1,7 @@
+/*
+ * Sensor Abstraction
+ * for reading and writing values.
+ */
 
 public abstract class AbstractSensor {
 	protected double _rawValue;
